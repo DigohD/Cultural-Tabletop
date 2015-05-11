@@ -1,0 +1,15 @@
+﻿<s:SurfaceWindow x:Class="Cultiverse.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="http://schemas.microsoft.com/surface/2008"
+    xmlns:cv="clr-namespace:Cultiverse"
+    Title="Cultiverse"
+    >
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewWorld" CanExecute="NewWorld_CanExecute" />
+    </Window.CommandBindings>
+    <Grid Name="mainGrid">
+        <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
+        <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>
+    </Grid>
+</s:SurfaceWindow>

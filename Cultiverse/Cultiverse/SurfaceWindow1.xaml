@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Cultiverse.SurfaceWindow1"
     Title="Cultiverse" d:DesignHeight="515" d:DesignWidth="608" SizeToContent="WidthAndHeight">
   <Grid Name="mainGrid">
-        <cv:UserControl1 x:Name="myControl" Width="500" Height="200"></cv:UserControl1>
-
+        <cv:UniverseView x:Name="universeView"></cv:UniverseView>
+        <cv:CreateWorldView x:Name="createWorldView"></cv:CreateWorldView>
     </Grid>
 </s:SurfaceWindow>

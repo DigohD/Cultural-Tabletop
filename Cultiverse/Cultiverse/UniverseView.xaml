@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Cultiverse.UniverseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:s="http://schemas.microsoft.com/surface/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <s:SurfaceButton Name="createWorldButton" Command="New" Margin="731,578,1024,444">Create new world</s:SurfaceButton>
+            
+    </Grid>
+</UserControl>
