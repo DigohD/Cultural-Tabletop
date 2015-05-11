@@ -1,10 +1,12 @@
-﻿<s:SurfaceWindow x:Class="Cultiverse.SurfaceWindow1"
+﻿<s:SurfaceWindow
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
-    Title="Cultiverse"
-    >
-  <Grid>
+    xmlns:cv="clr-namespace:Cultiverse"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Cultiverse.SurfaceWindow1"
+    Title="Cultiverse" d:DesignHeight="515" d:DesignWidth="608" SizeToContent="WidthAndHeight">
+  <Grid Name="mainGrid">
+        <cv:UserControl1 x:Name="myControl" Width="500" Height="200"></cv:UserControl1>
 
-  </Grid>
+    </Grid>
 </s:SurfaceWindow>

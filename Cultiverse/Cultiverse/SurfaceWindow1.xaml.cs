@@ -32,6 +32,12 @@ namespace Cultiverse
 
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
+            /*
+            UserControl control = new UserControl();
+            control.Width = 100;
+            control.Height = 100;
+            mainGrid.Children.Add(control);
+            */
         }
 
         /// <summary>
@@ -99,5 +105,6 @@ namespace Cultiverse
         {
             //TODO: disable audio, animations here
         }
+
     }
 }
