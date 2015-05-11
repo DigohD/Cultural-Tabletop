@@ -41,8 +41,8 @@ namespace Cultiverse
             starsImage.Source = bitMap;
 
             canvas.Children.Add(starsImage);
-            Canvas.SetLeft(starsImage, -400);
-            Canvas.SetTop(starsImage, -250);
+            Canvas.SetLeft(starsImage, 0);
+            Canvas.SetTop(starsImage, 0);
         }
 
         float rotation;

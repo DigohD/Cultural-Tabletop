@@ -4,7 +4,7 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="Cultiverse"
     >
-  <Canvas Name="myCanvas" Width="800" Height="800">
+  <Canvas Name="myCanvas" Width="1600" Height="900">
 
   </Canvas>
 </s:SurfaceWindow>
