@@ -29,6 +29,7 @@ namespace Cultiverse
         ArrayList updateList = new ArrayList();
         float deltaTime;
         Stopwatch watch = new Stopwatch();
+        Image bg = new Image();
 
         /// <summary>
         /// Default constructor.
@@ -38,6 +39,16 @@ namespace Cultiverse
             InitializeComponent();
 
             CompositionTarget.Rendering += update;
+
+            BitmapImage bitMap = new BitmapImage();
+            bitMap.BeginInit();
+            bitMap.UriSource = new Uri(@"C:\Users\Simon\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\bg.png", UriKind.Absolute);
+            bitMap.EndInit();
+
+            bg.Stretch = Stretch.Fill;
+            bg.Source = bitMap;
+
+            myCanvas.Children.Add(bg);
 
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
