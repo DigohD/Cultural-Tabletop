@@ -15,6 +15,8 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
+using System.Collections;
+using System.Diagnostics;
 
 namespace Cultiverse
 {
@@ -23,6 +25,11 @@ namespace Cultiverse
     /// </summary>
     public partial class SurfaceWindow1 : SurfaceWindow
     {
+
+        ArrayList updateList = new ArrayList();
+        float deltaTime;
+        Stopwatch watch = new Stopwatch();
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -30,8 +37,42 @@ namespace Cultiverse
         {
             InitializeComponent();
 
+            CompositionTarget.Rendering += update;
+
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
+
+            addToUpdate(new Stars(myCanvas, "stars.png", 0.4f));
+            addToUpdate(new Stars(myCanvas, "stars2.png", 0.2f));
+        }
+
+        byte r;
+        bool rising;
+        SolidColorBrush solidC = new SolidColorBrush();
+
+        public void update(object sender, EventArgs e)
+        {
+            watch.Stop();
+            deltaTime = watch.ElapsedMilliseconds;
+
+            foreach (Updateable u in updateList)
+                u.update(deltaTime);
+
+            solidC.Color = Color.FromRgb(r, 0, 0);
+            myCanvas.Background = solidC;
+
+            watch.Reset();
+            watch.Start();
+        }
+
+        public void addToUpdate(object updateable)
+        {
+            updateList.Add(updateable);
+        }
+
+        public void removeFromUpdate(object updateable)
+        {
+            updateList.Remove(updateable);
         }
 
         /// <summary>
