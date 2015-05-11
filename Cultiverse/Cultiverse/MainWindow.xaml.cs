@@ -15,6 +15,7 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
+using Cultiverse.Model;
 
 namespace Cultiverse
 {
@@ -23,12 +24,17 @@ namespace Cultiverse
     /// </summary>
     public partial class MainWindow : SurfaceWindow
     {
+
+        private WorldDatabase worldDatabase;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+
+            worldDatabase = new WorldDatabase();
 
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
@@ -102,6 +108,7 @@ namespace Cultiverse
 
         private void NewWorld(object sender, ExecutedRoutedEventArgs e)
         {
+            createWorldView.setWorld(worldDatabase.createNewWorld());
             createWorldView.Visibility = Visibility.Visible;
             universeView.Visibility = Visibility.Hidden;
         }

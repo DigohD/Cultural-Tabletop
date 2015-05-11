@@ -62,6 +62,9 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\World.cs" />
+    <Compile Include="Model\WorldDatabase.cs" />
+    <Compile Include="UI\BorderClipConverter.cs" />
     <Compile Include="UniverseView.xaml.cs">
       <DependentUpon>UniverseView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

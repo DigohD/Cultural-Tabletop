@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Cultiverse.Model;
+using System.Globalization;
 
 namespace Cultiverse
 {
@@ -20,6 +22,8 @@ namespace Cultiverse
     /// </summary>
     public partial class CreateWorldView : UserControl
     {
+        private World currentWorld;
+
         public CreateWorldView()
         {
             InitializeComponent();
@@ -33,11 +37,18 @@ namespace Cultiverse
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
             //Save strokes
+
             FileStream fileStream = new FileStream(@"drawing.strokes", FileMode.Create, FileAccess.Write);
 
             inkCanvas1.Strokes.Save(fileStream);
             fileStream.Close();
         }
 
+
+        internal void setWorld(World world)
+        {
+            currentWorld = world;
+        }
     }
+
 }
