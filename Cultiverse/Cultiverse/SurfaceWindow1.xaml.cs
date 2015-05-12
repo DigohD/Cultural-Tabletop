@@ -15,6 +15,10 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
+using System.Threading;
+using System.Diagnostics;
+using System.Collections;
+using System.Windows.Threading;
 
 namespace Cultiverse
 {
@@ -23,6 +27,10 @@ namespace Cultiverse
     /// </summary>
     public partial class SurfaceWindow1 : SurfaceWindow
     {
+
+        ArrayList list = new ArrayList();
+        Dispatcher mainDespatch;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -30,8 +38,46 @@ namespace Cultiverse
         {
             InitializeComponent();
 
+            mainDespatch = Dispatcher.CurrentDispatcher;
+
+            Thread ballThread = new Thread(this.ballUpdate);
+            ballThread.SetApartmentState(ApartmentState.STA);
+            ballThread.Start();
+
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
+
+            ballLoop();
+            
+        }
+
+        int count = 0;
+
+        private void ballUpdate(){
+            while (true)
+            {
+                foreach (Ball b1 in list)
+                    foreach (Ball b2 in list)
+                        b1.collide(b2);
+                foreach (Ball b in list)
+                    b.update(mainDespatch);
+                Thread.Sleep(15);
+            }
+
+        }
+
+        private void ballLoop()
+        {
+            while(count < 0)
+            {
+                count++;
+                Thread.Sleep(100);
+
+                Ball ball = new Ball(count);
+                list.Add(ball);
+
+                Canvas_Main.Children.Add(ball.getBallImage());
+            }
         }
 
         /// <summary>
@@ -99,5 +145,20 @@ namespace Cultiverse
         {
             //TODO: disable audio, animations here
         }
+
+        private void Canvas_TouchDown(object sender, TouchEventArgs e)
+        {
+            // Get the position of the current contact.
+            Point touchPosition = e.TouchDevice.GetPosition(this);
+
+            Ball ball = new Ball(count, (int) touchPosition.X, (int) touchPosition.Y);
+            list.Add(ball);
+
+            Canvas_Main.Children.Add(ball.getBallImage());
+
+            e.Handled = true;
+        }
+
+        
     }
 }

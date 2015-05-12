@@ -2,9 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
-    Title="Cultiverse"
-    >
-  <Grid>
-
-  </Grid>
+    Title="Cultiverse" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="188" d:DesignWidth="273" SizeToContent="WidthAndHeight">
+    <Canvas Name="Canvas_Main" Width="800" Height="800" TouchDown="Canvas_TouchDown">
+        <Image Source="C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\shine.png"
+               Name="shineImage"
+               Width="800"
+               Height="800"></Image>
+    </Canvas>
 </s:SurfaceWindow>
