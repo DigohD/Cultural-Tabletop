@@ -15,15 +15,10 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
-<<<<<<< HEAD
 using System.Threading;
 using System.Diagnostics;
 using System.Collections;
 using System.Windows.Threading;
-=======
-using System.Collections;
-using System.Diagnostics;
->>>>>>> origin/craptop-Branch
 
 namespace Cultiverse
 {
@@ -32,65 +27,77 @@ namespace Cultiverse
     /// </summary>
     public partial class SurfaceWindow1 : SurfaceWindow
     {
-
-<<<<<<< HEAD
         ArrayList list = new ArrayList();
         Dispatcher mainDespatch;
-=======
+
         ArrayList updateList = new ArrayList();
         float deltaTime;
         Stopwatch watch = new Stopwatch();
         Image bg = new Image();
->>>>>>> origin/craptop-Branch
+        Image planet = new Image();
+
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public SurfaceWindow1()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.StackTrace);
+            }
 
-<<<<<<< HEAD
             mainDespatch = Dispatcher.CurrentDispatcher;
 
-            Thread ballThread = new Thread(this.ballUpdate);
-            ballThread.SetApartmentState(ApartmentState.STA);
-            ballThread.Start();
-=======
             CompositionTarget.Rendering += update;
 
+            initBackground();
+
+            // Add handlers for window availability events
+            AddWindowAvailabilityHandlers();
+        }
+
+        private void initBackground()
+        {
             BitmapImage bitMap = new BitmapImage();
             bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"C:\Users\Simon\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\bg.png", UriKind.Absolute);
+            bitMap.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\bg.png", UriKind.Absolute);
             bitMap.EndInit();
 
             bg.Stretch = Stretch.Fill;
             bg.Source = bitMap;
 
             myCanvas.Children.Add(bg);
->>>>>>> origin/craptop-Branch
 
-            // Add handlers for window availability events
-            AddWindowAvailabilityHandlers();
+            addToUpdate(new Stars(myCanvas, "stars.png", 0.4f));
+            addToUpdate(new Stars(myCanvas, "stars2.png", 0.2f));
 
-<<<<<<< HEAD
-            ballLoop();
-            
+            bitMap = new BitmapImage();
+            bitMap.BeginInit();
+            bitMap.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\circle.png", UriKind.Absolute);
+            bitMap.EndInit();
+
+            planet.Stretch = Stretch.Fill;
+            planet.Source = bitMap;
+            planet.Width = 800;
+            planet.Height = 800;
+            Canvas.SetLeft(planet, 400);
+            Canvas.SetTop(planet, 50);
+
+            myCanvas.Children.Add(planet);
         }
 
         int count = 0;
 
-        private void ballUpdate(){
-            while (true)
-            {
-                foreach (Ball b1 in list)
-                    foreach (Ball b2 in list)
-                        b1.collide(b2);
-                foreach (Ball b in list)
-                    b.update(mainDespatch);
-                Thread.Sleep(15);
+        private void ballUpdate(float deltaTime){
+            foreach (Ball b in list){
+                b.update(deltaTime);
+                b.collide(list);
             }
-
         }
 
         private void ballLoop()
@@ -103,11 +110,8 @@ namespace Cultiverse
                 Ball ball = new Ball(count);
                 list.Add(ball);
 
-                Canvas_Main.Children.Add(ball.getBallImage());
+                myCanvas.Children.Add(ball.getBallImage());
             }
-=======
-            addToUpdate(new Stars(myCanvas, "stars.png", 0.4f));
-            addToUpdate(new Stars(myCanvas, "stars2.png", 0.2f));
         }
 
         byte r;
@@ -125,6 +129,8 @@ namespace Cultiverse
             solidC.Color = Color.FromRgb(r, 0, 0);
             myCanvas.Background = solidC;
 
+            ballUpdate(deltaTime);
+
             watch.Reset();
             watch.Start();
         }
@@ -137,7 +143,6 @@ namespace Cultiverse
         public void removeFromUpdate(object updateable)
         {
             updateList.Remove(updateable);
->>>>>>> origin/craptop-Branch
         }
 
         /// <summary>
@@ -211,12 +216,27 @@ namespace Cultiverse
             // Get the position of the current contact.
             Point touchPosition = e.TouchDevice.GetPosition(this);
 
-            Ball ball = new Ball(count, (int) touchPosition.X, (int) touchPosition.Y);
+            Ball ball = new Ball(count, (int) touchPosition.X, (int) touchPosition.Y, 64, 64);
+            addToUpdate(ball);
             list.Add(ball);
 
-            Canvas_Main.Children.Add(ball.getBallImage());
+            myCanvas.Children.Add(ball.getBallImage());
 
             e.Handled = true;
+        }
+
+        float lastX, lastY;
+
+        private void myCanvas_TouchMove(object sender, TouchEventArgs e)
+        {
+            float touchX = (float)e.TouchDevice.GetPosition(this).X;
+            float touchY = (float)e.TouchDevice.GetPosition(this).Y;
+            float dX = touchX - lastX;
+            float dY = touchY - lastY;
+            foreach (Ball b in list)
+                b.push(dX, dY, touchX, touchY);
+            lastX = touchX;
+            lastY = touchY;
         }
 
         
