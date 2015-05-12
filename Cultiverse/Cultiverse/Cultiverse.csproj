@@ -64,8 +64,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Class1.cs" />
     <Compile Include="Ball.cs" />
+=======
+    <Compile Include="Stars.cs" />
+    <Compile Include="Updateable.cs" />
+>>>>>>> origin/craptop-Branch
     <Compile Include="SurfaceWindow1.xaml.cs">
       <DependentUpon>SurfaceWindow1.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -96,6 +101,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\bg.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -103,8 +109,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+<<<<<<< HEAD
     <Resource Include="Resources\shine.png" />
     <Resource Include="Resources\particle1.png" />
+=======
+    <Resource Include="Resources\stars2.png" />
+    <Resource Include="Resources\stars.png" />
+>>>>>>> origin/craptop-Branch
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
