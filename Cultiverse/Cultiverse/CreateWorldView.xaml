@@ -11,7 +11,7 @@
         <Grid.Resources>
             <cvui:BorderClipConverter x:Key="BorderClipConverter" />
         </Grid.Resources>
-        <Canvas Name="myCanvas" Width="1600" Height="900" TouchDown="Canvas_TouchDown" TouchMove="myCanvas_TouchMove">
+        <Canvas Name="myCanvas" Width="1600" Height="900" TouchMove="myCanvas_TouchMove">
             <Image Source="C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\shine.png"
                Name="shineImage"
                Width="800"

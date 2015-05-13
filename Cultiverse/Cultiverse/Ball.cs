@@ -57,8 +57,10 @@ namespace Cultiverse
             Canvas.SetTop(image, y);
         }
 
-        public Ball(int count, int newX, int newY, int newWidth, int newHeight)
+        public Ball(int count, int newX, int newY, int newWidth, int newHeight, string imagePath)
         {
+            //this(count,newX,newY,newWith,newHeight,
+                
             this.width = newWidth;
             this.height = newHeight;
 
@@ -68,7 +70,14 @@ namespace Cultiverse
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
+            if (imagePath != null)
+            {
+                bi3.UriSource = new Uri(imagePath, UriKind.Absolute);
+            }
+            else
+            {
+                bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
+            }
             bi3.EndInit();
 
             image.Stretch = Stretch.Fill;

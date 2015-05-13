@@ -166,7 +166,12 @@ namespace Cultiverse
 
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
-            
+
+            Ball ball = new Ball(count, 500, 500, 128, 128, drawing.BitmapFilePath);
+            addToUpdate(ball);
+            list.Add(ball);
+
+            myCanvas.Children.Add(ball.getBallImage());
 
             inkCanvas1.Strokes.Clear();
         }
@@ -175,21 +180,6 @@ namespace Cultiverse
         internal void setWorld(World world)
         {
             currentWorld = world;
-        }
-
-
-        private void Canvas_TouchDown(object sender, TouchEventArgs e)
-        {
-            // Get the position of the current contact.
-            Point touchPosition = e.GetTouchPoint(myCanvas).Position;
-
-            Ball ball = new Ball(count, (int)touchPosition.X, (int)touchPosition.Y, 64, 64);
-            addToUpdate(ball);
-            list.Add(ball);
-
-            myCanvas.Children.Add(ball.getBallImage());
-
-            e.Handled = true;
         }
 
         float lastX, lastY;
