@@ -21,7 +21,7 @@ namespace Cultiverse.Model
         {
             //TODO: Increment world folder path
 
-            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Cultiverse\\worlds\\1";
+            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds\\1";
 
             if (!Directory.Exists(worldPath))
             {
