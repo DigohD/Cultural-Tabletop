@@ -33,7 +33,7 @@
             <my:SurfaceInkCanvas Name="inkCanvas1" />
         </Border>
         <Grid Width="550" Height="550" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FFFFFFFF">
+            <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF">
                 <Border.Clip>
                     <MultiBinding Converter="{StaticResource BorderClipConverter}">
                         <Binding Path="ActualWidth"

@@ -37,12 +37,15 @@ namespace Cultiverse
             bitMap.UriSource = new Uri(@"Resources\" + name, UriKind.Relative);
             bitMap.EndInit();
 
+            starsImage.Width = 3000;
+            starsImage.Height = 3000;
+            
             starsImage.Stretch = Stretch.Fill;
             starsImage.Source = bitMap;
 
             canvas.Children.Add(starsImage);
-            Canvas.SetLeft(starsImage, 0);
-            Canvas.SetTop(starsImage, 0);
+            Canvas.SetLeft(starsImage, -1500 + 1920 / 2);
+            Canvas.SetTop(starsImage, -1500 + 1080 / 2);
         }
 
         float rotation;
@@ -51,8 +54,8 @@ namespace Cultiverse
         public override void update(float deltatime)
         {
             rotation += rotspeed / 100.00000f * deltatime;
-            rotateTransform1.CenterX = 800;
-            rotateTransform1.CenterY = 450;
+            rotateTransform1.CenterX = 1500;
+            rotateTransform1.CenterY = 1500;
             rotateTransform1.Angle = rotation;
             starsImage.RenderTransform = rotateTransform1;
         }

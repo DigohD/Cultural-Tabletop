@@ -36,7 +36,7 @@ namespace Cultiverse
         float deltaTime;
         Stopwatch watch = new Stopwatch();
         Image bg = new Image();
-        Image planet = new Image();
+        Ellipse planet = new Ellipse();
 
         public CreateWorldView()
         {
@@ -57,28 +57,15 @@ namespace Cultiverse
 
         private void initBackground()
         {
-            BitmapImage bitMap = new BitmapImage();
-            bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"Resources\bg.png", UriKind.Relative);
-            bitMap.EndInit();
+            addToUpdate(new Stars(myCanvas, "bg.png", 0.03f));
+            addToUpdate(new Stars(myCanvas, "stars.png", 0.1f));
+            addToUpdate(new Stars(myCanvas, "stars2.png", 0.08f));
+            addToUpdate(new Stars(myCanvas, "stars3.png", 0.2f));
 
-            bg.Stretch = Stretch.Fill;
-            bg.Source = bitMap;
-
-            myCanvas.Children.Add(bg);
-
-            addToUpdate(new Stars(myCanvas, "stars.png", 0.4f));
-            addToUpdate(new Stars(myCanvas, "stars2.png", 0.2f));
-
-            bitMap = new BitmapImage();
-            bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"Resources\circle.png", UriKind.Relative);
-            bitMap.EndInit();
-
-            planet.Stretch = Stretch.Fill;
-            planet.Source = bitMap;
+            planet.Fill = new SolidColorBrush(Colors.LightGray);
             planet.Width = 800;
             planet.Height = 800;
+
             Canvas.SetLeft(planet, myCanvas.Width / 2 - planet.Width/2);
             Canvas.SetTop(planet, myCanvas.Height / 2 - planet.Height/2);
 
@@ -180,6 +167,9 @@ namespace Cultiverse
         private void addDrawingFromInkCanvas(SurfaceInkCanvas inkCanvas)
         {
             WorldDrawing drawing = currentWorld.createNewDrawing();
+
+            inkCanvas.Clip = new EllipseGeometry(new Point(inkCanvas.ActualWidth / 2, inkCanvas.ActualHeight / 2), inkCanvas.ActualWidth, inkCanvas.ActualHeight);
+            
 
             //Save strokes
             FileStream fileStream = new FileStream(drawing.StrokesFilePath, FileMode.Create, FileAccess.Write);
