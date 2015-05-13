@@ -8,20 +8,24 @@ namespace Cultiverse.Model
 {
     class WorldDatabase
     {
-
         private List<World> universe;
+        string worldsFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds";
 
         public WorldDatabase()
         {
-            //TODO: load from folders/files.
+
             universe = new List<World>();
+
+            IEnumerable<string> worldFolders = Directory.EnumerateDirectories(worldsFolder);
+            foreach (string worldFolder in worldFolders)
+            {
+                universe.Add(new World(worldFolder));
+            }
         }
 
         public World createNewWorld()
         {
-            //TODO: Increment world folder path
-
-            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds\\1";
+            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds\\"+universe.Count;
 
             if (!Directory.Exists(worldPath))
             {
