@@ -34,6 +34,7 @@ namespace Cultiverse
 
             bitMap = new BitmapImage();
             bitMap.BeginInit();
+            bitMap.UriSource = new Uri(@"Resources\" + name, UriKind.Relative);
             bitMap.EndInit();
 
             starsImage.Stretch = Stretch.Fill;
