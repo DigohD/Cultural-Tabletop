@@ -11,14 +11,14 @@
         <Grid.Resources>
             <cvui:BorderClipConverter x:Key="BorderClipConverter" />
         </Grid.Resources>
-        <Canvas Name="myCanvas" Width="1600" Height="900" TouchMove="myCanvas_TouchMove">
+        <Canvas Name="myCanvas" Width="1920" Height="1080" TouchMove="myCanvas_TouchMove" Background="White">
             <Image Source="C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\shine.png"
                Name="shineImage"
                Width="800"
                Height="800"></Image>
         </Canvas>
 
-        <Border CornerRadius="500" Width="500" Height="500" Margin="1393,568,27,12" Background="#FF333333">
+        <Border CornerRadius="500" Width="500" Height="500" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF333333">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -32,7 +32,51 @@
 
             <my:SurfaceInkCanvas Name="inkCanvas1" />
         </Border>
+        <Border CornerRadius="500" Width="500" Height="500" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF333333">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+
+            <my:SurfaceInkCanvas Name="inkCanvas2" />
+        </Border>
+        <Border CornerRadius="500" Width="500" Height="500" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FF333333">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+
+            <my:SurfaceInkCanvas Name="inkCanvas4" />
+        </Border>
+        <Border CornerRadius="500" Width="500" Height="500" Background="#FF333333" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+
+            <my:SurfaceInkCanvas Name="inkCanvas3" />
+        </Border>
         <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
-        <my:SurfaceButton Content="Add drawing to world" Height="39" HorizontalAlignment="Left" Margin="1484,504,0,0" Name="addDrawingButton" VerticalAlignment="Top" Width="193" Click="addDrawingButton_Click" />
+        <my:SurfaceButton Content="Add drawing to world" Height="39" HorizontalAlignment="Left" Name="addDrawingButton1" VerticalAlignment="Top" Width="193" Click="addDrawingButton1_Click" />
+
+        <my:SurfaceButton Content="Add drawing to world" Height="39" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="addDrawingButton2" Width="193" Click="addDrawingButton2_Click" />
     </Grid>
 </UserControl>
