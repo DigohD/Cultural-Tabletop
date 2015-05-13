@@ -36,12 +36,31 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
+            WorldDrawing drawing = currentWorld.createNewDrawing();
+
             //Save strokes
-
-            FileStream fileStream = new FileStream(@"drawing.strokes", FileMode.Create, FileAccess.Write);
-
+            FileStream fileStream = new FileStream(drawing.StrokesFilePath, FileMode.Create, FileAccess.Write);
             inkCanvas1.Strokes.Save(fileStream);
             fileStream.Close();
+
+            //Save bitmap
+            fileStream = new FileStream(drawing.BitmapFilePath, FileMode.Create, FileAccess.Write);
+            int marg = int.Parse(inkCanvas1.Margin.Left.ToString());
+            RenderTargetBitmap rtb =
+                    new RenderTargetBitmap((int)inkCanvas1.ActualWidth - marg,
+                            (int)inkCanvas1.ActualHeight - marg, 0, 0,
+                        PixelFormats.Pbgra32);
+            rtb.Render(inkCanvas1);
+            PngBitmapEncoder png = new PngBitmapEncoder();
+            png.Frames.Add(BitmapFrame.Create(rtb));
+            png.Save(fileStream);
+            fileStream.Close();
+
+            Image image = new Image();
+            image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
+            world.Child = image;
+
+            inkCanvas1.Strokes.Clear();
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Cultiverse.Model
 {
@@ -18,7 +19,16 @@ namespace Cultiverse.Model
 
         public World createNewWorld()
         {
-            return new World();
+            //TODO: Increment world folder path
+
+            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Cultiverse\\worlds\\1";
+
+            if (!Directory.Exists(worldPath))
+            {
+                Directory.CreateDirectory(worldPath);
+                Directory.CreateDirectory(worldPath + "\\drawings");
+            }
+            return new World(worldPath);
         }
 
         public bool saveWorld(World world)

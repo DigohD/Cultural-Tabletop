@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
-        <s:SurfaceButton Name="createWorldButton" Command="New" Margin="731,578,1024,444">Create new world</s:SurfaceButton>
-            
+        <s:SurfaceButton Name="createWorldButton" Command="New" Margin="281,505,1474,517">Create new world</s:SurfaceButton>
     </Grid>
 </UserControl>
