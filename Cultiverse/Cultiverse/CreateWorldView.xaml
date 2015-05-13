@@ -11,20 +11,13 @@
         <Grid.Resources>
             <cvui:BorderClipConverter x:Key="BorderClipConverter" />
         </Grid.Resources>
+        <Canvas Name="myCanvas" Width="1600" Height="900" TouchDown="Canvas_TouchDown" TouchMove="myCanvas_TouchMove">
+            <Image Source="C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\shine.png"
+               Name="shineImage"
+               Width="800"
+               Height="800"></Image>
+        </Canvas>
 
-        <Border CornerRadius="1000" Width="1000" Height="1000" Margin="0,0,0,0" Background="#FF333333" Name="world">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-
-        </Border>
         <Border CornerRadius="500" Width="500" Height="500" Margin="1393,568,27,12" Background="#FF333333">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">

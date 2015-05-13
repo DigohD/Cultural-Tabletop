@@ -11,5 +11,6 @@
     <Grid Name="mainGrid">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>
+
     </Grid>
 </s:SurfaceWindow>

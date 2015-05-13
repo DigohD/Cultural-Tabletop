@@ -16,6 +16,10 @@ using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
 using Cultiverse.Model;
+using System.Threading;
+using System.Diagnostics;
+using System.Collections;
+using System.Windows.Threading;
 
 namespace Cultiverse
 {
@@ -24,8 +28,8 @@ namespace Cultiverse
     /// </summary>
     public partial class MainWindow : SurfaceWindow
     {
-
         private WorldDatabase worldDatabase;
+
 
         /// <summary>
         /// Default constructor.
@@ -33,13 +37,8 @@ namespace Cultiverse
         public MainWindow()
         {
             InitializeComponent();
-
             worldDatabase = new WorldDatabase();
-
-            // Add handlers for window availability events
-            AddWindowAvailabilityHandlers();
         }
-
         /// <summary>
         /// Occurs when the window is about to close. 
         /// </summary>
@@ -117,5 +116,7 @@ namespace Cultiverse
         {
             e.CanExecute = true;
         }
+
+
     }
 }
