@@ -38,7 +38,7 @@ namespace Cultiverse
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\particle1.png", UriKind.Absolute);
+            bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
             bi3.EndInit();
 
             image.Stretch = Stretch.Fill;
@@ -68,7 +68,7 @@ namespace Cultiverse
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            bi3.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\particle1.png", UriKind.Absolute);
+            bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
             bi3.EndInit();
 
             image.Stretch = Stretch.Fill;

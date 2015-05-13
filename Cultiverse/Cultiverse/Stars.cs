@@ -34,7 +34,6 @@ namespace Cultiverse
 
             bitMap = new BitmapImage();
             bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\" + name, UriKind.Absolute);
             bitMap.EndInit();
 
             starsImage.Stretch = Stretch.Fill;

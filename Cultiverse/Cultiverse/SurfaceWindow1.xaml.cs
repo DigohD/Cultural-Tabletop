@@ -65,7 +65,7 @@ namespace Cultiverse
         {
             BitmapImage bitMap = new BitmapImage();
             bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\bg.png", UriKind.Absolute);
+            bitMap.UriSource = new Uri(@"Resources\bg.png", UriKind.Relative);
             bitMap.EndInit();
 
             bg.Stretch = Stretch.Fill;
@@ -78,7 +78,7 @@ namespace Cultiverse
 
             bitMap = new BitmapImage();
             bitMap.BeginInit();
-            bitMap.UriSource = new Uri(@"C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\circle.png", UriKind.Absolute);
+            bitMap.UriSource = new Uri(@"Resources\circle.png", UriKind.Relative);
             bitMap.EndInit();
 
             planet.Stretch = Stretch.Fill;
