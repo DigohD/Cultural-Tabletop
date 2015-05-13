@@ -110,6 +110,12 @@ namespace Cultiverse
             move(deltaTime);
         }
 
+        public void setVelocity(float vX, float vY)
+        {
+            this.vX = vX;
+            this.vY = vY;
+        }
+
         public void push(float pushX, float pushY, float touchX, float touchY)
         {
             if (!isPushEnabled)
@@ -132,8 +138,8 @@ namespace Cultiverse
             x += vX * deltaTime;
             y += vY * deltaTime;
 
-            float modX = x - 800;
-            float modY = y - 450;
+            float modX = x - 1920/2;
+            float modY = y - 1080/2;
             if (modX > 0)
                 vX -= gravity;
             else if (modX < 0)
@@ -199,8 +205,8 @@ namespace Cultiverse
         private void collideWall(float deltaTime)
         {
             float modX, modY;
-            modX = x - 800;
-            modY = y - 450;
+            modX = x - 1920/2;
+            modY = y - 1080/2;
             if (Math.Sqrt((modX * modX) + (modY * modY)) > 400)
             {
                 vX = -vX * wallDampening;
