@@ -49,6 +49,10 @@ namespace Cultiverse
             initBackground();
 
 
+            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
+            inkCanvas2.DefaultDrawingAttributes.Color = Colors.Black;
+            inkCanvas3.DefaultDrawingAttributes.Color = Colors.Black;
+            inkCanvas4.DefaultDrawingAttributes.Color = Colors.Black;
         }
 
         private void initBackground()
@@ -123,6 +127,18 @@ namespace Cultiverse
 
         private void saveWorldButton_Click(object sender, RoutedEventArgs e)
         {
+            //Save bitmap
+            FileStream fileStream = new FileStream("C:\\Users\\Simon\\Desktop\\img.png", FileMode.Create, FileAccess.Write);
+            int marg = int.Parse(myCanvas.Margin.Left.ToString());
+            RenderTargetBitmap rtb =
+                    new RenderTargetBitmap((int)myCanvas.ActualWidth - marg,
+                            (int)myCanvas.ActualHeight - marg, 0, 0,
+                        PixelFormats.Pbgra32);
+            rtb.Render(myCanvas);
+            PngBitmapEncoder png = new PngBitmapEncoder();
+            png.Frames.Add(BitmapFrame.Create(rtb));
+            png.Save(fileStream);
+            fileStream.Close();
 
         }
 
@@ -172,12 +188,12 @@ namespace Cultiverse
 
             //Save bitmap
             fileStream = new FileStream(drawing.BitmapFilePath, FileMode.Create, FileAccess.Write);
-            int marg = int.Parse(inkCanvas1.Margin.Left.ToString());
+            int marg = int.Parse(inkCanvas.Margin.Left.ToString());
             RenderTargetBitmap rtb =
                     new RenderTargetBitmap((int)inkCanvas1.ActualWidth - marg,
-                            (int)inkCanvas1.ActualHeight - marg, 0, 0,
+                            (int)inkCanvas.ActualHeight - marg, 0, 0,
                         PixelFormats.Pbgra32);
-            rtb.Render(inkCanvas1);
+            rtb.Render(inkCanvas);
             PngBitmapEncoder png = new PngBitmapEncoder();
             png.Frames.Add(BitmapFrame.Create(rtb));
             png.Save(fileStream);
@@ -186,13 +202,13 @@ namespace Cultiverse
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
 
-            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing.BitmapFilePath);
+            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing);
             addToUpdate(ball);
             list.Add(ball);
 
             myCanvas.Children.Add(ball.getBallImage());
 
-            inkCanvas1.Strokes.Clear();
+            inkCanvas.Strokes.Clear();
         }
     }
 

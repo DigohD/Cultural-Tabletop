@@ -19,12 +19,14 @@ using System.Threading;
 using System.Diagnostics;
 using System.Windows.Threading;
 using System.Collections;
+using Cultiverse.Model;
 
 namespace Cultiverse
 {
     class Ball : Updateable
     {
         Image image;
+        WorldDrawing drawing;
         public float x, y, vX, vY;
         
         public int width, height;
@@ -57,7 +59,7 @@ namespace Cultiverse
             Canvas.SetTop(image, y);
         }
 
-        public Ball(int count, int newX, int newY, int newWidth, int newHeight, string imagePath)
+        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing)
         {
             //this(count,newX,newY,newWith,newHeight,
                 
@@ -70,9 +72,9 @@ namespace Cultiverse
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
-            if (imagePath != null)
+            if (drawing != null)
             {
-                bi3.UriSource = new Uri(imagePath, UriKind.Absolute);
+                bi3.UriSource = new Uri(drawing.BitmapFilePath, UriKind.Absolute);
             }
             else
             {
