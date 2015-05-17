@@ -30,5 +30,10 @@ namespace Cultiverse.Model
             drawings.Add(newDrawing);
             return newDrawing;
         }
+
+        public List<WorldDrawing> getDrawings()
+        {
+            return drawings;
+        }
     }
 }
