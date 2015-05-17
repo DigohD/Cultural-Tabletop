@@ -120,8 +120,8 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
-        }
 
+        }
 
         internal void setWorld(World world)
         {
@@ -146,7 +146,6 @@ namespace Cultiverse
         {
             addDrawingFromInkCanvas(inkCanvas1);
         }
-
 
         private void addDrawingButton2_Click(object sender, RoutedEventArgs e)
         {

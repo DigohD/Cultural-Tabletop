@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Surface.Presentation.Controls;
 
+
 namespace Cultiverse.Model
 {
     class Planet : Updateable
@@ -27,6 +28,7 @@ namespace Cultiverse.Model
         public float posX, posY, width, height, ballXoffset, ballYoffset, viewOffsetX, viewOffsetY;
         float scaleFactor;
         Canvas universeCanvas;
+        int planetID;
 
         ArrayList ballList = new ArrayList();
         ArrayList updateList = new ArrayList();
@@ -37,13 +39,14 @@ namespace Cultiverse.Model
         public Ellipse planet = new Ellipse();
         UniverseView parent;
 
-        public Planet(float newX, float newY, float newScale, Canvas newCanvas, World newWorld, UniverseView newParent)
+        public Planet(float newX, float newY, float newScale, Canvas newCanvas, World newWorld, UniverseView newParent, int newID)
         {
             posX = newX;
             posY = newY;
             scaleFactor = newScale;
             universeCanvas = newCanvas;
             parent = newParent;
+            planetID = newID;
 
             world = newWorld;
 
@@ -87,12 +90,12 @@ namespace Cultiverse.Model
 
         public void planetClicked(object sender, TouchEventArgs e)
         {
-            
+            parent.p(planetID);
         }
 
         public void setToScale(float newScale)
         {
-            /*scaleFactor = newScale;
+            scaleFactor = newScale;
 
             planet.Width = 800 * scaleFactor;
             planet.Height = 800 * scaleFactor;
@@ -104,7 +107,7 @@ namespace Cultiverse.Model
             ballYoffset = -(1080 / 2) + posY + height / 2;
 
             foreach (Ball b in ballList)
-            b.setToScale(scaleFactor);*/
+            b.setToScale(scaleFactor);
         }
 
         public override void update(float deltaTime)
