@@ -36,7 +36,6 @@ namespace Cultiverse
         float deltaTime;
         Stopwatch watch = new Stopwatch();
         Image bg = new Image();
-        Ellipse planet = new Ellipse();
 
         public CreateWorldView()
         {
@@ -54,16 +53,7 @@ namespace Cultiverse
             addToUpdate(new Stars(myCanvas, "bg.png", 0.03f));
             addToUpdate(new Stars(myCanvas, "stars.png", 0.1f));
             addToUpdate(new Stars(myCanvas, "stars2.png", 0.08f));
-            addToUpdate(new Stars(myCanvas, "stars3.png", 0.2f));
-
-            planet.Fill = new SolidColorBrush(Colors.LightGray);
-            planet.Width = 800;
-            planet.Height = 800;
-
-            Canvas.SetLeft(planet, myCanvas.Width / 2 - planet.Width/2);
-            Canvas.SetTop(planet, myCanvas.Height / 2 - planet.Height/2);
-
-            myCanvas.Children.Add(planet);
+            addToUpdate(new Stars(myCanvas, "stars3.png", 0.2f));            
         }
 
         int count = 0;
@@ -128,7 +118,6 @@ namespace Cultiverse
 
         }
 
-
         internal void setWorld(World world)
         {
             currentWorld = world;
@@ -176,7 +165,7 @@ namespace Cultiverse
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
 
-            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing);
+            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing, null);
             addToUpdate(ball);
             list.Add(ball);
 

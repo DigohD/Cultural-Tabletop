@@ -30,7 +30,6 @@ namespace Cultiverse
     {
         private WorldDatabase worldDatabase;
 
-
         /// <summary>
         /// Default constructor.
         /// </summary>

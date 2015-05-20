@@ -6,7 +6,7 @@
              xmlns:s="http://schemas.microsoft.com/surface/2008"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <Grid>
-        <s:SurfaceButton Name="createWorldButton" Command="New">Create new world</s:SurfaceButton>
-    </Grid>
+    <Canvas Name="uniCanvas" Width="1920" Height="1080" TouchMove="uniCanvas_TouchMove" TouchUp="uniCanvas_TouchUp">
+        
+    </Canvas>
 </UserControl>
