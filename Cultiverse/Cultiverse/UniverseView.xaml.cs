@@ -49,8 +49,9 @@ namespace Cultiverse
             Random rng = new Random();
 
             int counter = 0;
-            foreach(World w in worlds){
-                Planet newPlanet = new Planet(rng.Next(0, 4000), rng.Next(0, 4000), 0.2f, uniCanvas, w, this, counter++);
+            foreach(World world in worlds){
+                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, counter++);
+                this.uniCanvas.Children.Add(newPlanet);
                 planets.Add(newPlanet);
             }
 
@@ -76,7 +77,7 @@ namespace Cultiverse
 
         public void p(int index)
         {
-            planets[index].setToScale(0.2f);
+            //planets[index].setToScale(0.2f);
         }
 
         SolidColorBrush solidC = new SolidColorBrush();

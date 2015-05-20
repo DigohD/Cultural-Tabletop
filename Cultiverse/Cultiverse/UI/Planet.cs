@@ -23,51 +23,50 @@ using Microsoft.Surface.Presentation.Controls;
 
 namespace Cultiverse.UI
 {
-    public class Planet : Updateable
+    public class Planet : Canvas, Updateable
     {
         public float posX, posY, width, height, ballXoffset, ballYoffset, viewOffsetX, viewOffsetY;
         float scaleFactor;
-        Canvas universeCanvas;
         int planetID;
 
         ArrayList ballList = new ArrayList();
         ArrayList updateList = new ArrayList();
-        List<WorldDrawing> drawings;
 
         World world;
 
         public Ellipse planet = new Ellipse();
-        UniverseView parent;
 
-        public Planet(float newX, float newY, float newScale, Canvas newCanvas, World newWorld, UniverseView newParent, int newID)
+        public Planet(float newX, float newY, float newScale, World newWorld, int newID) : base()
         {
             posX = newX;
             posY = newY;
             scaleFactor = newScale;
-            universeCanvas = newCanvas;
-            parent = newParent;
             planetID = newID;
 
             world = newWorld;
 
-            width = 800 * scaleFactor;
-            height = 800 * scaleFactor;
+            ballXoffset = 0;
+            ballYoffset = 0;
 
-            ballXoffset = -(1920 / 2) + newX + width / 2;
-            ballYoffset = -(1080 / 2) + newY + height / 2;
+            this.Width = 800;
+            this.Height = 800;
+
+            Matrix matrix = Matrix.Identity;
+
+            matrix.Scale(scaleFactor, scaleFactor);
+            matrix.Translate(newX, newY);
+
+            this.RenderTransform = new MatrixTransform(matrix);
 
             initPlanet();
 
-            drawings = world.getDrawings();
-            foreach (WorldDrawing d in drawings)
+            foreach (WorldDrawing d in world.getDrawings())
             {
-                Ball ball = new Ball(1, (int)(universeCanvas.Width / 2 - 64), (int)(universeCanvas.Height / 2 - 64), 128, 128, d, this);
-                addToUpdate(ball);
+                Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, this);
+                //addToUpdate(ball);
                 ballList.Add(ball);
 
-                ball.setToScale(scaleFactor);
-
-                universeCanvas.Children.Add(ball.getBallImage());
+                this.Children.Add(ball.getBallImage());
             }
 
             planet.TouchDown += planetClicked;
@@ -76,39 +75,23 @@ namespace Cultiverse.UI
         private void initPlanet()
         {
             planet.Fill = new SolidColorBrush(Colors.LightGray);
-            planet.Width = 800 * scaleFactor;
-            planet.Height = 800 * scaleFactor;
+            planet.Width = 800;
+            planet.Height = 800;
 
-            //Canvas.SetLeft(planet, universeCanvas.Width / 2 - planet.Width / 2);
-            //Canvas.SetTop(planet, universeCanvas.Height / 2 - planet.Height / 2);
-
-            Canvas.SetLeft(planet, posX);
-            Canvas.SetTop(planet, posY);
-
-            universeCanvas.Children.Add(planet);
+            this.Children.Add(planet);
         }
 
         public void planetClicked(object sender, TouchEventArgs e)
         {
-            parent.p(planetID);
         }
 
-        public void setToScale(float newScale)
+        public void addBall(Ball newBall)
         {
-            scaleFactor = newScale;
+            ballList.Add(newBall);
 
-            planet.Width = 800 * scaleFactor;
-            planet.Height = 800 * scaleFactor;
-
-            width = 800 * scaleFactor;
-            height = 800 * scaleFactor;
-
-            ballXoffset = -(1920 / 2) + posX + width / 2;
-            ballYoffset = -(1080 / 2) + posY + height / 2;
-
-            foreach (Ball b in ballList)
-            b.setToScale(scaleFactor);
+            this.Children.Add(newBall.getBallImage());
         }
+
 
         public void update(float deltaTime)
         {

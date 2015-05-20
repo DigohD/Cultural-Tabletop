@@ -27,15 +27,12 @@ namespace Cultiverse.UI
     {
         Image image;
         WorldDrawing drawing;
-        public float x, y, vX, vY, scale;
+        public float x, y, vX, vY, scale = 1.0f;
         
         public int width, height;
-        public float spring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f;
+        public float spring = 0, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
-
-        Planet planet = null;
-        CreatePlanet cPlanet = null;
 
         public Ball(int count)
         {
@@ -110,8 +107,6 @@ namespace Cultiverse.UI
 
             this.width = newWidth;
             this.height = newHeight;
-            planet = newPlanet;
-
             isPushEnabled = true;
 
             image = new Image();
@@ -136,8 +131,8 @@ namespace Cultiverse.UI
 
             Random rnd = new Random();
 
-            x = newX + (width / 2) + planet.ballXoffset;
-            y = newY + (height / 2) + planet.ballYoffset;
+            x = newX + (width / 2);
+            y = newY + (height / 2);
 
             vX = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
             vY = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
@@ -154,7 +149,6 @@ namespace Cultiverse.UI
 
             this.width = newWidth;
             this.height = newHeight;
-            cPlanet = newPlanet;
 
             isPushEnabled = true;
 
@@ -180,8 +174,8 @@ namespace Cultiverse.UI
 
             Random rnd = new Random();
 
-            x = newX + (width / 2) + cPlanet.ballXoffset;
-            y = newY + (height / 2) + cPlanet.ballYoffset;
+            x = newX + (width / 2);
+            y = newY + (height / 2);
 
             vX = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
             vY = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
@@ -209,6 +203,10 @@ namespace Cultiverse.UI
             collideWall(deltaTime);
 
             move(deltaTime);
+
+            spring += 0.00001f;
+            if (spring >= maxSpring)
+                spring = maxSpring;
         }
 
         public void setVelocity(float vX, float vY)
@@ -247,14 +245,6 @@ namespace Cultiverse.UI
 
             float modX = 0;
             float modY = 0;
-            if (planet != null)
-            {
-                modX = x - (1920 / 2 + planet.ballXoffset);
-                modY = y - (1080 / 2 + planet.ballYoffset);
-            }else if(cPlanet != null){
-                modX = x - (1920 / 2 + cPlanet.ballXoffset);
-                modY = y - (1080 / 2 + cPlanet.ballYoffset);
-            }
            
 
             if (modX > 0)
@@ -265,17 +255,9 @@ namespace Cultiverse.UI
                 vY -= gravity;
             else if (modY < 0)
                 vY += gravity;
-
-            if (planet != null)
-            {
-                Canvas.SetLeft(image, x - width * scale / 2 + planet.viewOffsetX);
-                Canvas.SetTop(image, y - height * scale / 2 + planet.viewOffsetY);
-            }
-            else if (cPlanet != null)
-            {
-                Canvas.SetLeft(image, x - width * scale / 2 + cPlanet.viewOffsetX);
-                Canvas.SetTop(image, y - height * scale / 2 + cPlanet.viewOffsetY);
-            }
+            
+            Canvas.SetLeft(image, x - width * scale / 2);
+            Canvas.SetTop(image, y - height * scale / 2);
             
         }
 
@@ -289,7 +271,7 @@ namespace Cultiverse.UI
                 float dx = ball.x - x;
                 float dy = ball.y - y;
                 float distance = (float) Math.Sqrt(dx * dx + dy * dy);
-                float minDist = ball.width * ball.scale / 2 + width * scale / 2;
+                float minDist = ball.width * colWidthMod * ball.scale / 2 + width * colWidthMod * scale / 2;
                 if (distance < minDist)
                 {
                     float angle = (float) Math.Atan2(dy, dx);
@@ -330,25 +312,16 @@ namespace Cultiverse.UI
         private void collideWall(float deltaTime)
         {
             float modX = 0, modY = 0;
-            if (planet != null)
-            {
-                modX = x - (1920 / 2 + planet.ballXoffset);
-                modY = y - (1080 / 2 + planet.ballYoffset);
-            }
-            else if (cPlanet != null)
-            {
-                modX = x - (1920 / 2 + cPlanet.ballXoffset);
-                modY = y - (1080 / 2 + cPlanet.ballYoffset);
-            }
+            modX = x - (800 / 2);
+            modY = y - (800 / 2);
 
-            if (Math.Sqrt((modX * modX) + (modY * modY)) > 400 * scale)
+            if (Math.Sqrt((modX * modX) + (modY * modY)) > (400 * scale) - (width * scale * colWidthMod * colWidthMod))
             {
-                vX = -vX * wallDampening * scale;
-                vY = -vY * wallDampening * scale;
+                vX = -vX * wallDampening;
+                vY = -vY * wallDampening;
                 move(deltaTime);
                 move(deltaTime);
             }
-            
             /* Square Shaped Col
              * 
              * if(x >= 768)

@@ -29,7 +29,7 @@ namespace Cultiverse
     public partial class CreateWorldView : UserControl
     {
         private World currentWorld;
-        CreatePlanet planet;
+        Planet planet;
 
         ArrayList list = new ArrayList();
         Dispatcher mainDespatch;
@@ -123,7 +123,8 @@ namespace Cultiverse
         {
             currentWorld = world;
             removeFromUpdate(planet);
-            planet = new CreatePlanet(1920 / 2 - 800 / 2, 1080 / 2 - 800 / 2, 1.0f, myCanvas, this, 0);
+            planet = new Planet(1920 / 2 - 800 / 2, 1080 / 2 - 800 / 2, 1.0f, currentWorld, 0);
+            myCanvas.Children.Add(planet);
             addToUpdate(planet);
         }
 
@@ -169,7 +170,7 @@ namespace Cultiverse
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
 
-            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing, planet);
+            Ball ball = new Ball(count, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, drawing, planet);
             planet.addBall(ball);
 
             inkCanvas.Strokes.Clear();
