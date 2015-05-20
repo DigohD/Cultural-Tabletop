@@ -28,7 +28,7 @@ namespace Cultiverse.UI
         public float x, y, vX, vY;
         
         public int width, height;
-        public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
+        public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0005f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
 
@@ -117,8 +117,8 @@ namespace Cultiverse.UI
             x += vX * deltaTime;
             y += vY * deltaTime;
 
-            float modX = 0;
-            float modY = 0;
+            float modX = x - (containerSize / 2);
+            float modY = y - (containerSize / 2);
            
 
             if (modX > 0)
@@ -191,10 +191,7 @@ namespace Cultiverse.UI
 
             if (Math.Sqrt((modX * modX) + (modY * modY)) > containerSize / 2 - (width * colWidthMod * colWidthMod))
             {
-                vX = -vX * wallDampening;
-                vY = -vY * wallDampening;
-                move(deltaTime);
-                move(deltaTime);
+                saveFromVacuum();
             }
             /* Square Shaped Col
              * 
@@ -206,6 +203,21 @@ namespace Cultiverse.UI
                 vY = -vY;
             if(y <= 0)
                 vY = -vY;*/
+        }
+
+        private void saveFromVacuum()
+        {
+            float modX = x - (containerSize / 2);
+            float modY = y - (containerSize / 2);
+
+            if (modX > 0)
+                vX -= gravity * 20;
+            else if (modX < 0)
+                vX += gravity * 20;
+            if (modY > 0)
+                vY -= gravity * 20;
+            else if (modY < 0)
+                vY += gravity * 20;
         }
 
         static Vector RotateVector2d(Vector v, double degrees)
