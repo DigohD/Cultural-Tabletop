@@ -6,7 +6,13 @@
              xmlns:s="http://schemas.microsoft.com/surface/2008"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <Canvas Name="uniCanvas" Width="1920" Height="1080" TouchMove="uniCanvas_TouchMove" TouchUp="uniCanvas_TouchUp">
+    <Grid>
+
+        <Canvas Name="uniCanvas" Width="1920" Height="1080" TouchMove="uniCanvas_TouchMove" TouchUp="uniCanvas_TouchUp">
+
+        </Canvas>
+        <s:SurfaceButton Canvas.Left="97" Canvas.Top="127" Content="Button" Height="23" Name="surfaceButton1" Command="New" Width="75" />
+    </Grid>
         
-    </Canvas>
+
 </UserControl>

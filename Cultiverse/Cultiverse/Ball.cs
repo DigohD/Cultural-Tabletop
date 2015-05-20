@@ -23,7 +23,7 @@ using Cultiverse.Model;
 
 namespace Cultiverse
 {
-    class Ball : Updateable
+    public class Ball : Updateable
     {
         Image image;
         WorldDrawing drawing;

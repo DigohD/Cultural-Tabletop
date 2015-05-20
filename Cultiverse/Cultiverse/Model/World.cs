@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Cultiverse.Model
 {
-    class World
+    public class World
     {
         public string FolderPath;
         private List<WorldDrawing> drawings;

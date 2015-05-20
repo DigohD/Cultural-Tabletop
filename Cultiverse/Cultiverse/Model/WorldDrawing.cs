@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Cultiverse.Model
 {
-    class WorldDrawing
+    public class WorldDrawing
     {
         public string StrokesFilePath;
         public string BitmapFilePath;

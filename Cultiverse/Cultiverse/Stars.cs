@@ -20,7 +20,7 @@ using System.Diagnostics;
 
 namespace Cultiverse
 {
-    class Stars : Updateable
+    public class Stars : Updateable
     {
         Image starsImage = new Image();
         BitmapImage bitMap;

@@ -28,6 +28,7 @@ namespace Cultiverse
     public partial class CreateWorldView : UserControl
     {
         private World currentWorld;
+        CreatePlanet planet;
 
         ArrayList list = new ArrayList();
         Dispatcher mainDespatch;
@@ -36,6 +37,7 @@ namespace Cultiverse
         float deltaTime;
         Stopwatch watch = new Stopwatch();
         Image bg = new Image();
+
 
         public CreateWorldView()
         {
@@ -58,15 +60,6 @@ namespace Cultiverse
 
         int count = 0;
 
-        private void ballUpdate(float deltaTime)
-        {
-            foreach (Ball b in list)
-            {
-                b.update(deltaTime);
-                b.collide(list);
-            }
-        }
-
         SolidColorBrush solidC = new SolidColorBrush();
         byte r;
         public void update(object sender, EventArgs e)
@@ -79,8 +72,6 @@ namespace Cultiverse
 
             solidC.Color = Color.FromRgb(r, 0, 0);
             myCanvas.Background = solidC;
-
-            ballUpdate(deltaTime);
 
             watch.Reset();
             watch.Start();
@@ -121,6 +112,9 @@ namespace Cultiverse
         internal void setWorld(World world)
         {
             currentWorld = world;
+            removeFromUpdate(planet);
+            planet = new CreatePlanet(1920 / 2 - 800 / 2, 1080 / 2 - 800 / 2, 1.0f, myCanvas, this, 0);
+            addToUpdate(planet);
         }
 
         float lastX, lastY;
@@ -165,11 +159,8 @@ namespace Cultiverse
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
 
-            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing, null);
-            addToUpdate(ball);
-            list.Add(ball);
-
-            myCanvas.Children.Add(ball.getBallImage());
+            Ball ball = new Ball(count, (int)(myCanvas.Width / 2 - 64), (int)(myCanvas.Height / 2 - 64), 128, 128, drawing, planet);
+            planet.addBall(ball);
 
             inkCanvas.Strokes.Clear();
         }

@@ -23,7 +23,7 @@ using Microsoft.Surface.Presentation.Controls;
 
 namespace Cultiverse.Model
 {
-    class Planet : Updateable
+    public class Planet : Updateable
     {
         public float posX, posY, width, height, ballXoffset, ballYoffset, viewOffsetX, viewOffsetY;
         float scaleFactor;

@@ -94,7 +94,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Class1.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="Stars.cs" />
     <Compile Include="Updateable.cs" />

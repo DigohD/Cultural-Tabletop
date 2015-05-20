@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Cultiverse.Model
 {
-    class WorldDatabase
+    public class WorldDatabase
     {
         private List<World> universe;
         string worldsFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds";
