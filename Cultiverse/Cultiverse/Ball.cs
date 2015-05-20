@@ -34,7 +34,8 @@ namespace Cultiverse
 
         bool isPushEnabled;
 
-        Planet planet;
+        Planet planet = null;
+        CreatePlanet cPlanet = null;
 
         public Ball(int count)
         {
@@ -147,6 +148,50 @@ namespace Cultiverse
             Canvas.SetTop(image, y - height / 2);
         }
 
+        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, CreatePlanet newPlanet)
+        {
+            //this(count,newX,newY,newWith,newHeight,
+
+            this.width = newWidth;
+            this.height = newHeight;
+            cPlanet = newPlanet;
+
+            isPushEnabled = true;
+
+            image = new Image();
+
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            if (drawing != null)
+            {
+                bi3.UriSource = new Uri(drawing.BitmapFilePath, UriKind.Absolute);
+            }
+            else
+            {
+                bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
+            }
+            bi3.EndInit();
+
+            image.Stretch = Stretch.Fill;
+            image.Source = bi3;
+            image.Name = "image" + count;
+            image.Width = width;
+            image.Height = height;
+
+            Random rnd = new Random();
+
+            x = newX + (width / 2) + cPlanet.ballXoffset;
+            y = newY + (height / 2) + cPlanet.ballYoffset;
+
+            vX = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
+            vY = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
+            vX = vX / 10.000000f;
+            vY = vY / 10.000000f;
+
+            Canvas.SetLeft(image, x - width / 2);
+            Canvas.SetTop(image, y - height / 2);
+        }
+
         public void setToScale(float newScale)
         {
             scale = newScale;
@@ -200,8 +245,17 @@ namespace Cultiverse
             x += vX * deltaTime;
             y += vY * deltaTime;
 
-            float modX = x - (1920/2 + planet.ballXoffset);
-            float modY = y - (1080/2 + planet.ballYoffset);
+            float modX = 0;
+            float modY = 0;
+            if (planet != null)
+            {
+                modX = x - (1920 / 2 + planet.ballXoffset);
+                modY = y - (1080 / 2 + planet.ballYoffset);
+            }else if(cPlanet != null){
+                modX = x - (1920 / 2 + cPlanet.ballXoffset);
+                modY = y - (1080 / 2 + cPlanet.ballYoffset);
+            }
+           
 
             if (modX > 0)
                 vX -= gravity;
@@ -212,9 +266,17 @@ namespace Cultiverse
             else if (modY < 0)
                 vY += gravity;
 
-
-            Canvas.SetLeft(image, x - width * scale / 2 + planet.viewOffsetX);
-            Canvas.SetTop(image, y - height * scale / 2 + planet.viewOffsetY);
+            if (planet != null)
+            {
+                Canvas.SetLeft(image, x - width * scale / 2 + planet.viewOffsetX);
+                Canvas.SetTop(image, y - height * scale / 2 + planet.viewOffsetY);
+            }
+            else if (cPlanet != null)
+            {
+                Canvas.SetLeft(image, x - width * scale / 2 + cPlanet.viewOffsetX);
+                Canvas.SetTop(image, y - height * scale / 2 + cPlanet.viewOffsetY);
+            }
+            
         }
 
         public void collide(ArrayList others)
@@ -267,9 +329,17 @@ namespace Cultiverse
 
         private void collideWall(float deltaTime)
         {
-            float modX, modY;
-            modX = x - (1920/2 + planet.ballXoffset);
-            modY = y - (1080/2 + planet.ballYoffset);
+            float modX = 0, modY = 0;
+            if (planet != null)
+            {
+                modX = x - (1920 / 2 + planet.ballXoffset);
+                modY = y - (1080 / 2 + planet.ballYoffset);
+            }
+            else if (cPlanet != null)
+            {
+                modX = x - (1920 / 2 + cPlanet.ballXoffset);
+                modY = y - (1080 / 2 + cPlanet.ballYoffset);
+            }
 
             if (Math.Sqrt((modX * modX) + (modY * modY)) > 400 * scale)
             {
