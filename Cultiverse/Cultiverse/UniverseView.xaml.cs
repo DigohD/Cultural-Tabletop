@@ -35,7 +35,6 @@ namespace Cultiverse
         private Stars stars2;
         private Stars stars3;
 
-
         public UniverseView()
         {
             CompositionTarget.Rendering += update;
@@ -54,8 +53,6 @@ namespace Cultiverse
                 this.uniCanvas.Children.Add(newPlanet);
                 planets.Add(newPlanet);
             }
-
-            
         }
 
         private void initBackground()
@@ -117,9 +114,9 @@ namespace Cultiverse
 
         }
 
-        bool lastLift = true;
+        /*bool lastLift = true;
         public float lastX, lastY, cX, cY;
-        /*private void uniCanvas_TouchMove(object sender, TouchEventArgs e)
+        private void uniCanvas_TouchMove(object sender, TouchEventArgs e)
         {
             float touchX = (float)e.GetTouchPoint(uniCanvas).Position.X;
             float touchY = (float)e.GetTouchPoint(uniCanvas).Position.Y;
@@ -134,35 +131,22 @@ namespace Cultiverse
             float dX = touchX - lastX;
             float dY = touchY - lastY;
 
-            cX += dX;
-            cY += dY;
+            foreach (Planet p in planets)
+            {
+                p.pushInertedBalls(dX, dY);
+            }
 
-            if (cX < -1920)
-                cX = -1920;
-            if (cY > 1920)
-                cX = 1920;
-
-            if (cY < -1080)
-                cY = -1080;
-            if (cY > 1080)
-                cY = 1080;
+            Debug.WriteLine("TOUCH");
 
             lastX = touchX;
             lastY = touchY;
-
-            Debug.WriteLine("Canvas Offset " + cX + " : " + cY);
-
-            foreach (Planet p in planets)
-            {
-                p.updateViewOffset(cX, cY);
-            }
         }
 
         private void uniCanvas_TouchUp(object sender, TouchEventArgs e)
         {
             lastLift = true;
-        }
-        */
+        }*/
+        
 
         private void uniCanvas_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
@@ -182,7 +166,6 @@ namespace Cultiverse
                                 e.ManipulationOrigin.X,
                                 e.ManipulationOrigin.Y);
 
-            
             // Apply the changes to the Rectangle.
             rectToMove.RenderTransform = new MatrixTransform(rectsMatrix);
 
@@ -193,8 +176,13 @@ namespace Cultiverse
         {
             Matrix matrix = ((MatrixTransform)background.RenderTransform).Matrix;
             matrix.TranslatePrepend(e.HorizontalChange * 0.8, e.VerticalChange * 0.8);
-
+            
             background.RenderTransform = new MatrixTransform(matrix);
+
+            foreach (Planet p in planets)
+            {
+                p.pushInertedBalls((float) -e.HorizontalChange * 4, (float) -e.VerticalChange * 4);
+            }
 
             Console.WriteLine("Vertical change" + e.VerticalOffset);
             Console.WriteLine("Horizontal change" + e.HorizontalOffset);
