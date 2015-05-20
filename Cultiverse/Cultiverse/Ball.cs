@@ -30,7 +30,7 @@ namespace Cultiverse
         public float x, y, vX, vY, scale;
         
         public int width, height;
-        public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f;
+        public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
 
@@ -211,7 +211,7 @@ namespace Cultiverse
             move(deltaTime);
 
             spring += 0.00001f;
-            if (spring >= maxSpring)
+            if(spring >= maxSpring)
                 spring = maxSpring;
         }
 
@@ -293,7 +293,7 @@ namespace Cultiverse
                 float dx = ball.x - x;
                 float dy = ball.y - y;
                 float distance = (float) Math.Sqrt(dx * dx + dy * dy);
-                float minDist = ball.width * ball.scale / 2 + width * scale / 2;
+                float minDist = ball.width * colWidthMod * ball.scale / 2 + width * colWidthMod * scale / 2;
                 if (distance < minDist)
                 {
                     float angle = (float) Math.Atan2(dy, dx);
@@ -345,7 +345,7 @@ namespace Cultiverse
                 modY = y - (1080 / 2 + cPlanet.ballYoffset);
             }
 
-            if (Math.Sqrt((modX * modX) + (modY * modY)) > 400 * scale)
+            if (Math.Sqrt((modX * modX) + (modY * modY)) > (400 * scale) - (width * scale * colWidthMod * colWidthMod))
             {
                 vX = -vX * wallDampening * scale;
                 vY = -vY * wallDampening * scale;
