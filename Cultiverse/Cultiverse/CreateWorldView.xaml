@@ -7,81 +7,35 @@
              xmlns:cvui="clr-namespace:Cultiverse.UI"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" xmlns:my="http://schemas.microsoft.com/surface/2008">
+
+    <UserControl.Resources>
+        <cvui:BorderClipConverter x:Key="BorderClipConverter" />
+
+
+    </UserControl.Resources>
     <Grid>
-        <Grid.Resources>
-            <cvui:BorderClipConverter x:Key="BorderClipConverter" />
-        </Grid.Resources>
         <Canvas Name="myCanvas" Width="1920" Height="1080" TouchMove="myCanvas_TouchMove" Background="White">
-            <Image Source="C:\Users\DigohD\Documents\GitHub\Cultural-Tabletop\Cultiverse\Cultiverse\Resources\shine.png"
-               Name="shineImage"
-               Width="800"
-               Height="800"></Image>
         </Canvas>
 
-        <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
 
-            <my:SurfaceInkCanvas Name="inkCanvas1" />
-        </Border>
-        <Grid Width="550" Height="550" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF">
-                <Border.Clip>
-                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                        <Binding Path="ActualWidth"
-                            RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="ActualHeight"
-                            RelativeSource="{RelativeSource Self}"/>
-                        <Binding Path="CornerRadius"
-                            RelativeSource="{RelativeSource Self}"/>
-                    </MultiBinding>
-                </Border.Clip>
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone">
+            <cv:DrawingSpace.LayoutTransform>
+                <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone">
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone">
+            <cv:DrawingSpace.LayoutTransform>
+                <RotateTransform Angle="-90" CenterX=".5" CenterY=".5" ></RotateTransform>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone">
+            <cv:DrawingSpace.LayoutTransform>
+                <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
 
-                <my:SurfaceInkCanvas Name="inkCanvas2" />
-            </Border>
-            <Border CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFFFFF">
-                <my:SurfaceButton />
-            </Border>
-        </Grid>
-        <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-
-            <my:SurfaceInkCanvas Name="inkCanvas4" />
-        </Border>
-        <Border CornerRadius="450" Width="450" Height="450" Background="#FFFFFFFF" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-
-            <my:SurfaceInkCanvas Name="inkCanvas3" />
-        </Border>
-        
         <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
-        <my:SurfaceButton Content="Add drawing to world" Height="39" HorizontalAlignment="Left" Name="addDrawingButton1" VerticalAlignment="Top" Width="193" Click="addDrawingButton1_Click" />
-        <my:SurfaceButton Content="Add drawing to world" Height="39" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="addDrawingButton2" Width="193" Click="addDrawingButton2_Click" />
     </Grid>
 </UserControl>

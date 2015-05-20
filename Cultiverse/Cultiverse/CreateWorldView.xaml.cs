@@ -47,12 +47,6 @@ namespace Cultiverse
             CompositionTarget.Rendering += update;
 
             initBackground();
-
-
-            inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
-            inkCanvas2.DefaultDrawingAttributes.Color = Colors.Black;
-            inkCanvas3.DefaultDrawingAttributes.Color = Colors.Black;
-            inkCanvas4.DefaultDrawingAttributes.Color = Colors.Black;
         }
 
         private void initBackground()
@@ -131,6 +125,7 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
 
@@ -153,17 +148,6 @@ namespace Cultiverse
             lastY = touchY;
         }
 
-        private void addDrawingButton1_Click(object sender, RoutedEventArgs e)
-        {
-            addDrawingFromInkCanvas(inkCanvas1);
-        }
-
-
-        private void addDrawingButton2_Click(object sender, RoutedEventArgs e)
-        {
-            addDrawingFromInkCanvas(inkCanvas2);
-        }
-
         private void addDrawingFromInkCanvas(SurfaceInkCanvas inkCanvas)
         {
             WorldDrawing drawing = currentWorld.createNewDrawing();
@@ -180,7 +164,7 @@ namespace Cultiverse
             fileStream = new FileStream(drawing.BitmapFilePath, FileMode.Create, FileAccess.Write);
             int marg = int.Parse(inkCanvas.Margin.Left.ToString());
             RenderTargetBitmap rtb =
-                    new RenderTargetBitmap((int)inkCanvas1.ActualWidth - marg,
+                    new RenderTargetBitmap((int)inkCanvas.ActualWidth - marg,
                             (int)inkCanvas.ActualHeight - marg, 0, 0,
                         PixelFormats.Pbgra32);
             rtb.Render(inkCanvas);
@@ -200,6 +184,14 @@ namespace Cultiverse
 
             inkCanvas.Strokes.Clear();
         }
+
+        private void drawingDone(object sender, RoutedEventArgs e)
+        {
+            this.addDrawingFromInkCanvas((SurfaceInkCanvas)sender);
+        }
+
+
+
     }
 
 }
