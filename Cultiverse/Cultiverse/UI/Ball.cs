@@ -101,56 +101,13 @@ namespace Cultiverse.UI
             Canvas.SetTop(image, y - height / 2);
         }*/
 
-        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, Planet newPlanet)
+        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, Planet newPlanet, bool isPushEnabled)
         {
             //this(count,newX,newY,newWith,newHeight,
 
             this.width = newWidth;
             this.height = newHeight;
-            isPushEnabled = true;
-
-            image = new Image();
-
-            BitmapImage bi3 = new BitmapImage();
-            bi3.BeginInit();
-            if (drawing != null)
-            {
-                bi3.UriSource = new Uri(drawing.BitmapFilePath, UriKind.Absolute);
-            }
-            else
-            {
-                bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
-            }
-            bi3.EndInit();
-
-            image.Stretch = Stretch.Fill;
-            image.Source = bi3;
-            image.Name = "image" + count;
-            image.Width = width;
-            image.Height = height;
-
-            Random rnd = new Random();
-
-            x = newX + (width / 2);
-            y = newY + (height / 2);
-
-            vX = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
-            vY = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
-            vX = vX / 10.000000f;
-            vY = vY / 10.000000f;
-
-            Canvas.SetLeft(image, x - width / 2);
-            Canvas.SetTop(image, y - height / 2);
-        }
-
-        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, CreatePlanet newPlanet)
-        {
-            //this(count,newX,newY,newWith,newHeight,
-
-            this.width = newWidth;
-            this.height = newHeight;
-
-            isPushEnabled = true;
+            this.isPushEnabled = isPushEnabled;
 
             image = new Image();
 

@@ -81,7 +81,6 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\CreatePlanet.cs" />
     <Compile Include="UI\Planet.cs" />
     <Compile Include="Model\WorldDrawing.cs" />
     <Compile Include="Model\World.cs" />

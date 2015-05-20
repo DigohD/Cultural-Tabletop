@@ -26,6 +26,9 @@ namespace Cultiverse.UI
     public class Planet : Canvas, Updateable
     {
         public float posX, posY, width, height, ballXoffset, ballYoffset, viewOffsetX, viewOffsetY;
+
+        float lastX, lastY;
+
         float scaleFactor;
         int planetID;
 
@@ -62,14 +65,15 @@ namespace Cultiverse.UI
 
             foreach (WorldDrawing d in world.getDrawings())
             {
-                Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, this);
+                Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, this, false);
                 //addToUpdate(ball);
                 ballList.Add(ball);
 
                 this.Children.Add(ball.getBallImage());
             }
 
-            planet.TouchDown += planetClicked;
+            this.TouchDown += planetClicked;
+            this.TouchMove += touchMove;
         }
 
         private void initPlanet()
@@ -79,6 +83,19 @@ namespace Cultiverse.UI
             planet.Height = 800;
 
             this.Children.Add(planet);
+        }
+
+
+        private void touchMove(object sender, TouchEventArgs e)
+        {
+            float touchX = (float)e.GetTouchPoint(planet).Position.X;
+            float touchY = (float)e.GetTouchPoint(planet).Position.Y;
+            float dX = touchX - lastX;
+            float dY = touchY - lastY;
+            foreach (Ball b in ballList)
+                b.push(dX, dY, touchX, touchY);
+            lastX = touchX;
+            lastY = touchY;
         }
 
         public void planetClicked(object sender, TouchEventArgs e)

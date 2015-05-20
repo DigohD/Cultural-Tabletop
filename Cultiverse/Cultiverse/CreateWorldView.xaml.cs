@@ -31,7 +31,6 @@ namespace Cultiverse
         private World currentWorld;
         Planet planet;
 
-        ArrayList list = new ArrayList();
         Dispatcher mainDespatch;
 
         ArrayList updateList = new ArrayList();
@@ -128,19 +127,6 @@ namespace Cultiverse
             addToUpdate(planet);
         }
 
-        float lastX, lastY;
-
-        private void myCanvas_TouchMove(object sender, TouchEventArgs e)
-        {
-            float touchX = (float)e.GetTouchPoint(myCanvas).Position.X;
-            float touchY = (float)e.GetTouchPoint(myCanvas).Position.Y;
-            float dX = touchX - lastX;
-            float dY = touchY - lastY;
-            foreach (Ball b in list)
-                b.push(dX, dY, touchX, touchY);
-            lastX = touchX;
-            lastY = touchY;
-        }
 
         private void addDrawingFromInkCanvas(SurfaceInkCanvas inkCanvas)
         {
@@ -170,7 +156,7 @@ namespace Cultiverse
             Image image = new Image();
             image.Source = new ImageSourceConverter().ConvertFromString(drawing.BitmapFilePath) as ImageSource;
 
-            Ball ball = new Ball(count, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, drawing, planet);
+            Ball ball = new Ball(count, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, drawing, planet, true);
             planet.addBall(ball);
 
             inkCanvas.Strokes.Clear();

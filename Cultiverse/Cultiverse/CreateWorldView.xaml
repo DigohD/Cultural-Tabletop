@@ -14,7 +14,7 @@
 
     </UserControl.Resources>
     <Grid>
-        <Canvas Name="myCanvas" Width="1920" Height="1080" TouchMove="myCanvas_TouchMove" Background="White">
+        <Canvas Name="myCanvas" Width="1920" Height="1080" Background="White">
         </Canvas>
 
 
