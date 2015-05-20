@@ -55,7 +55,9 @@ namespace Cultiverse
                 planets.Add(newPlanet);
             }
 
-            
+            //Scroll to center
+            scrollViewer.ScrollToVerticalOffset(uniCanvas.Width / 2 - scrollViewer.Width / 2);
+            scrollViewer.ScrollToHorizontalOffset(uniCanvas.Height / 2 - scrollViewer.Height / 2);
         }
 
         private void initBackground()
@@ -64,10 +66,16 @@ namespace Cultiverse
             stars1 = new Stars("stars.png", 0.1f);
             stars2 = new Stars("stars2.png", 0.1f);
             stars3 = new Stars("stars3.png", 0.1f);
+
+
             uniCanvas.Children.Add(background);
             uniCanvas.Children.Add(stars1);
             uniCanvas.Children.Add(stars2);
             uniCanvas.Children.Add(stars3);
+
+            //Put background in the center of the view.
+            Canvas.SetLeft(background, scrollViewer.Width / 2 - background.Width / 3);
+            Canvas.SetTop(background, scrollViewer.Height / 2 - background.Height / 3);
 
             addToUpdate(background);
             addToUpdate(stars1);
@@ -189,15 +197,17 @@ namespace Cultiverse
             e.Handled = false;
         }
 
-        private void SurfaceScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+
+        void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            //Background parallax
             Matrix matrix = ((MatrixTransform)background.RenderTransform).Matrix;
             matrix.TranslatePrepend(e.HorizontalChange * 0.8, e.VerticalChange * 0.8);
-
             background.RenderTransform = new MatrixTransform(matrix);
-
-            Console.WriteLine("Vertical change" + e.VerticalOffset);
-            Console.WriteLine("Horizontal change" + e.HorizontalOffset);
+            //Stars 3 parallax
+            matrix = ((MatrixTransform)stars3.RenderTransform).Matrix;
+            matrix.TranslatePrepend(e.HorizontalChange * 0.3, e.VerticalChange * 0.3);
+            stars3.RenderTransform = new MatrixTransform(matrix);
         }
     }
 }
