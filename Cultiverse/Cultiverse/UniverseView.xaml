@@ -7,10 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
-
-        <Canvas Name="uniCanvas" Width="1920" Height="1080" TouchMove="uniCanvas_TouchMove" TouchUp="uniCanvas_TouchUp">
-
+        <!--s:ScatterView Name="planetsScatterView" Width="2020" Height="1180" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <s:ScatterViewItem Name="planetsScatterViewItem" CanRotate="False" MinWidth="2020" MinHeight="1180" Width="2020" Height="1180" Background="Blue" Center="1010,640"-->
+        <Canvas Width="1920" Height="1080">
+            <Canvas Width="1920" Height="1080" Name="uniCanvas" IsManipulationEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" ManipulationStarted="uniCanvas_ManipulationStarted" ManipulationInertiaStarting="uniCanvas_ManipulationInertiaStarting" ManipulationDelta="uniCanvas_ManipulationDelta" ManipulationCompleted="uniCanvas_ManipulationCompleted"></Canvas>
         </Canvas>
+        <!--/s:ScatterViewItem>
+        </s:ScatterView-->
         <s:SurfaceButton Canvas.Left="97" Canvas.Top="127" Content="Button" Height="23" Name="surfaceButton1" Command="New" Width="75" />
     </Grid>
         

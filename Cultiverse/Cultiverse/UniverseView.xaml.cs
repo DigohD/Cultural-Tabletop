@@ -46,6 +46,8 @@ namespace Cultiverse
                 Planet newPlanet = new Planet(rng.Next(0, 1920), rng.Next(0, 1080), 0.2f, uniCanvas, w, this, counter++);
                 planets.Add(newPlanet);
             }
+
+            
         }
 
         private void initBackground()
@@ -100,7 +102,7 @@ namespace Cultiverse
 
         bool lastLift = true;
         public float lastX, lastY, cX, cY;
-        private void uniCanvas_TouchMove(object sender, TouchEventArgs e)
+        /*private void uniCanvas_TouchMove(object sender, TouchEventArgs e)
         {
             float touchX = (float)e.GetTouchPoint(uniCanvas).Position.X;
             float touchY = (float)e.GetTouchPoint(uniCanvas).Position.Y;
@@ -142,6 +144,76 @@ namespace Cultiverse
         private void uniCanvas_TouchUp(object sender, TouchEventArgs e)
         {
             lastLift = true;
+        }
+        */
+        private void uniCanvas_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+
+        }
+
+        private void uniCanvas_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            // Get the Rectangle and its RenderTransform matrix.
+            Canvas rectToMove = e.OriginalSource as Canvas;
+            Matrix rectsMatrix = ((MatrixTransform)rectToMove.RenderTransform).Matrix;
+
+            // Rotate the Rectangle.
+            rectsMatrix.RotateAt(e.DeltaManipulation.Rotation,
+                                 e.ManipulationOrigin.X,
+                                 e.ManipulationOrigin.Y);
+
+            // Resize the Rectangle.  Keep it square 
+            // so use only the X value of Scale.
+            rectsMatrix.ScaleAt(e.DeltaManipulation.Scale.X,
+                                e.DeltaManipulation.Scale.X,
+                                e.ManipulationOrigin.X,
+                                e.ManipulationOrigin.Y);
+
+            // Move the Rectangle.
+            rectsMatrix.Translate(e.DeltaManipulation.Translation.X,
+                                  e.DeltaManipulation.Translation.Y);
+            
+            // Apply the changes to the Rectangle.
+            rectToMove.RenderTransform = new MatrixTransform(rectsMatrix);
+
+            /*Rect containingRect =
+                new Rect(((FrameworkElement)e.ManipulationContainer).RenderSize);
+
+            Rect shapeBounds =
+                rectToMove.RenderTransform.TransformBounds(
+                    new Rect(rectToMove.RenderSize));
+            
+            // Check if the rectangle is completely in the window.
+            // If it is not and intertia is occuring, stop the manipulation.
+            if (e.IsInertial && !containingRect.Contains(shapeBounds))
+            {
+                e.Complete();
+            }
+            */
+            e.Handled = true;
+        }
+
+        private void uniCanvas_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+
+        }
+
+        private void uniCanvas_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingEventArgs e)
+        {
+            e.TranslationBehavior = new InertiaTranslationBehavior();
+            e.TranslationBehavior.InitialVelocity = e.InitialVelocities.LinearVelocity;
+            // 10 inches per second squared
+            e.TranslationBehavior.DesiredDeceleration = 10 * 96 / (1000 * 1000);
+           
+            e.ExpansionBehavior = new InertiaExpansionBehavior();
+            e.ExpansionBehavior.InitialVelocity = e.InitialVelocities.ExpansionVelocity;
+            // .1 inches per second squared.
+            e.ExpansionBehavior.DesiredDeceleration = 0.1 * 96 / 1000.0 * 1000.0;
+ 
+            e.RotationBehavior = new InertiaRotationBehavior();
+            e.RotationBehavior.InitialVelocity = e.InitialVelocities.AngularVelocity;
+            // 720 degrees per second squared.
+            e.RotationBehavior.DesiredDeceleration = 720 / (1000.0 * 1000.0);
         }
     }
 }
