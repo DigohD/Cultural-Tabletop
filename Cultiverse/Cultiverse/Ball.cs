@@ -30,7 +30,7 @@ namespace Cultiverse
         public float x, y, vX, vY, scale;
         
         public int width, height;
-        public float spring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f;
+        public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f;
 
         bool isPushEnabled;
 
@@ -209,6 +209,10 @@ namespace Cultiverse
             collideWall(deltaTime);
 
             move(deltaTime);
+
+            spring += 0.00001f;
+            if (spring >= maxSpring)
+                spring = maxSpring;
         }
 
         public void setVelocity(float vX, float vY)
