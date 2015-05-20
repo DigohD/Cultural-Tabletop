@@ -23,93 +23,23 @@ using Cultiverse.Model;
 
 namespace Cultiverse.UI
 {
-    public class Ball : Updateable
+    public class Ball : Image, Updateable
     {
-        Image image;
-        WorldDrawing drawing;
-        public float x, y, vX, vY, scale = 1.0f;
+        public float x, y, vX, vY;
         
         public int width, height;
         public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0002f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
 
-        public Ball(int count)
+        private float containerSize = 800; //Size of planet (containing circle)
+
+        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, bool isPushEnabled, int containerSize)
         {
-            image = new Image();
-
-            BitmapImage bi3 = new BitmapImage();
-            bi3.BeginInit();
-            bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
-            bi3.EndInit();
-
-            image.Stretch = Stretch.Fill;
-            image.Source = bi3;
-            image.Name = "image" + count;
-            image.Width = 32;
-
-            Random rnd = new Random();
-
-            x = rnd.Next(800);
-            y = rnd.Next(800);
-            vX = (float) ((rnd.NextDouble() * 3) + 1) / 100.00000f;
-            vY = (float) ((rnd.NextDouble() * 3) + 1) / 100.00000f;
-
-            Canvas.SetLeft(image, x);
-            Canvas.SetTop(image, y);
-        }
-
-        /*public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing)
-        {
-            //this(count,newX,newY,newWith,newHeight,
-                
-            this.width = newWidth;
-            this.height = newHeight;
-
-            isPushEnabled = true;
-
-            image = new Image();
-
-            BitmapImage bi3 = new BitmapImage();
-            bi3.BeginInit();
-            if (drawing != null)
-            {
-                bi3.UriSource = new Uri(drawing.BitmapFilePath, UriKind.Absolute);
-            }
-            else
-            {
-                bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
-            }
-            bi3.EndInit();
-
-            image.Stretch = Stretch.Fill;
-            image.Source = bi3;
-            image.Name = "image" + count;
-            image.Width = width;
-            image.Height = height;
-
-            Random rnd = new Random();
-
-            x = newX + width / 2;
-            y = newY + height / 2;
-            vX = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
-            vY = (float)((rnd.NextDouble() * 3) + 1.000000f) / 10.00000f;
-            vX = vX / 10.000000f;
-            vY = vY / 10.000000f;
-
-            Canvas.SetLeft(image, x - width / 2);
-            Canvas.SetTop(image, y - height / 2);
-        }*/
-
-        public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, Planet newPlanet, bool isPushEnabled)
-        {
-            //this(count,newX,newY,newWith,newHeight,
-
             this.width = newWidth;
             this.height = newHeight;
             this.isPushEnabled = isPushEnabled;
-
-            image = new Image();
+            this.containerSize = containerSize;
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
@@ -123,11 +53,11 @@ namespace Cultiverse.UI
             }
             bi3.EndInit();
 
-            image.Stretch = Stretch.Fill;
-            image.Source = bi3;
-            image.Name = "image" + count;
-            image.Width = width;
-            image.Height = height;
+            this.Stretch = Stretch.Fill;
+            this.Source = bi3;
+            this.Name = "image" + count;
+            this.Width = width;
+            this.Height = height;
 
             Random rnd = new Random();
 
@@ -139,21 +69,8 @@ namespace Cultiverse.UI
             vX = vX / 10.000000f;
             vY = vY / 10.000000f;
 
-            Canvas.SetLeft(image, x - width / 2);
-            Canvas.SetTop(image, y - height / 2);
-        }
-
-        public void setToScale(float newScale)
-        {
-            scale = newScale;
-
-            image.Width = width * scale;
-            image.Height = height * scale;
-        }
-
-        public Image getBallImage()
-        {
-            return image;
+            Canvas.SetLeft(this, x - width / 2);
+            Canvas.SetTop(this, y - height / 2);
         }
 
         public void update(float deltaTime){
@@ -180,7 +97,7 @@ namespace Cultiverse.UI
             float dy = touchY - y;
             float distance = (float) Math.Sqrt(dx * dx + dy * dy);
             if(distance < width){
-                float distMul = width * scale / distance;
+                float distMul = width / distance;
                 vX += pushX * inertia;
                 vY += pushY * inertia;
             }
@@ -213,8 +130,8 @@ namespace Cultiverse.UI
             else if (modY < 0)
                 vY += gravity;
             
-            Canvas.SetLeft(image, x - width * scale / 2);
-            Canvas.SetTop(image, y - height * scale / 2);
+            Canvas.SetLeft(this, x - width / 2);
+            Canvas.SetTop(this, y - height / 2);
             
         }
 
@@ -228,14 +145,14 @@ namespace Cultiverse.UI
                 float dx = ball.x - x;
                 float dy = ball.y - y;
                 float distance = (float) Math.Sqrt(dx * dx + dy * dy);
-                float minDist = ball.width * colWidthMod * ball.scale / 2 + width * colWidthMod * scale / 2;
+                float minDist = ball.width * colWidthMod / 2 + width * colWidthMod / 2;
                 if (distance < minDist)
                 {
                     float angle = (float) Math.Atan2(dy, dx);
                     float targetX = x + (float) Math.Cos(angle) * minDist;
                     float targetY = y + (float) Math.Sin(angle) * minDist;
-                    float ax = (targetX - ball.x) * spring * scale;
-                    float ay = (targetY - ball.y) * spring * scale;
+                    float ax = (targetX - ball.x) * spring;
+                    float ay = (targetY - ball.y) * spring;
                     vX -= ax;
                     vY -= ay;
                     ball.vX += ax;
@@ -269,10 +186,10 @@ namespace Cultiverse.UI
         private void collideWall(float deltaTime)
         {
             float modX = 0, modY = 0;
-            modX = x - (800 / 2);
-            modY = y - (800 / 2);
+            modX = x - (containerSize / 2);
+            modY = y - (containerSize / 2);
 
-            if (Math.Sqrt((modX * modX) + (modY * modY)) > (400 * scale) - (width * scale * colWidthMod * colWidthMod))
+            if (Math.Sqrt((modX * modX) + (modY * modY)) > containerSize / 2 - (width * colWidthMod * colWidthMod))
             {
                 vX = -vX * wallDampening;
                 vY = -vY * wallDampening;

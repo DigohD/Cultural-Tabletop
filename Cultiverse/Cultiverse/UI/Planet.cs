@@ -65,11 +65,11 @@ namespace Cultiverse.UI
 
             foreach (WorldDrawing d in world.getDrawings())
             {
-                Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, this, false);
+                Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, false, 800);
                 //addToUpdate(ball);
                 ballList.Add(ball);
 
-                this.Children.Add(ball.getBallImage());
+                this.Children.Add(ball);
             }
 
             this.TouchDown += planetClicked;
@@ -106,7 +106,7 @@ namespace Cultiverse.UI
         {
             ballList.Add(newBall);
 
-            this.Children.Add(newBall.getBallImage());
+            this.Children.Add(newBall);
         }
 
 
