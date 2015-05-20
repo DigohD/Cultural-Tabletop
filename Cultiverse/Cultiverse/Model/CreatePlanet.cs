@@ -23,11 +23,11 @@ using Microsoft.Surface.Presentation.Controls;
 
 namespace Cultiverse.Model
 {
-    class Planet : Updateable
+    class CreatePlanet : Updateable
     {
         public float posX, posY, width, height, ballXoffset, ballYoffset, viewOffsetX, viewOffsetY;
         float scaleFactor;
-        Canvas universeCanvas;
+        Canvas createWorldCanvas;
         int planetID;
 
         ArrayList ballList = new ArrayList();
@@ -37,18 +37,16 @@ namespace Cultiverse.Model
         World world;
 
         public Ellipse planet = new Ellipse();
-        UniverseView parent;
+        CreateWorldView parent;
 
-        public Planet(float newX, float newY, float newScale, Canvas newCanvas, World newWorld, UniverseView newParent, int newID)
+        public CreatePlanet(float newX, float newY, float newScale, Canvas newCanvas, CreateWorldView newParent, int newID)
         {
             posX = newX;
             posY = newY;
             scaleFactor = newScale;
-            universeCanvas = newCanvas;
+            createWorldCanvas = newCanvas;
             parent = newParent;
             planetID = newID;
-
-            world = newWorld;
 
             width = 800 * scaleFactor;
             height = 800 * scaleFactor;
@@ -57,20 +55,16 @@ namespace Cultiverse.Model
             ballYoffset = -(1080 / 2) + newY + height / 2;
 
             initPlanet();
+        }
 
-            drawings = world.getDrawings();
-            foreach (WorldDrawing d in drawings)
-            {
-                Ball ball = new Ball(1, (int)(universeCanvas.Width / 2 - 64), (int)(universeCanvas.Height / 2 - 64), 128, 128, d, this);
-                addToUpdate(ball);
-                ballList.Add(ball);
+        public void addBall(Ball newBall)
+        {
+            addToUpdate(newBall);
+            ballList.Add(newBall);
 
-                ball.setToScale(scaleFactor);
+            newBall.setToScale(scaleFactor);
 
-                universeCanvas.Children.Add(ball.getBallImage());
-            }
-
-            planet.TouchDown += planetClicked;
+            createWorldCanvas.Children.Add(newBall.getBallImage());
         }
 
         private void initPlanet()
@@ -85,12 +79,7 @@ namespace Cultiverse.Model
             Canvas.SetLeft(planet, posX);
             Canvas.SetTop(planet, posY);
 
-            universeCanvas.Children.Add(planet);
-        }
-
-        public void planetClicked(object sender, TouchEventArgs e)
-        {
-            parent.p(planetID);
+            createWorldCanvas.Children.Add(planet);
         }
 
         public void setToScale(float newScale)
