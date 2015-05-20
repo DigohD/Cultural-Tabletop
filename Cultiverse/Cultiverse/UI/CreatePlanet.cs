@@ -21,7 +21,7 @@ using System.Threading;
 using Microsoft.Surface.Presentation.Controls;
 
 
-namespace Cultiverse.Model
+namespace Cultiverse.UI
 {
     public class CreatePlanet : Updateable
     {
@@ -99,7 +99,7 @@ namespace Cultiverse.Model
             b.setToScale(scaleFactor);
         }
 
-        public override void update(float deltaTime)
+        public void update(float deltaTime)
         {
             foreach (Ball b in ballList)
             {

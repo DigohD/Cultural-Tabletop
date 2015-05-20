@@ -18,18 +18,15 @@ using Microsoft.Surface.Presentation.Input;
 using System.Collections;
 using System.Diagnostics;
 
-namespace Cultiverse
+namespace Cultiverse.UI
 {
-    public class Stars : Updateable
+    public class Stars : Image, Updateable
     {
-        Image starsImage = new Image();
         BitmapImage bitMap;
-        Canvas canvas;
         float rotspeed;
 
-        public Stars(Canvas newCanvas, string name, float newRotSpeed)
+        public Stars(string name, float newRotSpeed)
         {
-            this.canvas = newCanvas;
             this.rotspeed = newRotSpeed;
 
             bitMap = new BitmapImage();
@@ -37,27 +34,34 @@ namespace Cultiverse
             bitMap.UriSource = new Uri(@"Resources\" + name, UriKind.Relative);
             bitMap.EndInit();
 
-            starsImage.Width = 3000;
-            starsImage.Height = 3000;
-            
-            starsImage.Stretch = Stretch.Fill;
-            starsImage.Source = bitMap;
+            this.Width = 3000;
+            this.Height = 3000;
 
-            canvas.Children.Add(starsImage);
-            Canvas.SetLeft(starsImage, -1500 + 1920 / 2);
-            Canvas.SetTop(starsImage, -1500 + 1080 / 2);
+            this.Stretch = Stretch.UniformToFill;
+            this.Source = bitMap;
+
+            this.VerticalAlignment = VerticalAlignment.Center;
+            this.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
         float rotation;
         RotateTransform rotateTransform1 = new RotateTransform();
 
-        public override void update(float deltatime)
+        public void update(float deltatime)
         {
             rotation += rotspeed / 100.00000f * deltatime;
+
+            Matrix matrix = ((MatrixTransform)this.RenderTransform).Matrix;
+
+            matrix.RotateAt(rotspeed / 100.00000f * deltatime, 1500, 1500);
+            /*
             rotateTransform1.CenterX = 1500;
             rotateTransform1.CenterY = 1500;
             rotateTransform1.Angle = rotation;
-            starsImage.RenderTransform = rotateTransform1;
+            this.RenderTransform = rotateTransform1;
+             * */
+
+            this.RenderTransform = new MatrixTransform(matrix);
         }
     }
 }

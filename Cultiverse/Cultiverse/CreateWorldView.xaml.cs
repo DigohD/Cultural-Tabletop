@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
 using Microsoft.Surface.Presentation.Controls;
+using Cultiverse.UI;
 
 namespace Cultiverse
 {
@@ -52,10 +53,19 @@ namespace Cultiverse
 
         private void initBackground()
         {
-            addToUpdate(new Stars(myCanvas, "bg.png", 0.03f));
-            addToUpdate(new Stars(myCanvas, "stars.png", 0.1f));
-            addToUpdate(new Stars(myCanvas, "stars2.png", 0.08f));
-            addToUpdate(new Stars(myCanvas, "stars3.png", 0.2f));            
+            Stars background = new Stars("bg.png", 0.03f);
+            Stars stars = new Stars("stars.png", 0.1f);
+            Stars stars2 = new Stars("stars2.png", 0.1f);
+            Stars stars3 = new Stars("stars3.png", 0.1f);
+            addToUpdate(background);
+            addToUpdate(stars);
+            addToUpdate(stars2);
+            addToUpdate(stars3);
+
+            myCanvas.Children.Add(background);
+            myCanvas.Children.Add(stars);
+            myCanvas.Children.Add(stars2);
+            myCanvas.Children.Add(stars3);
         }
 
         int count = 0;

@@ -81,8 +81,8 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CreatePlanet.cs" />
-    <Compile Include="Model\Planet.cs" />
+    <Compile Include="UI\CreatePlanet.cs" />
+    <Compile Include="UI\Planet.cs" />
     <Compile Include="Model\WorldDrawing.cs" />
     <Compile Include="Model\World.cs" />
     <Compile Include="Model\WorldDatabase.cs" />
@@ -110,9 +110,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Ball.cs" />
-    <Compile Include="Stars.cs" />
-    <Compile Include="Updateable.cs" />
+    <Compile Include="UI\Ball.cs" />
+    <Compile Include="UI\Stars.cs" />
+    <Compile Include="UI\Updateable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

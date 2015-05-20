@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Collections;
 using System.Diagnostics;
 using Cultiverse.Model;
+using Cultiverse.UI;
 
 namespace Cultiverse
 {
@@ -29,6 +30,12 @@ namespace Cultiverse
 
         private WorldDatabase worldDatabase;
 
+        private Stars background;
+        private Stars stars1;
+        private Stars stars2;
+        private Stars stars3;
+
+
         public UniverseView()
         {
             CompositionTarget.Rendering += update;
@@ -43,7 +50,7 @@ namespace Cultiverse
 
             int counter = 0;
             foreach(World w in worlds){
-                Planet newPlanet = new Planet(rng.Next(0, 1920), rng.Next(0, 1080), 0.2f, uniCanvas, w, this, counter++);
+                Planet newPlanet = new Planet(rng.Next(0, 4000), rng.Next(0, 4000), 0.2f, uniCanvas, w, this, counter++);
                 planets.Add(newPlanet);
             }
 
@@ -52,10 +59,19 @@ namespace Cultiverse
 
         private void initBackground()
         {
-            addToUpdate(new Stars(uniCanvas, "bg.png", 0.03f));
-            addToUpdate(new Stars(uniCanvas, "stars.png", 0.1f));
-            addToUpdate(new Stars(uniCanvas, "stars2.png", 0.08f));
-            addToUpdate(new Stars(uniCanvas, "stars3.png", 0.2f));
+            background = new Stars("bg.png", 0.03f);
+            stars1 = new Stars("stars.png", 0.1f);
+            stars2 = new Stars("stars2.png", 0.1f);
+            stars3 = new Stars("stars3.png", 0.1f);
+            uniCanvas.Children.Add(background);
+            uniCanvas.Children.Add(stars1);
+            uniCanvas.Children.Add(stars2);
+            uniCanvas.Children.Add(stars3);
+
+            addToUpdate(background);
+            addToUpdate(stars1);
+            addToUpdate(stars2);
+            addToUpdate(stars3);
         }
 
         public void p(int index)
@@ -146,10 +162,6 @@ namespace Cultiverse
             lastLift = true;
         }
         */
-        private void uniCanvas_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
-        {
-
-        }
 
         private void uniCanvas_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
@@ -169,51 +181,22 @@ namespace Cultiverse
                                 e.ManipulationOrigin.X,
                                 e.ManipulationOrigin.Y);
 
-            // Move the Rectangle.
-            rectsMatrix.Translate(e.DeltaManipulation.Translation.X,
-                                  e.DeltaManipulation.Translation.Y);
             
             // Apply the changes to the Rectangle.
             rectToMove.RenderTransform = new MatrixTransform(rectsMatrix);
 
-            /*Rect containingRect =
-                new Rect(((FrameworkElement)e.ManipulationContainer).RenderSize);
-
-            Rect shapeBounds =
-                rectToMove.RenderTransform.TransformBounds(
-                    new Rect(rectToMove.RenderSize));
-            
-            // Check if the rectangle is completely in the window.
-            // If it is not and intertia is occuring, stop the manipulation.
-            if (e.IsInertial && !containingRect.Contains(shapeBounds))
-            {
-                e.Complete();
-            }
-            */
-            e.Handled = true;
+            e.Handled = false;
         }
 
-        private void uniCanvas_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void SurfaceScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            Matrix matrix = ((MatrixTransform)background.RenderTransform).Matrix;
+            matrix.TranslatePrepend(e.HorizontalChange * 0.8, e.VerticalChange * 0.8);
 
-        }
+            background.RenderTransform = new MatrixTransform(matrix);
 
-        private void uniCanvas_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingEventArgs e)
-        {
-            e.TranslationBehavior = new InertiaTranslationBehavior();
-            e.TranslationBehavior.InitialVelocity = e.InitialVelocities.LinearVelocity;
-            // 10 inches per second squared
-            e.TranslationBehavior.DesiredDeceleration = 10 * 96 / (1000 * 1000);
-           
-            e.ExpansionBehavior = new InertiaExpansionBehavior();
-            e.ExpansionBehavior.InitialVelocity = e.InitialVelocities.ExpansionVelocity;
-            // .1 inches per second squared.
-            e.ExpansionBehavior.DesiredDeceleration = 0.1 * 96 / 1000.0 * 1000.0;
- 
-            e.RotationBehavior = new InertiaRotationBehavior();
-            e.RotationBehavior.InitialVelocity = e.InitialVelocities.AngularVelocity;
-            // 720 degrees per second squared.
-            e.RotationBehavior.DesiredDeceleration = 720 / (1000.0 * 1000.0);
+            Console.WriteLine("Vertical change" + e.VerticalOffset);
+            Console.WriteLine("Horizontal change" + e.HorizontalOffset);
         }
     }
 }

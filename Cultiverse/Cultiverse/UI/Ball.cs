@@ -21,7 +21,7 @@ using System.Windows.Threading;
 using System.Collections;
 using Cultiverse.Model;
 
-namespace Cultiverse
+namespace Cultiverse.UI
 {
     public class Ball : Updateable
     {
@@ -205,7 +205,7 @@ namespace Cultiverse
             return image;
         }
 
-        public override void update(float deltaTime){
+        public void update(float deltaTime){
             collideWall(deltaTime);
 
             move(deltaTime);
