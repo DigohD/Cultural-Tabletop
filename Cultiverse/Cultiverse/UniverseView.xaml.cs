@@ -31,7 +31,7 @@ namespace Cultiverse
 
         public UniverseView()
         {
-            CompositionTarget.Rendering += update;
+            /*CompositionTarget.Rendering += update;
 
             InitializeComponent();
             initBackground();
@@ -45,7 +45,7 @@ namespace Cultiverse
             foreach(World w in worlds){
                 Planet newPlanet = new Planet(rng.Next(0, 1920), rng.Next(0, 1080), 0.2f, uniCanvas, w, this, counter++);
                 planets.Add(newPlanet);
-            }
+            }*/
         }
 
         private void initBackground()
