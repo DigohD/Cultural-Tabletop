@@ -3,14 +3,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cv="clr-namespace:Cultiverse"
-    Title="Cultiverse"
-    >
+    Title="Cultiverse" Loaded="SurfaceWindow_Loaded" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="2065" d:DesignWidth="3165" SizeToContent="WidthAndHeight">
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewWorld" CanExecute="NewWorld_CanExecute" />
     </Window.CommandBindings>
-    <Grid Name="mainGrid">
-        <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
+    
+    <Grid Name="mainGrid" Height="770" Width="1280">
+        <!--<Grid.RenderTransform>
+            <ScaleTransform ScaleX=".5" ScaleY=".5" CenterX=".5" CenterY=".5" />
+        </Grid.RenderTransform>-->
+        
+        <Ellipse Fill="Transparent" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchDown="ellipse1_TouchDown" Margin="85,485,1012,138" />
+        <Label Content="Place your token HERE" Height="62" Name="label1" TouchDown="ellipse1_TouchDown" Margin="85,545,1032,0" />
+        <Ellipse Fill="Transparent" Name="ellipse2" Stroke="WhiteSmoke" DataContext="{Binding}" Margin="85,117,1012,506" />
+        <Label Content="Place your token HERE" Height="62" Name="label2"  Margin="85,170,1032,0" />
+        <Label Content="Place your token HERE" Height="62" Margin="882,170,236,0" Name="label3" />
+        <Ellipse DataContext="{Binding}" Fill="Transparent" Margin="882,117,215,506" Name="ellipse3" Stroke="WhiteSmoke" />
+        <Ellipse DataContext="{Binding}" Fill="Transparent" Margin="882,485,215,138" Name="ellipse4" Stroke="WhiteSmoke" />
+        <Label Content="Place your token HERE" Height="62" Margin="882,545,236,0" Name="label4" />
+        <cv:UniverseView x:Name="universeView" Visibility="Visible" Loaded="universeView_Loaded" FontFamily="Segoe UI" FontSize="11"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>
-
     </Grid>
+    
+        
 </s:SurfaceWindow>

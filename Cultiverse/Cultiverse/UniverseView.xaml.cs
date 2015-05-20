@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.Windows.Media.Animation;
 
 namespace Cultiverse
 {
@@ -24,11 +26,17 @@ namespace Cultiverse
         public UniverseView()
         {
             InitializeComponent();
+            
         }
+
+        
 
         private void createWorldButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        
+
+             
     }
 }

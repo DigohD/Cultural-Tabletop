@@ -38,6 +38,8 @@ namespace Cultiverse
         {
             InitializeComponent();
             worldDatabase = new WorldDatabase();
+            TouchDown += new EventHandler<TouchEventArgs>(SurfaceWindow1_TouchDown);
+            CompositionTarget.Rendering += update;
         }
         /// <summary>
         /// Occurs when the window is about to close. 
@@ -115,6 +117,65 @@ namespace Cultiverse
         private void NewWorld_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void universeView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SurfaceWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        void SurfaceWindow1_TouchDown(object sender, TouchEventArgs e)
+        {
+            TouchDevice c = e.TouchDevice;
+            ellipse1.Visibility = Visibility.Hidden;
+
+        }
+        float sizeMul, ticker;
+        public void update(object sender, EventArgs e)
+        {
+            sizeMul = (float)Math.Abs(Math.Sin(ticker++ / 100) * 0.2f) + 0.7f;
+            ellipse1.Width = 244 * sizeMul;
+            ellipse1.Height = 152 * sizeMul;
+            ellipse2.Width = 244 * sizeMul;
+            ellipse2.Height = 152 * sizeMul;
+            ellipse3.Width = 244 * sizeMul;
+            ellipse3.Height = 152 * sizeMul;
+            ellipse4.Width = 244 * sizeMul;
+            ellipse4.Height = 152 * sizeMul;
+            //Canvas.SetLeft(ellipse1, 354 - ellipse1.Width/2);
+            //Canvas.SetTop(ellipse1, 400 - ellipse1.Height / 2);
+            RotateTransform rt1 = new RotateTransform();
+            RotateTransform rt2 = new RotateTransform();
+            RotateTransform rt3 = new RotateTransform();
+            RotateTransform rt4 = new RotateTransform();
+            
+            rt1.Angle = 45;
+            rt2.Angle = 135;
+            rt3.Angle = 225;
+            rt4.Angle = 315;
+            
+            ellipse1.LayoutTransform= rt1;
+            ellipse2.LayoutTransform = rt2;
+            ellipse3.LayoutTransform = rt3;
+            ellipse4.LayoutTransform = rt4;
+            label1.LayoutTransform = rt1;
+            label2.LayoutTransform = rt2;
+            label3.LayoutTransform = rt3;
+            label4.LayoutTransform = rt4; 
+        }
+
+        private void ellipse1_TouchDown(object sender, TouchEventArgs e)
+        {
+            createWorldView.setWorld(worldDatabase.createNewWorld());
+            createWorldView.Visibility = Visibility.Visible;
+            universeView.Visibility = Visibility.Hidden;
+            //Debug.WriteLine("kbuygut");
+            //label1.Content = "Player #1";
+
         }
 
 
