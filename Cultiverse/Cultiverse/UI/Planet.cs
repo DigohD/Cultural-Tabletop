@@ -98,6 +98,12 @@ namespace Cultiverse.UI
             lastY = touchY;
         }
 
+        public void pushInertedBalls(float dx, float dy)
+        {
+            foreach (Ball b in ballList)
+                b.pushSimple(dx, dy);
+        }
+
         public void planetClicked(object sender, TouchEventArgs e)
         {
         }
