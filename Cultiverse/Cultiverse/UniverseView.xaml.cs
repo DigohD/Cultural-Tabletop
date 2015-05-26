@@ -192,12 +192,12 @@ namespace Cultiverse
             matrix = ((MatrixTransform)stars3.RenderTransform).Matrix;
             matrix.TranslatePrepend(e.HorizontalChange * 0.3, e.VerticalChange * 0.3);
             stars3.RenderTransform = new MatrixTransform(matrix);
-
+            
             foreach (Planet p in planets)
             {
                 p.pushInertedBalls((float) -e.HorizontalChange * 4, (float) -e.VerticalChange * 4);
             }
-
+            
         }
     }
 }
