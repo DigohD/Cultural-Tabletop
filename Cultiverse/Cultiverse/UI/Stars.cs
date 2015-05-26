@@ -45,7 +45,6 @@ namespace Cultiverse.UI
         }
 
         float rotation;
-        RotateTransform rotateTransform1 = new RotateTransform();
 
         public void update(float deltatime)
         {

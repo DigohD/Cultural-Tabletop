@@ -10,12 +10,10 @@
 
     <UserControl.Resources>
         <cvui:BorderClipConverter x:Key="BorderClipConverter" />
-
-
     </UserControl.Resources>
     <Grid>
-        <Canvas Name="myCanvas" Width="1920" Height="1080" Background="White">
-        </Canvas>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
+        </Grid>
 
 
         <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone">

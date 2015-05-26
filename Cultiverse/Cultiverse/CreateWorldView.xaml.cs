@@ -122,7 +122,7 @@ namespace Cultiverse
         {
             currentWorld = world;
             removeFromUpdate(planet);
-            planet = new Planet(1920 / 2 - 800 / 2, 1080 / 2 - 800 / 2, 1.0f, currentWorld, 0);
+            planet = new Planet(0, 0, 1.0f, currentWorld, 0);
             myCanvas.Children.Add(planet);
             addToUpdate(planet);
         }
