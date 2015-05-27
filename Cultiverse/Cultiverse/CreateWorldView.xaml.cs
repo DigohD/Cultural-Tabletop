@@ -167,6 +167,74 @@ namespace Cultiverse
             this.addDrawingFromInkCanvas((SurfaceInkCanvas)sender);
         }
 
+        private bool _saveCheck1Checked = false;
+        private bool saveCheck1Checked
+        {
+            get
+            {
+                return _saveCheck1Checked;
+            }
+            set
+            {
+                _saveCheck1Checked = value;
+                if (_saveCheck1Checked)
+                {
+                    saveCheck1.Background = new SolidColorBrush(Colors.GreenYellow);
+                }
+                else
+                {
+                    saveCheck1.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+        }
+        bool saveCheck2Checked = false;
+        bool saveCheck3Checked = false;
+        bool saveCheck4Checked = false;
+
+
+        private void saveCheck1_Click(object sender, RoutedEventArgs e)
+        {
+            saveCheck1Checked = !saveCheck1Checked;
+            trySave();
+        }
+        private void saveCheck2_Click(object sender, RoutedEventArgs e)
+        {
+            saveCheck2Checked = !saveCheck2Checked;
+            trySave();
+        }
+        private void saveCheck3_Click(object sender, RoutedEventArgs e)
+        {
+            saveCheck3Checked = !saveCheck3Checked;
+            trySave();
+        }
+        private void saveCheck4_Click(object sender, RoutedEventArgs e)
+        {
+            saveCheck4Checked = !saveCheck4Checked;
+            trySave();
+        }
+
+        private void trySave()
+        {
+            if (drawingSpace1.Visibility == Visibility.Visible && !saveCheck1Checked)
+            {
+                return;
+            }
+            if (drawingSpace2.Visibility == Visibility.Visible && !saveCheck2Checked)
+            {
+                return;
+            }
+            if (drawingSpace3.Visibility == Visibility.Visible && !saveCheck3Checked)
+            {
+                return;
+            }
+            if (drawingSpace4.Visibility == Visibility.Visible && !saveCheck4Checked)
+            {
+                return;
+            }
+
+            Console.WriteLine("Save!");
+        }
+
 
 
     }

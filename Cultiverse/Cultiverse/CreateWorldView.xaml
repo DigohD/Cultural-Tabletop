@@ -14,10 +14,78 @@
     <Grid>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
         </Grid>
-        
-        <Ellipse Height="100" HorizontalAlignment="Center" Margin="0,700,700,0" Name="ellipse1" Stroke="White" VerticalAlignment="Center" Width="100" StrokeThickness="5" />
+        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck1" Click="saveCheck1_Click">
+                <Grid Margin="30">
+                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
+                </Grid>
+            </my:SurfaceButton>
+        </Border>
+        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,700,700,0" BorderThickness="5" BorderBrush="White">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck2" Click="saveCheck2_Click">
+                <Grid Margin="30">
+                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
+                </Grid>
+            </my:SurfaceButton>
+        </Border>
 
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30">
+        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,700,0,0" BorderThickness="5" BorderBrush="White">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck3" Click="saveCheck3_Click">
+                <Grid Margin="30">
+                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
+                </Grid>
+            </my:SurfaceButton>
+        </Border>
+
+        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,0,0,700" BorderThickness="5" BorderBrush="White">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck4" Click="saveCheck4_Click">
+                <Grid Margin="30">
+                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
+                </Grid>
+            </my:SurfaceButton>
+        </Border>
+
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace1">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
@@ -25,14 +93,14 @@
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                 <RotateTransform Angle="-90" CenterX=".5" CenterY=".5" ></RotateTransform>
@@ -40,7 +108,7 @@
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                 <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>

@@ -138,6 +138,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\checkmark21.png" />
     <Resource Include="Resources\Icons\worldarrow.png" />
     <Resource Include="Resources\Icons\world91.png" />
     <Resource Include="Resources\Icons\paint87.png" />
