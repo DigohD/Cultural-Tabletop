@@ -143,21 +143,37 @@ namespace Cultiverse
         SolidColorBrush solidC = new SolidColorBrush();
         byte r;
         float deltaTime;
-
         float targetzoom = 4f, zoomInc = 0.01f, zoomAmount = 1;
-
         public void update(object sender, EventArgs e)
         {
             watch.Stop();
             deltaTime = watch.ElapsedMilliseconds;
 
-            if(viewingPlanet != null)
+            if (viewingPlanet != null && !leavingPlanet)
             {
                 zoomAmount += zoomInc;
                 if (zoomAmount > targetzoom)
                     zoomAmount = targetzoom;
                 UniverseZoom = zoomAmount;
                 scrollTo(viewingPlanet);
+            }
+            else if (viewingPlanet != null && leavingPlanet)
+            {
+                zoomAmount -= zoomInc * 2;
+
+                UniverseZoom = zoomAmount;
+                this.scrollTo(viewingPlanet);
+
+                if (zoomAmount < 1){
+                    zoomAmount = 1;
+                    UniverseZoom = zoomAmount;
+                    this.scrollTo(viewingPlanet);
+                    scrollViewer.CanContentScroll = true;
+                    viewingPlanet = null;
+                    leavingPlanet = false;
+                }
+
+                
             }
 
             foreach (Updateable u in updateList)
@@ -267,16 +283,12 @@ namespace Cultiverse
             */
         }
 
+        bool leavingPlanet;
         private void uniCanvas_TouchDown(object sender, TouchEventArgs e)
         {
             if (viewingPlanet != null)
             {
-                zoomAmount = 1.0f;
-                UniverseZoom = 1.0;
-
-                scrollViewer.CanContentScroll = true;
-                this.scrollTo(viewingPlanet);
-                viewingPlanet = null;
+                leavingPlanet = true;
             }
             e.Handled = false;
         }
