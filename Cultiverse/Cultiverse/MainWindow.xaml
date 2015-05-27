@@ -9,7 +9,6 @@
         <CommandBinding Command="New" Executed="NewWorld" CanExecute="NewWorld_CanExecute" />
     </Window.CommandBindings>
     <Grid Name="mainGrid">
-        
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>
 

@@ -122,7 +122,7 @@ namespace Cultiverse
         float sizeMul, ticker;
         public void update(object sender, EventArgs e)
         {
-            sizeMul = (float)Math.Abs(Math.Sin(ticker++ / 100) * 0.2f) + 0.7f;
+            sizeMul = (float)Math.Abs(Math.Sin(ticker++ / 100) * 0.2f) + 1.0f;
             /*
             ellipse1.Width = 150 * sizeMul;
             ellipse1.Height = 150 * sizeMul;
@@ -163,6 +163,7 @@ namespace Cultiverse
             label4.LayoutTransform = rt4;
         }
 
+
         private void ellipse1_TouchDown(object sender, TouchEventArgs e)
         {
             createWorldView.setWorld(worldDatabase.createNewWorld());
@@ -170,7 +171,6 @@ namespace Cultiverse
             universeView.Visibility = Visibility.Hidden;
             //Debug.WriteLine("kbuygut");
             //label1.Content = "Player #1";
-
         }
     }
 }

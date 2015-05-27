@@ -14,26 +14,42 @@
     <Grid>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
         </Grid>
+        
+        <Ellipse Height="100" HorizontalAlignment="Center" Margin="0,700,700,0" Name="ellipse1" Stroke="White" VerticalAlignment="Center" Width="100" StrokeThickness="5" />
 
-
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30">
             <cv:DrawingSpace.LayoutTransform>
-                <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
+                </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone">
-        </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30">
             <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
                 <RotateTransform Angle="-90" CenterX=".5" CenterY=".5" ></RotateTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
+                </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30">
             <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
                 <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
+                </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
 
         <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
+
     </Grid>
 </UserControl>
