@@ -260,27 +260,42 @@ namespace Cultiverse
         }
 
 
-        private void saveCheck1_Click(object sender, RoutedEventArgs e)
+        private void saveCheck1_TouchDown(object sender, TouchEventArgs e)
         {
-            saveCheck1Checked = !saveCheck1Checked;
+            saveCheck1Checked = true;
             trySave();
         }
-        private void saveCheck2_Click(object sender, RoutedEventArgs e)
+        private void saveCheck1_TouchUp(object sender, TouchEventArgs e)
         {
-            saveCheck2Checked = !saveCheck2Checked;
+            saveCheck1Checked = false;
+        }
+        private void saveCheck2_TouchDown(object sender, TouchEventArgs e)
+        {
+            saveCheck2Checked = true;
             trySave();
         }
-        private void saveCheck3_Click(object sender, RoutedEventArgs e)
+        private void saveCheck2_TouchUp(object sender, TouchEventArgs e)
         {
-            saveCheck3Checked = !saveCheck3Checked;
+            saveCheck2Checked = false;
+        }
+        private void saveCheck3_TouchDown(object sender, TouchEventArgs e)
+        {
+            saveCheck3Checked = true;
             trySave();
         }
-        private void saveCheck4_Click(object sender, RoutedEventArgs e)
+        private void saveCheck3_TouchUp(object sender, TouchEventArgs e)
         {
-            saveCheck4Checked = !saveCheck4Checked;
+            saveCheck3Checked = false;
+        }
+        private void saveCheck4_TouchDown(object sender, TouchEventArgs e)
+        {
+            saveCheck4Checked = true;
             trySave();
         }
-
+        private void saveCheck4_TouchUp(object sender, TouchEventArgs e)
+        {
+            saveCheck4Checked = false;
+        }
         private void trySave()
         {
             if (drawingSpace1.Visibility == Visibility.Visible && !saveCheck1Checked)
@@ -306,6 +321,7 @@ namespace Cultiverse
                 CreateWorldDone(this, new RoutedEventArgs());
             }
         }
+
 
 
 

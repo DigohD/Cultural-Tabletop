@@ -40,9 +40,13 @@ namespace Cultiverse
             worldDatabase = new WorldDatabase();
 
             createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
-            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
-            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
-            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace2.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace4.Visibility = Visibility.Hidden;
+            createWorldView.saveCheck1Border.Visibility = Visibility.Hidden;
+            createWorldView.saveCheck2Border.Visibility = Visibility.Hidden;
+            createWorldView.saveCheck3Border.Visibility = Visibility.Hidden;
+            createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
 
             TouchExtensions.AddHoldGestureHandler(ellipse1, ellipse1_TouchDown);
             TouchExtensions.AddHoldGestureHandler(label1, ellipse1_TouchDown);
@@ -197,6 +201,7 @@ namespace Cultiverse
                 universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace2.Visibility = Visibility.Visible;
+                createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
             }
         }
 
@@ -205,6 +210,7 @@ namespace Cultiverse
             if (createWorldView.drawingSpace2.Visibility == Visibility.Visible)
             {
                 createWorldView.drawingSpace2.Visibility = Visibility.Hidden;
+                createWorldView.saveCheck2Border.Visibility = Visibility.Hidden;
                 e1ActivateID = -9999;
             }
         }
@@ -223,6 +229,7 @@ namespace Cultiverse
                 universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace1.Visibility = Visibility.Visible;
+                createWorldView.saveCheck1Border.Visibility = Visibility.Visible;
             }
         }
 
@@ -231,6 +238,7 @@ namespace Cultiverse
             if (createWorldView.drawingSpace1.Visibility == Visibility.Visible)
             {
                 createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+                createWorldView.saveCheck1Border.Visibility = Visibility.Hidden;
                 e1ActivateID = -9999;
             }
         }
@@ -249,6 +257,7 @@ namespace Cultiverse
                 universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace4.Visibility = Visibility.Visible;
+                createWorldView.saveCheck4Border.Visibility = Visibility.Visible;
             }
         }
 
@@ -257,6 +266,7 @@ namespace Cultiverse
             if (createWorldView.drawingSpace4.Visibility == Visibility.Visible)
             {
                 createWorldView.drawingSpace4.Visibility = Visibility.Hidden;
+                createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
                 e1ActivateID = -9999;
             }
         }
@@ -275,6 +285,7 @@ namespace Cultiverse
                 universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace3.Visibility = Visibility.Visible;
+                createWorldView.saveCheck3Border.Visibility = Visibility.Visible;
             }
         }
 
@@ -283,6 +294,7 @@ namespace Cultiverse
             if (createWorldView.drawingSpace3.Visibility == Visibility.Visible)
             {
                 createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
+                createWorldView.saveCheck3Border.Visibility = Visibility.Hidden;
                 e1ActivateID = -9999;
             }
         }

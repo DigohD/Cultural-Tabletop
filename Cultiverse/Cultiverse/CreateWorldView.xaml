@@ -14,7 +14,7 @@
     <Grid>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
         </Grid>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White">
+        <Border Name="saveCheck1Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -25,13 +25,13 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck1" Click="saveCheck1_Click">
+            <my:SurfaceButton Padding="0" Margin="0" Background="#11FFFFFF" Name="saveCheck1" TouchDown="saveCheck1_TouchDown" TouchUp="saveCheck1_TouchUp">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </my:SurfaceButton>
         </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,700,700,0" BorderThickness="5" BorderBrush="White">
+        <Border Name="saveCheck2Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,700,700,0" BorderThickness="5" BorderBrush="White">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -42,32 +42,14 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck2" Click="saveCheck2_Click">
-                <Grid Margin="30">
-                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
-                </Grid>
-            </my:SurfaceButton>
-        </Border>
-
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,700,0,0" BorderThickness="5" BorderBrush="White">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck3" Click="saveCheck3_Click">
+            <my:SurfaceButton Padding="0" Margin="0" Background="#11FFFFFF" Name="saveCheck2" TouchDown="saveCheck2_TouchDown" TouchUp="saveCheck2_TouchUp">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </my:SurfaceButton>
         </Border>
 
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,0,0,700" BorderThickness="5" BorderBrush="White">
+        <Border Name="saveCheck3Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,700,0,0" BorderThickness="5" BorderBrush="White">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -78,7 +60,25 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Name="saveCheck4" Click="saveCheck4_Click">
+            <my:SurfaceButton Padding="0" Margin="0" Background="#11FFFFFF" Name="saveCheck3" TouchDown="saveCheck3_TouchDown" TouchUp="saveCheck3_TouchUp">
+                <Grid Margin="30">
+                    <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
+                </Grid>
+            </my:SurfaceButton>
+        </Border>
+
+        <Border Name="saveCheck4Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,0,0,700" BorderThickness="5" BorderBrush="White">
+            <Border.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </Border.Clip>
+            <my:SurfaceButton Padding="0" Margin="0" Background="#11FFFFFF" Name="saveCheck4" TouchDown="saveCheck4_TouchDown" TouchUp="saveCheck4_TouchUp">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
@@ -117,9 +117,7 @@
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
 
-        <Image Source="\Resources\createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Image Source="/Cultiverse;component/Resources/createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" />
         
-        <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
-
     </Grid>
 </UserControl>
