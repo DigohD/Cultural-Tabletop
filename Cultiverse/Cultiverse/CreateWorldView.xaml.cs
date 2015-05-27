@@ -68,7 +68,7 @@ namespace Cultiverse
         }
 
         int count = 0;
-
+        float rotation, rotSpeed = 0.4f, alphaCount = 0;
         SolidColorBrush solidC = new SolidColorBrush();
         byte r;
         public void update(object sender, EventArgs e)
@@ -78,6 +78,14 @@ namespace Cultiverse
 
             foreach (Updateable u in updateList)
                 u.update(deltaTime);
+
+            rotation += rotSpeed / 100.00000f * deltaTime;
+            Matrix matrix = ((MatrixTransform)createWorldText.RenderTransform).Matrix;
+            matrix.RotateAt(rotSpeed / 100.00000f * deltaTime, 500, 500);
+            createWorldText.RenderTransform = new MatrixTransform(matrix);
+
+            alphaCount += 0.02f;
+            createWorldText.Opacity = (Math.Sin(alphaCount) * 0.5f) + 0.5f;
 
             solidC.Color = Color.FromRgb(r, 0, 0);
             myCanvas.Background = solidC;
