@@ -12,13 +12,13 @@
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
 
-        <Ellipse Fill="Transparent" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchDown="ellipse1_TouchDown" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label1" TouchDown="ellipse1_TouchDown" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-        <Ellipse Fill="Transparent" Name="ellipse2" Stroke="WhiteSmoke" DataContext="{Binding}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label2" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Ellipse DataContext="{Binding}" Fill="Transparent" Name="ellipse3" Stroke="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Right" />
-        <Ellipse DataContext="{Binding}" Fill="Transparent" Name="ellipse4" Stroke="WhiteSmoke" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label4" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <Ellipse Fill="Black" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="150" />
+        <Label Content="Place your token HERE" Height="62" Name="label1" TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        <Ellipse Fill="Black" Name="ellipse2" UIElement.TouchUp="ellipse2_TouchUp" Stroke="WhiteSmoke" DataContext="{Binding}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="150" />
+        <Label Content="Place your token HERE" Height="62" Name="label2" TouchUp="ellipse2_TouchUp" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Ellipse DataContext="{Binding}" Fill="Black" Name="ellipse3" UIElement.TouchUp="ellipse3_TouchUp" Stroke="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="150" />
+        <Label Content="Place your token HERE" Height="62" Name="label3" TouchUp="ellipse3_TouchUp" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Ellipse DataContext="{Binding}" Fill="Black" Name="ellipse4" UIElement.TouchUp="ellipse4_TouchUp" Stroke="WhiteSmoke" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="150" />
+        <Label Content="Place your token HERE" Height="62" Name="label4" TouchUp="ellipse4_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
     </Grid>
 </s:SurfaceWindow>

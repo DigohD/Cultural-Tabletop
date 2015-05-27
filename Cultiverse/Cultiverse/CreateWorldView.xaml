@@ -85,7 +85,7 @@
             </my:SurfaceButton>
         </Border>
 
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace1">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" Visibility="Hidden" x:Name="drawingSpace1">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
@@ -93,14 +93,14 @@
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                 <RotateTransform Angle="-90" CenterX=".5" CenterY=".5" ></RotateTransform>
@@ -108,7 +108,7 @@
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                 <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>
@@ -117,6 +117,8 @@
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
 
+        <Image Source="\Resources\createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        
         <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
 
     </Grid>

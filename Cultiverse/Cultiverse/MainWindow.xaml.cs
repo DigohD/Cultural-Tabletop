@@ -39,6 +39,23 @@ namespace Cultiverse
             InitializeComponent();
             worldDatabase = new WorldDatabase();
 
+            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+            createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+
+            TouchExtensions.AddHoldGestureHandler(ellipse1, ellipse1_TouchDown);
+            TouchExtensions.AddHoldGestureHandler(label1, ellipse1_TouchDown);
+
+            TouchExtensions.AddHoldGestureHandler(ellipse2, ellipse2_TouchDown);
+            TouchExtensions.AddHoldGestureHandler(label2, ellipse2_TouchDown);
+
+            TouchExtensions.AddHoldGestureHandler(ellipse3, ellipse3_TouchDown);
+            TouchExtensions.AddHoldGestureHandler(label3, ellipse3_TouchDown);
+
+            TouchExtensions.AddHoldGestureHandler(ellipse4, ellipse4_TouchDown);
+            TouchExtensions.AddHoldGestureHandler(label4, ellipse4_TouchDown);
+
             CompositionTarget.Rendering += update;
         }
         /// <summary>
@@ -164,14 +181,110 @@ namespace Cultiverse
             label4.LayoutTransform = rt4;
         }
 
-
+        bool worldCreated = false;
+        int e1ActivateID = -9999;
         private void ellipse1_TouchDown(object sender, TouchEventArgs e)
         {
-            createWorldView.setWorld(worldDatabase.createNewWorld());
-            createWorldView.Visibility = Visibility.Visible;
-            universeView.Visibility = Visibility.Hidden;
-            //Debug.WriteLine("kbuygut");
-            //label1.Content = "Player #1";
+            if (!worldCreated)
+            {
+                createWorldView.setWorld(worldDatabase.createNewWorld());
+                worldCreated = true;
+            }
+
+            if (createWorldView.drawingSpace2.Visibility == Visibility.Hidden)
+            {
+                createWorldView.Visibility = Visibility.Visible;
+                universeView.Visibility = Visibility.Hidden;
+
+                createWorldView.drawingSpace2.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ellipse1_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (createWorldView.drawingSpace2.Visibility == Visibility.Visible)
+            {
+                createWorldView.drawingSpace2.Visibility = Visibility.Hidden;
+                e1ActivateID = -9999;
+            }
+        }
+
+        private void ellipse2_TouchDown(object sender, TouchEventArgs e)
+        {
+            if (!worldCreated)
+            {
+                createWorldView.setWorld(worldDatabase.createNewWorld());
+                worldCreated = true;
+            }
+
+            if (createWorldView.drawingSpace1.Visibility == Visibility.Hidden)
+            {
+                createWorldView.Visibility = Visibility.Visible;
+                universeView.Visibility = Visibility.Hidden;
+
+                createWorldView.drawingSpace1.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ellipse2_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (createWorldView.drawingSpace1.Visibility == Visibility.Visible)
+            {
+                createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+                e1ActivateID = -9999;
+            }
+        }
+
+        private void ellipse3_TouchDown(object sender, TouchEventArgs e)
+        {
+            if (!worldCreated)
+            {
+                createWorldView.setWorld(worldDatabase.createNewWorld());
+                worldCreated = true;
+            }
+
+            if (createWorldView.drawingSpace4.Visibility == Visibility.Hidden)
+            {
+                createWorldView.Visibility = Visibility.Visible;
+                universeView.Visibility = Visibility.Hidden;
+
+                createWorldView.drawingSpace4.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ellipse3_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (createWorldView.drawingSpace4.Visibility == Visibility.Visible)
+            {
+                createWorldView.drawingSpace4.Visibility = Visibility.Hidden;
+                e1ActivateID = -9999;
+            }
+        }
+
+        private void ellipse4_TouchDown(object sender, TouchEventArgs e)
+        {
+            if (!worldCreated)
+            {
+                createWorldView.setWorld(worldDatabase.createNewWorld());
+                worldCreated = true;
+            }
+
+            if (createWorldView.drawingSpace3.Visibility == Visibility.Hidden)
+            {
+                createWorldView.Visibility = Visibility.Visible;
+                universeView.Visibility = Visibility.Hidden;
+
+                createWorldView.drawingSpace3.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ellipse4_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (createWorldView.drawingSpace3.Visibility == Visibility.Visible)
+            {
+                createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
+                e1ActivateID = -9999;
+            }
         }
 
         private void createWorldView_CreateWorldDone(object sender, RoutedEventArgs e)
