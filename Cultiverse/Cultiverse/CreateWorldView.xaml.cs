@@ -28,7 +28,10 @@ namespace Cultiverse
     /// </summary>
     public partial class CreateWorldView : UserControl
     {
-        private World currentWorld;
+
+        public event RoutedEventHandler CreateWorldDone;
+
+        public World currentWorld;
         Planet planet;
 
         Dispatcher mainDespatch;
@@ -187,9 +190,66 @@ namespace Cultiverse
                 }
             }
         }
-        bool saveCheck2Checked = false;
-        bool saveCheck3Checked = false;
-        bool saveCheck4Checked = false;
+        private bool _saveCheck2Checked = false;
+        private bool saveCheck2Checked
+        {
+            get
+            {
+                return _saveCheck2Checked;
+            }
+            set
+            {
+                _saveCheck2Checked = value;
+                if (_saveCheck2Checked)
+                {
+                    saveCheck2.Background = new SolidColorBrush(Colors.GreenYellow);
+                }
+                else
+                {
+                    saveCheck2.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+        }
+        private bool _saveCheck3Checked = false;
+        private bool saveCheck3Checked
+        {
+            get
+            {
+                return _saveCheck3Checked;
+            }
+            set
+            {
+                _saveCheck3Checked = value;
+                if (_saveCheck3Checked)
+                {
+                    saveCheck3.Background = new SolidColorBrush(Colors.GreenYellow);
+                }
+                else
+                {
+                    saveCheck3.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+        }
+        private bool _saveCheck4Checked = false;
+        private bool saveCheck4Checked
+        {
+            get
+            {
+                return _saveCheck4Checked;
+            }
+            set
+            {
+                _saveCheck4Checked = value;
+                if (_saveCheck4Checked)
+                {
+                    saveCheck4.Background = new SolidColorBrush(Colors.GreenYellow);
+                }
+                else
+                {
+                    saveCheck4.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+        }
 
 
         private void saveCheck1_Click(object sender, RoutedEventArgs e)
@@ -233,6 +293,10 @@ namespace Cultiverse
             }
 
             Console.WriteLine("Save!");
+            if (CreateWorldDone != null)
+            {
+                CreateWorldDone(this, new RoutedEventArgs());
+            }
         }
 
 

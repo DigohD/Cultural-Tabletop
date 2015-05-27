@@ -35,6 +35,8 @@ namespace Cultiverse
         private Stars stars2;
         private Stars stars3;
 
+        int worldCounter = 0;
+
         public UniverseView()
         {
             CompositionTarget.Rendering += update;
@@ -47,15 +49,33 @@ namespace Cultiverse
 
             Random rng = new Random();
 
-            int counter = 0;
             foreach(World world in worlds){
-                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, counter++);
+                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
                 planets.Add(newPlanet);
             }
             //Scroll to center
-            scrollViewer.ScrollToVerticalOffset(uniCanvas.Width / 2 - scrollViewer.Width / 2);
-            scrollViewer.ScrollToHorizontalOffset(uniCanvas.Height / 2 - scrollViewer.Height / 2);
+            scrollViewer.ScrollToHorizontalOffset(uniCanvas.Width / 2 - scrollViewer.Width / 2);
+            scrollViewer.ScrollToVerticalOffset(uniCanvas.Height / 2 - scrollViewer.Height / 2);
+        }
+
+        public void scrollTo(Planet planet)
+        {
+            scrollViewer.ScrollToHorizontalOffset(planet.posX - scrollViewer.Width / 2 - 100);
+            scrollViewer.ScrollToVerticalOffset(planet.posY - scrollViewer.Height / 2 - 100);
+        }
+
+        public Planet addWorld(World world)
+        {
+            worlds.Add(world);
+            Random rng = new Random();
+            float posX = 100 + rng.Next(0, 4000 - 200);
+            float posY = 100 + rng.Next(0, 4000 - 200);
+            Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
+            this.uniCanvas.Children.Add(newPlanet);
+            planets.Add(newPlanet);
+
+            return newPlanet;
         }
 
         private void initBackground()
