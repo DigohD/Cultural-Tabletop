@@ -131,8 +131,8 @@
                 </MultiBinding>
             </Border.Clip>
             <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Click="addDrawingButton_Click">
-                <Grid Margin="30">
-                    <Image Source="/Cultiverse;component/Resources/Icons/world91.png" />
+                <Grid Margin="20,30,20,10">
+                    <Image Source="/Cultiverse;component/Resources/Icons/worldarrow.png" />
                 </Grid>
             </my:SurfaceButton>
         </Border>
