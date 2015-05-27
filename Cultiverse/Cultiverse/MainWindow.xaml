@@ -10,7 +10,7 @@
     </Window.CommandBindings>
     <Grid Name="mainGrid">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
-        <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>
+        <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
 
         <Ellipse Fill="Black" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="150" />
         <Label Content="Place your token HERE" Height="62" Name="label1" TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" />

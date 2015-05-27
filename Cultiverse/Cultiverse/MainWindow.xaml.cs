@@ -20,6 +20,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Collections;
 using System.Windows.Threading;
+using Cultiverse.UI;
 
 namespace Cultiverse
 {
@@ -284,6 +285,16 @@ namespace Cultiverse
                 createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
                 e1ActivateID = -9999;
             }
+        }
+
+        private void createWorldView_CreateWorldDone(object sender, RoutedEventArgs e)
+        {
+            Planet planet = universeView.addWorld(createWorldView.currentWorld);
+
+            createWorldView.Visibility = Visibility.Hidden;
+            universeView.Visibility = Visibility.Visible;
+
+            universeView.scrollTo(planet);
         }
     }
 }

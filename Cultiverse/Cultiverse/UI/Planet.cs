@@ -72,8 +72,6 @@ namespace Cultiverse.UI
                 this.Children.Add(ball);
             }
 
-            this.TouchDown += planetClicked;
-            this.TouchMove += touchMove;
         }
 
         private void initPlanet()
@@ -106,6 +104,7 @@ namespace Cultiverse.UI
 
         public void planetClicked(object sender, TouchEventArgs e)
         {
+            Console.WriteLine("touchdown");
         }
 
         public void addBall(Ball newBall)
