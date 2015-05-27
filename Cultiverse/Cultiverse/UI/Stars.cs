@@ -51,7 +51,6 @@ namespace Cultiverse.UI
             rotation += rotspeed / 100.00000f * deltatime;
 
             Matrix matrix = ((MatrixTransform)this.RenderTransform).Matrix;
-
             matrix.RotateAt(rotspeed / 100.00000f * deltatime, 1500, 1500);
             /*
             rotateTransform1.CenterX = 1500;

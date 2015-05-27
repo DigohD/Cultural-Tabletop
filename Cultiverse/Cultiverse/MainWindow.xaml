@@ -8,7 +8,12 @@
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewWorld" CanExecute="NewWorld_CanExecute" />
     </Window.CommandBindings>
-    <Grid Name="mainGrid">
+    <Grid Name="mainGrid" Height="1080" Width="1920">
+        
+        <Grid.LayoutTransform>
+            <ScaleTransform ScaleX="0.6" ScaleY="0.6">
+            </ScaleTransform>
+        </Grid.LayoutTransform>
         
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden"></cv:CreateWorldView>

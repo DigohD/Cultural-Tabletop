@@ -144,6 +144,7 @@
     <Resource Include="Resources\Icons\rubber2.png" />
     <Resource Include="Resources\bg.png" />
     <Resource Include="Resources\circle.png" />
+    <Resource Include="Resources\createtext.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

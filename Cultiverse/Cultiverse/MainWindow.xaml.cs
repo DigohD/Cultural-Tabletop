@@ -36,6 +36,7 @@ namespace Cultiverse
         public MainWindow()
         {
             InitializeComponent();
+
             worldDatabase = new WorldDatabase();
 
             CompositionTarget.Rendering += update;

@@ -33,7 +33,9 @@
                 <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-
+        
+        <Image Source="\Resources\createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        
         <my:SurfaceButton Content="Save World" Height="43" HorizontalAlignment="Left" Margin="966,899,0,0" Name="saveWorldButton" VerticalAlignment="Top" Width="151" Click="saveWorldButton_Click" />
     </Grid>
 </UserControl>
