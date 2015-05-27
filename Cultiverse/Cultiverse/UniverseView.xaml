@@ -11,13 +11,12 @@
             <s:ScatterViewItem Name="planetsScatterViewItem" CanRotate="False" MinWidth="2020" MinHeight="1180" Width="2020" Height="1180" Background="Blue" Center="1010,640"-->
 
         <s:SurfaceScrollViewer Name="scrollViewer"  Width="1920" Height="1080" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CanContentScroll="True" Focusable="False" ScrollChanged="scrollViewer_ScrollChanged">
-            <Canvas Width="4000" Height="4000" Name="uniCanvas" IsManipulationEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" ManipulationDelta="uniCanvas_ManipulationDelta">
+            <Canvas TouchDown="uniCanvas_TouchDown" Width="4000" Height="4000" Name="uniCanvas" IsManipulationEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" ManipulationDelta="uniCanvas_ManipulationDelta">
                 
             </Canvas>
         </s:SurfaceScrollViewer>
         <!--/s:ScatterViewItem>
         </s:ScatterView-->
-        <s:SurfaceButton Canvas.Left="97" Canvas.Top="127" Content="Button" Height="23" Name="surfaceButton1" Command="New" Width="75" />
     </Grid>
         
 

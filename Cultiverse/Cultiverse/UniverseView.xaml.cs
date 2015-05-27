@@ -52,6 +52,7 @@ namespace Cultiverse
             foreach(World world in worlds){
                 Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
+                newPlanet.TouchDown += planet_TouchDown;
                 planets.Add(newPlanet);
             }
             //Scroll to center
@@ -59,10 +60,43 @@ namespace Cultiverse
             scrollViewer.ScrollToVerticalOffset(uniCanvas.Height / 2 - scrollViewer.Height / 2);
         }
 
+        private double _universeZoom = 1.0;
+        public double UniverseZoom
+        {
+            get
+            {
+                return _universeZoom;
+            }
+            set
+            {
+                _universeZoom = value;
+
+                Matrix scaleMatrix = new Matrix();
+                scaleMatrix.Scale(_universeZoom, _universeZoom);
+
+                uniCanvas.LayoutTransform = new MatrixTransform(scaleMatrix);
+            }
+        }
+
+        Planet viewingPlanet = null;
+
+        public void planet_TouchDown(object sender, TouchEventArgs e)
+        {
+            Planet planet = (Planet)sender;
+            UniverseZoom = 4.0;
+
+            scrollViewer.CanContentScroll = false;
+
+            viewingPlanet = planet;
+            this.scrollTo(planet);
+
+            e.Handled = true;
+        }
+
         public void scrollTo(Planet planet)
         {
-            scrollViewer.ScrollToHorizontalOffset(planet.posX - scrollViewer.Width / 2 - 100);
-            scrollViewer.ScrollToVerticalOffset(planet.posY - scrollViewer.Height / 2 - 100);
+            scrollViewer.ScrollToHorizontalOffset(planet.posX * UniverseZoom - scrollViewer.Width / 2 + 100 * UniverseZoom);
+            scrollViewer.ScrollToVerticalOffset(planet.posY * UniverseZoom - scrollViewer.Height / 2 + 100 * UniverseZoom);
         }
 
         public Planet addWorld(World world)
@@ -213,11 +247,26 @@ namespace Cultiverse
             matrix.TranslatePrepend(e.HorizontalChange * 0.3, e.VerticalChange * 0.3);
             stars3.RenderTransform = new MatrixTransform(matrix);
             
+            /*
             foreach (Planet p in planets)
             {
                 p.pushInertedBalls((float) -e.HorizontalChange * 4, (float) -e.VerticalChange * 4);
             }
-            
+            */
+        }
+
+        private void uniCanvas_TouchDown(object sender, TouchEventArgs e)
+        {
+
+            if (viewingPlanet != null)
+            {
+                UniverseZoom = 1.0;
+
+                scrollViewer.CanContentScroll = true;
+                this.scrollTo(viewingPlanet);
+                viewingPlanet = null;
+            }
+            e.Handled = false;
         }
     }
 }
