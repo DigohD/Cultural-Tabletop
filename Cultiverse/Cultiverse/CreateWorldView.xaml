@@ -15,7 +15,7 @@
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
         </Grid>
 
-        <Image Source="/Cultiverse;component/Resources/createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Image Source="/Cultiverse;component/Resources/createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" />
 
         <Border Name="saveCheck1Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck1_TouchDown" TouchUp="saveCheck1_TouchUp">
             <Border.Clip>

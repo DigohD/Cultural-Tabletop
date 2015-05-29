@@ -103,11 +103,6 @@ namespace Cultiverse.UI
                 b.pushSimple(dx, dy);
         }
 
-        public void planetClicked(object sender, TouchEventArgs e)
-        {
-            Console.WriteLine("touchdown");
-        }
-
         public void addBall(Ball newBall)
         {
             ballList.Add(newBall);

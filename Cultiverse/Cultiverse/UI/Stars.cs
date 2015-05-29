@@ -42,6 +42,8 @@ namespace Cultiverse.UI
 
             this.VerticalAlignment = VerticalAlignment.Center;
             this.HorizontalAlignment = HorizontalAlignment.Center;
+
+            this.IsHitTestVisible = false;
         }
 
         float rotation;

@@ -31,6 +31,7 @@ namespace Cultiverse.UI
         public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0005f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
+        bool touchMove;
 
         private float containerSize = 800; //Size of planet (containing circle)
 
@@ -71,16 +72,69 @@ namespace Cultiverse.UI
 
             Canvas.SetLeft(this, x - width / 2);
             Canvas.SetTop(this, y - height / 2);
+
+
+            this.IsHitTestVisible = true;
+
+            this.TouchDown += new EventHandler<TouchEventArgs>(Ball_TouchDown);
+            this.TouchMove += new EventHandler<TouchEventArgs>(Ball_TouchMove);
+            this.TouchUp += new EventHandler<TouchEventArgs>(Ball_TouchUp);
+            this.TouchLeave += new EventHandler<TouchEventArgs>(Ball_TouchLeave);
+        }
+
+        void Ball_TouchLeave(object sender, TouchEventArgs e)
+        {
+            if (touchMove)
+            {
+                touchMove = false;
+                this.vX = (this.x - this.lastTouchMoveX) / 40f;
+                this.vY = (this.y - this.lastTouchMoveY) / 40f;
+            }
+        }
+
+        void Ball_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (touchMove)
+            {
+                touchMove = false;
+                this.vX = (this.x - this.lastTouchMoveX) / 40f;
+                this.vY = (this.y - this.lastTouchMoveY) / 40f;
+            }
+        }
+
+
+        float lastTouchMoveX = 0.0f;
+        float lastTouchMoveY = 0.0f;
+        void Ball_TouchMove(object sender, TouchEventArgs e)
+        {
+            if (touchMove)
+            {
+                lastTouchMoveX = this.x;
+                lastTouchMoveY = this.y;
+                this.x = (float)e.GetTouchPoint((IInputElement)this.Parent).Position.X;
+                this.y = (float)e.GetTouchPoint((IInputElement)this.Parent).Position.Y;
+
+                Canvas.SetLeft(this, x - width / 2);
+                Canvas.SetTop(this, y - height / 2);
+            }
+        }
+
+        void Ball_TouchDown(object sender, TouchEventArgs e)
+        {
+            touchMove = true;
         }
 
         public void update(float deltaTime){
-            collideWall(deltaTime);
+            if (!touchMove)
+            {
+                collideWall(deltaTime);
 
-            move(deltaTime);
+                move(deltaTime);
 
-            spring += 0.00001f;
-            if (spring >= maxSpring)
-                spring = maxSpring;
+                spring += 0.00001f;
+                if (spring >= maxSpring)
+                    spring = maxSpring;
+            }
         }
 
         public void setVelocity(float vX, float vY)
