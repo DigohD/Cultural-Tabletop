@@ -308,5 +308,24 @@ namespace Cultiverse
 
             universeView.scrollTo(planet);
         }
+
+        private void surfaceButton1_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (!worldCreated)
+            {
+                createWorldView.setWorld(worldDatabase.createNewWorld());
+                worldCreated = true;
+            }
+
+            if (createWorldView.drawingSpace2.Visibility == Visibility.Hidden)
+            {
+                createWorldView.Visibility = Visibility.Visible;
+                universeView.Visibility = Visibility.Hidden;
+
+                createWorldView.drawingSpace2.Visibility = Visibility.Visible;
+                createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

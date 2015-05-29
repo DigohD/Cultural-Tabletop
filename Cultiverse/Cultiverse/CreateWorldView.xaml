@@ -89,35 +89,12 @@
         </Border>
 
         <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" Visibility="Hidden" x:Name="drawingSpace1">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                    <RotateTransform Angle="90" CenterX=".5" CenterY=".5" ></RotateTransform>
-                    <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                <RotateTransform Angle="-90" CenterX=".5" CenterY=".5" ></RotateTransform>
-                <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                <RotateTransform Angle="180" CenterX=".5" CenterY=".5" ></RotateTransform>
-                <ScaleTransform ScaleX="0.9" ScaleY="0.85"></ScaleTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
 
     </Grid>

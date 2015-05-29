@@ -11,6 +11,8 @@
     <Grid Name="mainGrid">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
+        
+        
 
         <Ellipse Fill="Black" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="150" />
         <Label Content="Place your token HERE" Height="62" Name="label1" TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
@@ -20,5 +22,6 @@
         <Label Content="Place your token HERE" Height="62" Name="label3" TouchUp="ellipse3_TouchUp" VerticalAlignment="Top" HorizontalAlignment="Right" />
         <Ellipse DataContext="{Binding}" Fill="Black" Name="ellipse4" UIElement.TouchUp="ellipse4_TouchUp" Stroke="WhiteSmoke" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="150" />
         <Label Content="Place your token HERE" Height="62" Name="label4" TouchUp="ellipse4_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <s:SurfaceButton Content="Button" Height="23"  Name="surfaceButton1" Width="75" Click="surfaceButton1_Click" />
     </Grid>
 </s:SurfaceWindow>

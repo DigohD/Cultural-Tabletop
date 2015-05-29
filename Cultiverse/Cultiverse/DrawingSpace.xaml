@@ -6,18 +6,21 @@
              xmlns:cv="clr-namespace:Cultiverse"
              xmlns:cvui="clr-namespace:Cultiverse.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="550" xmlns:my="http://schemas.microsoft.com/surface/2008">
+             d:DesignHeight="500" d:DesignWidth="500" xmlns:my="http://schemas.microsoft.com/surface/2008">
 
     <UserControl.Resources>
         <cvui:BorderClipConverter x:Key="BorderClipConverter" />
 
-        <Grid x:Key="RubberIcon" Margin="25">
-            <Image Source="/Cultiverse;component/Resources/Icons/rubber2.png" />
+        <Grid x:Key="RubberIconBlack" Margin="16">
+            <Image Source="/Cultiverse;component/Resources/Icons/eraser11black.png" />
         </Grid>
-
     </UserControl.Resources>
-    <Grid Width="550" Height="550">
-        <Border CornerRadius="450" Width="450" Height="450" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF">
+    <Grid Width="500" Height="500">
+
+
+        <Image Name="ColorWheel" Source="/Cultiverse;component/Resources/colorring.png" LostMouseCapture="OnColorWheelLostMouseCapture" LostTouchCapture="OnColorWheelLostTouchCapture" Width="370" Height="370" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,45" TouchDown="ColorWheel_TouchDown" MouseDown="ColorWheel_MouseDown"  />
+
+        <Border CornerRadius="340" Width="340" Height="340" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF" Margin="60,0,0,60" LostMouseCapture="Border_LostMouseCapture" LostTouchCapture="Border_LostTouchCapture">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -29,9 +32,9 @@
                 </MultiBinding>
             </Border.Clip>
 
-            <my:SurfaceInkCanvas Name="inkCanvas" />
+            <my:SurfaceInkCanvas Name="inkCanvas" LostMouseCapture="inkCanvas_LostMouseCapture" LostTouchCapture="inkCanvas_LostTouchCapture" />
         </Border>
-        <Border CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0" Background="#FFFFFFFF">
+        <Border Name="BrushBorder" CornerRadius="75" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,70,0,0" Background="Transparent" BorderThickness="4" BorderBrush="White" Padding="0">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -44,12 +47,12 @@
             </Border.Clip>
             <my:SurfaceButton Padding="0" Background="Transparent" Name="brushSelectButton" Click="brushSelectButton_Click">
 
-                <Grid x:Name="BrushIcon" Margin="25">
+                <Grid x:Name="BrushIcon" Margin="16">
                     <Image Source="/Cultiverse;component/Resources/Icons/paint87.png" />
                 </Grid>
             </my:SurfaceButton>
         </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,30,0,0" Background="#FFFFFFFF">
+        <Border Name="RubberBorder" CornerRadius="75" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,20,0,0" Background="Transparent" BorderThickness="4" BorderBrush="White" Padding="0">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -60,66 +63,14 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="#A0DD98" Click="colorPick_Click">
+            <my:SurfaceButton Padding="0" Background="Transparent" Name="rubberSelectButton" Click="rubberSelectButton_Click">
+
+                <Grid x:Name="RubberIcon" Margin="16">
+                    <Image Source="/Cultiverse;component/Resources/Icons/eraser11.png" />
+                </Grid>
             </my:SurfaceButton>
         </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,20,0,0" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="#71d0c3" Click="colorPick_Click">
-            </my:SurfaceButton>
-        </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,45,0,0" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="#d0c371" Click="colorPick_Click">
-            </my:SurfaceButton>
-        </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="361,107,0,0" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="#d598dd" Click="colorPick_Click">
-            </my:SurfaceButton>
-        </Border>
-        <Border Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="415,190,0,0" Background="#FFFFFFFF">
-            <Border.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                    <Binding Path="ActualWidth"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="ActualHeight"
-                        RelativeSource="{RelativeSource Self}"/>
-                    <Binding Path="CornerRadius"
-                        RelativeSource="{RelativeSource Self}"/>
-                </MultiBinding>
-            </Border.Clip>
-            <my:SurfaceButton Padding="0" Margin="0" Background="#c85b65" Click="colorPick_Click">
-            </my:SurfaceButton>
-        </Border>
-        <Border Padding="0" CornerRadius="150" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="362,344,0,0" Background="#FFFFFFFF">
+        <Border Padding="0" CornerRadius="75" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,370,0,0" Background="#FFFFFFFF">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -131,10 +82,11 @@
                 </MultiBinding>
             </Border.Clip>
             <my:SurfaceButton Padding="0" Margin="0" Background="Transparent" Click="addDrawingButton_Click">
-                <Grid Margin="20,30,20,10">
+                <Grid Margin="12,15,0,7">
                     <Image Source="/Cultiverse;component/Resources/Icons/worldarrow.png" />
                 </Grid>
             </my:SurfaceButton>
         </Border>
+
     </Grid>
 </UserControl>
