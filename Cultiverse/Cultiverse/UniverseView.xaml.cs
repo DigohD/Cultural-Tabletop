@@ -143,7 +143,7 @@ namespace Cultiverse
         SolidColorBrush solidC = new SolidColorBrush();
         byte r;
         float deltaTime;
-        float targetzoom = 4f, zoomInc = 0.01f, zoomAmount = 1;
+        float targetzoom = 4f, zoomInc = 0.03f, zoomAmount = 1;
         public void update(object sender, EventArgs e)
         {
             watch.Stop();
