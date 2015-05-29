@@ -11,17 +11,37 @@
     <Grid Name="mainGrid">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
-        
-        
 
-        <Ellipse Fill="Black" Name="ellipse1" Stroke="WhiteSmoke" DataContext="{Binding}" UIElement.TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label1" TouchUp="ellipse1_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-        <Ellipse Fill="Black" Name="ellipse2" UIElement.TouchUp="ellipse2_TouchUp" Stroke="WhiteSmoke" DataContext="{Binding}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label2" TouchUp="ellipse2_TouchUp" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Ellipse DataContext="{Binding}" Fill="Black" Name="ellipse3" UIElement.TouchUp="ellipse3_TouchUp" Stroke="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label3" TouchUp="ellipse3_TouchUp" VerticalAlignment="Top" HorizontalAlignment="Right" />
-        <Ellipse DataContext="{Binding}" Fill="Black" Name="ellipse4" UIElement.TouchUp="ellipse4_TouchUp" Stroke="WhiteSmoke" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="150" />
-        <Label Content="Place your token HERE" Height="62" Name="label4" TouchUp="ellipse4_TouchUp" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+
+        <cv:TokenSensor VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" x:Name="tokenSensor1" TokenDown="tokenSensor1_TokenDown" TokenUp="tokenSensor1_TokenUp">
+            <cv:TokenSensor.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TransformGroup>
+            </cv:TokenSensor.LayoutTransform>
+        </cv:TokenSensor>
+        <cv:TokenSensor VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" x:Name="tokenSensor2" TokenDown="tokenSensor2_TokenDown" TokenUp="tokenSensor2_TokenUp">
+            <cv:TokenSensor.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="0"></RotateTransform>
+                </TransformGroup>
+            </cv:TokenSensor.LayoutTransform>
+        </cv:TokenSensor>
+        <cv:TokenSensor VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" x:Name="tokenSensor3" TokenDown="tokenSensor3_TokenDown" TokenUp="tokenSensor3_TokenUp">
+            <cv:TokenSensor.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="270"></RotateTransform>
+                </TransformGroup>
+            </cv:TokenSensor.LayoutTransform>
+        </cv:TokenSensor>
+        <cv:TokenSensor VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" x:Name="tokenSensor4" TokenDown="tokenSensor4_TokenDown" TokenUp="tokenSensor4_TokenUp">
+            <cv:TokenSensor.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </TransformGroup>
+            </cv:TokenSensor.LayoutTransform>
+        </cv:TokenSensor>
+        
         <s:SurfaceButton Content="Button" Height="23"  Name="surfaceButton1" Width="75" Click="surfaceButton1_Click" />
     </Grid>
 </s:SurfaceWindow>

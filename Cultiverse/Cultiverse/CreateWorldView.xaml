@@ -33,6 +33,12 @@
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </Grid>
+
+            <Border.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="135"></RotateTransform>
+                </TransformGroup>
+            </Border.LayoutTransform>
         </Border>
         <Border Name="saveCheck2Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,700,700,0" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck2_TouchDown" TouchUp="saveCheck2_TouchUp">
             <Border.Clip>
@@ -50,6 +56,11 @@
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </Grid>
+            <Border.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="45"></RotateTransform>
+                </TransformGroup>
+            </Border.LayoutTransform>
         </Border>
 
         <Border Name="saveCheck3Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,700,0,0" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck3_TouchDown" TouchUp="saveCheck3_TouchUp">
@@ -68,6 +79,11 @@
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </Grid>
+            <Border.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-45"></RotateTransform>
+                </TransformGroup>
+            </Border.LayoutTransform>
         </Border>
 
         <Border Name="saveCheck4Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="700,0,0,700" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck4_TouchDown" TouchUp="saveCheck4_TouchUp">
@@ -86,15 +102,35 @@
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
             </Grid>
+            <Border.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="225"></RotateTransform>
+                </TransformGroup>
+            </Border.LayoutTransform>
         </Border>
 
         <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" Visibility="Hidden" x:Name="drawingSpace1">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="270"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
         <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
 
     </Grid>

@@ -82,6 +82,9 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TokenSensor.xaml.cs">
+      <DependentUpon>TokenSensor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Planet.cs" />
     <Compile Include="Model\WorldDrawing.cs" />
     <Compile Include="Model\World.cs" />
@@ -106,6 +109,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TokenSensor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UniverseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

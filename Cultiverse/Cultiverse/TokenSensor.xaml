@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Cultiverse.TokenSensor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+      Width="150" Height="150">
+    <Grid>
+        <Ellipse TouchDown="ellipse_TouchDown" LostTouchCapture="ellipse_LostTouchCapture" Fill="#1a1222" Name="ellipse" Stroke="WhiteSmoke" StrokeThickness="4" Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Label IsHitTestVisible="False" Content="Place your token" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" />
+        <Label Margin="0,0,0,3" IsHitTestVisible="False" Content="HERE" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" VerticalContentAlignment="Center" />
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <RotateTransform Angle="45"></RotateTransform>
+                <TranslateTransform X="50" Y="-10"></TranslateTransform>
+            </TransformGroup>
+        </Grid.RenderTransform>
+    </Grid>
+</UserControl>
