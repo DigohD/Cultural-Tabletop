@@ -158,6 +158,7 @@
     <Resource Include="Resources\bg.png" />
     <Resource Include="Resources\circle.png" />
     <Resource Include="Resources\createtext.png" />
+    <Resource Include="Resources\earth.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

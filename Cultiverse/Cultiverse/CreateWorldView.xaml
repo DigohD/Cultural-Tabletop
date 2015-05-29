@@ -28,7 +28,7 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <Grid Margin="0" Background="#11FFFFFF" Name="saveCheck1">
+            <Grid Margin="0" Background="#01FFFFFF" Name="saveCheck1">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
@@ -51,7 +51,7 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <Grid Margin="0" Background="#11FFFFFF" Name="saveCheck2">
+            <Grid Margin="0" Background="#01FFFFFF" Name="saveCheck2">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
@@ -74,7 +74,7 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <Grid Margin="0" Background="#11FFFFFF" Name="saveCheck3" TouchDown="saveCheck3_TouchDown" TouchUp="saveCheck3_TouchUp">
+            <Grid Margin="0" Background="#01FFFFFF" Name="saveCheck3">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
@@ -97,7 +97,7 @@
                         RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
-            <Grid Margin="0" Background="#11FFFFFF" Name="saveCheck4">
+            <Grid Margin="0" Background="#01FFFFFF" Name="saveCheck4">
                 <Grid Margin="30">
                     <Image Source="/Cultiverse;component/Resources/Icons/checkmark21.png" />
                 </Grid>
@@ -109,23 +109,23 @@
             </Border.LayoutTransform>
         </Border>
 
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="30" Visibility="Hidden" x:Name="drawingSpace1">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="0" Visibility="Hidden" x:Name="drawingSpace1">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="90"></RotateTransform>
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace2">
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace2">
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace3">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace3">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="270"></RotateTransform>
                 </TransformGroup>
             </cv:DrawingSpace.LayoutTransform>
         </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="30" x:Name="drawingSpace4">
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace4">
             <cv:DrawingSpace.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="180"></RotateTransform>

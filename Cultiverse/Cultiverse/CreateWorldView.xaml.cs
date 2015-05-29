@@ -190,11 +190,11 @@ namespace Cultiverse
                 _saveCheck1Checked = value;
                 if (_saveCheck1Checked)
                 {
-                    saveCheck1.Background = new SolidColorBrush(Colors.GreenYellow);
+                    saveCheck1Border.Background = new SolidColorBrush(Colors.GreenYellow);
                 }
                 else
                 {
-                    saveCheck1.Background = new SolidColorBrush(Colors.Transparent);
+                    saveCheck1Border.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
         }
@@ -210,11 +210,11 @@ namespace Cultiverse
                 _saveCheck2Checked = value;
                 if (_saveCheck2Checked)
                 {
-                    saveCheck2.Background = new SolidColorBrush(Colors.GreenYellow);
+                    saveCheck2Border.Background = new SolidColorBrush(Colors.GreenYellow);
                 }
                 else
                 {
-                    saveCheck2.Background = new SolidColorBrush(Colors.Transparent);
+                    saveCheck2Border.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
         }
@@ -230,11 +230,11 @@ namespace Cultiverse
                 _saveCheck3Checked = value;
                 if (_saveCheck3Checked)
                 {
-                    saveCheck3.Background = new SolidColorBrush(Colors.GreenYellow);
+                    saveCheck3Border.Background = new SolidColorBrush(Colors.GreenYellow);
                 }
                 else
                 {
-                    saveCheck3.Background = new SolidColorBrush(Colors.Transparent);
+                    saveCheck3Border.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
         }
@@ -250,11 +250,11 @@ namespace Cultiverse
                 _saveCheck4Checked = value;
                 if (_saveCheck4Checked)
                 {
-                    saveCheck4.Background = new SolidColorBrush(Colors.GreenYellow);
+                    saveCheck4Border.Background = new SolidColorBrush(Colors.GreenYellow);
                 }
                 else
                 {
-                    saveCheck4.Background = new SolidColorBrush(Colors.Transparent);
+                    saveCheck4Border.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
         }

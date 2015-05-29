@@ -8,7 +8,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewWorld" CanExecute="NewWorld_CanExecute" />
     </Window.CommandBindings>
-    <Grid Name="mainGrid">
+    <Grid Name="mainGrid" Width="1920" Height="1080">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
         <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
 

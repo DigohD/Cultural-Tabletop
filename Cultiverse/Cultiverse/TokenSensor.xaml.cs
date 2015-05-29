@@ -23,6 +23,8 @@ namespace Cultiverse
         public event RoutedEventHandler TokenDown;
         public event RoutedEventHandler TokenUp;
 
+        private bool tokenDown = false;
+
         public TokenSensor()
         {
             InitializeComponent();
@@ -35,6 +37,10 @@ namespace Cultiverse
             IInputElement element = sender as IInputElement;
             if (element != null && e.Device.Capture(element))
             {
+                tokenDown = true;
+                label1.Visibility = System.Windows.Visibility.Hidden;
+                label2.Visibility = System.Windows.Visibility.Hidden;
+                ellipse.Fill = new SolidColorBrush(Colors.White);
                 TokenDown(sender, e);
                 e.Handled = true;
             }
@@ -42,6 +48,15 @@ namespace Cultiverse
 
         private void ellipse_LostTouchCapture(object sender, TouchEventArgs e)
         {
+            tokenDown = true;
+            label1.Visibility = System.Windows.Visibility.Visible;
+            label2.Visibility = System.Windows.Visibility.Visible;
+            Color stdColor = new Color();
+            stdColor.A = 0xAA;
+            stdColor.R = 0x1A;
+            stdColor.G = 0x12;
+            stdColor.B = 0x22;
+            ellipse.Fill = new SolidColorBrush(stdColor);
             TokenUp(sender, e);
         }
 
@@ -49,7 +64,14 @@ namespace Cultiverse
         float sizeMul, ticker;
         public void update(object sender, EventArgs e)
         {
-            sizeMul = (float)Math.Abs(Math.Sin(ticker++ / 100) * 0.2f) + 0.8f;
+            if (tokenDown)
+            {
+                sizeMul = 1.0f;
+            }
+            else
+            {
+                sizeMul = (float)Math.Abs(Math.Sin(ticker++ / 100) * 0.2f) + 0.8f;
+            }
             Matrix sizingMatrix = Matrix.Identity;
             sizingMatrix.ScaleAt(sizeMul, sizeMul, ellipse.Width / 2, ellipse.Height / 2);
 

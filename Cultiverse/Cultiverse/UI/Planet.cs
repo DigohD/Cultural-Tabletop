@@ -37,7 +37,7 @@ namespace Cultiverse.UI
 
         World world;
 
-        public Ellipse planet = new Ellipse();
+        public Image planet = new Image();
 
         public Planet(float newX, float newY, float newScale, World newWorld, int newID) : base()
         {
@@ -76,7 +76,8 @@ namespace Cultiverse.UI
 
         private void initPlanet()
         {
-            planet.Fill = new SolidColorBrush(Colors.LightGray);
+            var uriSource = new Uri(@"/Cultiverse;component/Resources/earth.png", UriKind.Relative);
+            planet.Source = new BitmapImage(uriSource);
             planet.Width = 800;
             planet.Height = 800;
 

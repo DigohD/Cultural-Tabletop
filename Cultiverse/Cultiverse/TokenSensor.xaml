@@ -6,9 +6,10 @@
              mc:Ignorable="d" 
       Width="150" Height="150">
     <Grid>
-        <Ellipse TouchDown="ellipse_TouchDown" LostTouchCapture="ellipse_LostTouchCapture" Fill="#1a1222" Name="ellipse" Stroke="WhiteSmoke" StrokeThickness="4" Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <Label IsHitTestVisible="False" Content="Place your token" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" />
-        <Label Margin="0,0,0,3" IsHitTestVisible="False" Content="HERE" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" VerticalContentAlignment="Center" />
+        <Ellipse TouchDown="ellipse_TouchDown" LostTouchCapture="ellipse_LostTouchCapture" Fill="#AA1a1222" Name="ellipse" Stroke="#AAFFFFFF" StrokeThickness="2" Width="90" Height="90" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <!--Label IsHitTestVisible="False" Content="Place your token" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#AAFFFFFF" FontFamily="Segoe UI" FontWeight="Light" /-->
+        <Label Name="label1" Margin="0,0,0,22" IsHitTestVisible="False" Content="PLACE" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#AAFFFFFF" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Light" FontFamily="Segoe360" FontSize="16" />
+        <Label Name="label2" Margin="0,0,0,-18" IsHitTestVisible="False" Content="TOKEN" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#AAFFFFFF" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Light" FontFamily="Segoe360" FontSize="16" />
         <Grid.RenderTransform>
             <TransformGroup>
                 <RotateTransform Angle="45"></RotateTransform>
