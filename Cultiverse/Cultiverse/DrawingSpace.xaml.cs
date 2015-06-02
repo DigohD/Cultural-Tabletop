@@ -43,11 +43,11 @@ namespace Cultiverse
             Storyboard sb = (Storyboard)FindResource("pulseAnimation");
             sb.Begin();
 
-            drawingNames.Add("AN ANIMAL");
-            drawingNames.Add("AN ITEM");
-            drawingNames.Add("A QUALITY");
-            drawingNames.Add("A LIFE");
-            drawingNames.Add("ANYTHING");
+            drawingNames.Add("FAVOURITE ANIMAL");
+            drawingNames.Add("A VITAL ITEM");
+            drawingNames.Add("THE BEST QUALITY");
+            drawingNames.Add("LIFE");
+            drawingNames.Add("NEAT THINGS");
 
             this.Reset();
 
@@ -93,6 +93,13 @@ namespace Cultiverse
                     ball.Dropped = true;
                 }
             }
+
+            Color color = new Color();
+            color.A = 0xAA;
+            color.R = 0xFF;
+            color.G = 0xFF;
+            color.B = 0xFF;
+            inkCanvasBorder.Background = new SolidColorBrush(color);
         }
 
         public void Reset()
