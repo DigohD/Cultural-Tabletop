@@ -128,14 +128,17 @@ namespace Cultiverse
 
 
 
-        bool worldCreated = false;
+        public static bool worldCreated = false;
 
         private void createWorldView_CreateWorldDone(object sender, RoutedEventArgs e)
         {
             Planet planet = universeView.addWorld(createWorldView.currentWorld);
-
+            worldDatabase.saveWorld(createWorldView.currentWorld);
+            
             createWorldView.Visibility = Visibility.Hidden;
             universeView.Visibility = Visibility.Visible;
+
+            worldCreated = false;
 
             universeView.scrollTo(planet);
         }
@@ -234,7 +237,6 @@ namespace Cultiverse
 
         private void tokenSensor3_TokenUp(object sender, RoutedEventArgs e)
         {
-
             if (createWorldView.drawingSpace3.Visibility == Visibility.Visible)
             {
                 createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
