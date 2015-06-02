@@ -13,21 +13,46 @@ using System.Windows.Shapes;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
+using System.ComponentModel;
 
 namespace Cultiverse
 {
     /// <summary>
     /// Interaction logic for DrawingSpace.xaml
     /// </summary>
+    /// 
+
     public partial class DrawingSpace : UserControl
     {
         public event RoutedEventHandler DrawingDone;
+
+        private int currentDrawingI = 0;
+
+        private List<string> drawingNames = new List<string>();
 
         public DrawingSpace()
         {
             InitializeComponent();
 
             inkCanvas.DefaultDrawingAttributes.Color = Colors.Black;
+
+            Storyboard sb = (Storyboard)FindResource("pulseAnimation");
+            sb.Begin();
+
+            drawingNames.Add("AN ANIMAL");
+            drawingNames.Add("AN ITEM");
+            drawingNames.Add("A QUALITY");
+            drawingNames.Add("A LIFE");
+            drawingNames.Add("ANYTHING");
+
+            this.Reset();
+        }
+
+        public void Reset()
+        {
+            currentDrawingI = 0;
+            drawLabel.Content = drawingNames[currentDrawingI];
         }
 
         /// <summary>
@@ -84,6 +109,10 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
+            if (++currentDrawingI < drawingNames.Count)
+            {
+                drawLabel.Content = drawingNames[currentDrawingI];
+            }
             if (DrawingDone != null)
             {
                 DrawingDone(inkCanvas, e);
