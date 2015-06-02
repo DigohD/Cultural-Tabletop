@@ -28,7 +28,7 @@ namespace Cultiverse.UI
         public float x, y, vX, vY;
         
         public int width, height;
-        public float spring = 0f, maxSpring = 0.001f, friction = 0.998f, gravity = 0.0005f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
+        public float spring = 0f, maxSpring = 0.001f, friction = 0.998f, gravity = 0.0005f, inertia = 0.00016f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
         bool touchMove;
