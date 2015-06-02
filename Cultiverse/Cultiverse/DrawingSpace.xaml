@@ -38,7 +38,7 @@
                 <Point X=".5" Y=".5"></Point>
             </Grid.RenderTransformOrigin>
         </Grid>
-        <Border CornerRadius="340" Width="340" Height="340" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF" Margin="60,0,0,60" LostMouseCapture="Border_LostMouseCapture" LostTouchCapture="Border_LostTouchCapture">
+        <Border Name="inkCanvasBorder" CornerRadius="340" Width="340" Height="340" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF" Margin="60,0,0,60" LostMouseCapture="Border_LostMouseCapture" LostTouchCapture="Border_LostTouchCapture">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"

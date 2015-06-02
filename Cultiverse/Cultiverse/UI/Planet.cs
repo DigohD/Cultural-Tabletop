@@ -66,12 +66,28 @@ namespace Cultiverse.UI
             foreach (WorldDrawing d in world.getDrawings())
             {
                 Ball ball = new Ball(1, (int)(800 / 2 - 64), (int)(800 / 2 - 64), 128, 128, d, false, 800);
+                ball.OnDrop += new EventHandler<TouchEventArgs>(ball_OnDrop);
                 //addToUpdate(ball);
                 ballList.Add(ball);
 
                 this.Children.Add(ball);
             }
 
+        }
+
+        void ball_OnDrop(object sender, TouchEventArgs e)
+        {
+            if (sender is Ball)
+            {
+                Ball ball = (Ball)sender;
+
+                ballList.Remove(ball);
+                this.Children.Remove(ball);
+
+                ball.Source = null;
+
+                world.deleteDrawing(ball.Drawing);
+            }
         }
 
         private void initPlanet()
@@ -106,6 +122,8 @@ namespace Cultiverse.UI
         public void addBall(Ball newBall)
         {
             ballList.Add(newBall);
+
+            newBall.OnDrop += new EventHandler<TouchEventArgs>(ball_OnDrop);
 
             this.Children.Add(newBall);
         }

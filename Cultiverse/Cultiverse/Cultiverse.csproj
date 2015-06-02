@@ -85,6 +85,7 @@
     <Compile Include="TokenSensor.xaml.cs">
       <DependentUpon>TokenSensor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\TouchDragDrop.cs" />
     <Compile Include="UI\Planet.cs" />
     <Compile Include="Model\WorldDrawing.cs" />
     <Compile Include="Model\World.cs" />

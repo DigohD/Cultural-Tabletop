@@ -15,6 +15,9 @@ using Microsoft.Surface.Presentation.Input;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.ComponentModel;
+using Cultiverse.UI;
+using System.IO;
+using System.Windows.Ink;
 
 namespace Cultiverse
 {
@@ -47,6 +50,25 @@ namespace Cultiverse
             drawingNames.Add("ANYTHING");
 
             this.Reset();
+
+            TouchDragDrop.Drop += new EventHandler<TouchEventArgs>(TouchDragDrop_Drop);
+        }
+
+        void TouchDragDrop_Drop(object sender, TouchEventArgs e)
+        {
+            Point touchPoint = e.GetTouchPoint(inkCanvas).Position;
+
+            if (this.Visibility == Visibility.Visible && touchPoint.X > 0 && touchPoint.Y > 0 && touchPoint.X < inkCanvasBorder.ActualWidth && touchPoint.Y < inkCanvasBorder.ActualHeight)
+            {
+                if (sender is Ball)
+                {
+                    Ball ball = (Ball)sender;
+                    var fs = new FileStream(ball.Drawing.StrokesFilePath, FileMode.Open, FileAccess.Read);
+                    StrokeCollection strokes = new StrokeCollection(fs);
+                    inkCanvas.Strokes = strokes;
+                    ball.Dropped = true;
+                }
+            }
         }
 
         public void Reset()
@@ -244,5 +266,6 @@ namespace Cultiverse
                 e.Handled = true;
             }
         }
+
     }
 }

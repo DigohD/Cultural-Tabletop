@@ -17,6 +17,33 @@
 
         <Image Source="/Cultiverse;component/Resources/createtext.png" Width="1000" Height="1000" Name="createWorldText" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" />
 
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="0" Visibility="Hidden" x:Name="drawingSpace1">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace2">
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace3">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="270"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace4">
+            <cv:DrawingSpace.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </TransformGroup>
+            </cv:DrawingSpace.LayoutTransform>
+        </cv:DrawingSpace>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="planetCanvas" Background="Transparent">
+        </Grid>
+
         <Border Name="saveCheck1Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck1_TouchDown" TouchUp="saveCheck1_TouchUp">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -108,30 +135,6 @@
                 </TransformGroup>
             </Border.LayoutTransform>
         </Border>
-
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Top" DrawingDone="drawingDone" Margin="0" Visibility="Hidden" x:Name="drawingSpace1">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                    <RotateTransform Angle="90"></RotateTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
-        </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace2">
-        </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace3">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                    <RotateTransform Angle="270"></RotateTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
-        </cv:DrawingSpace>
-        <cv:DrawingSpace HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" DrawingDone="drawingDone" Margin="0" x:Name="drawingSpace4">
-            <cv:DrawingSpace.LayoutTransform>
-                <TransformGroup>
-                    <RotateTransform Angle="180"></RotateTransform>
-                </TransformGroup>
-            </cv:DrawingSpace.LayoutTransform>
-        </cv:DrawingSpace>
 
     </Grid>
 </UserControl>
