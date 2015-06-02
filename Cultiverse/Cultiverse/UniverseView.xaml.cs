@@ -188,6 +188,7 @@ namespace Cultiverse
         byte r;
         float deltaTime;
         float targetzoom = 4f, zoomInc = 0.03f, zoomAmount = 1;
+        public bool zoomBlockInput = false;
         public void update(object sender, EventArgs e)
         {
             watch.Stop();
@@ -197,13 +198,20 @@ namespace Cultiverse
             {
                 zoomAmount += zoomInc;
                 if (zoomAmount > targetzoom)
+                {
                     zoomAmount = targetzoom;
+                    zoomBlockInput = false;
+                }else
+                    zoomBlockInput = true;
+
                 UniverseZoom = zoomAmount;
                 scrollTo(viewingPlanet);
             }
             else if (viewingPlanet != null && leavingPlanet)
             {
                 zoomAmount -= zoomInc * 2;
+
+                zoomBlockInput = true;
 
                 UniverseZoom = zoomAmount;
                 this.scrollTo(viewingPlanet);
@@ -215,8 +223,8 @@ namespace Cultiverse
                     scrollViewer.CanContentScroll = true;
                     viewingPlanet = null;
                     leavingPlanet = false;
+                    zoomBlockInput = false;
                 }
-
                 
             }
 
@@ -285,6 +293,9 @@ namespace Cultiverse
 
         private void uniCanvas_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
+            if (zoomBlockInput)
+                return;
+
             // Get the Rectangle and its RenderTransform matrix.
             Canvas rectToMove = e.OriginalSource as Canvas;
             Matrix rectsMatrix = ((MatrixTransform)rectToMove.RenderTransform).Matrix;
@@ -310,6 +321,9 @@ namespace Cultiverse
 
         void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            if (zoomBlockInput)
+                return;
+
             //Background parallax
             Matrix matrix = ((MatrixTransform)background.RenderTransform).Matrix;
             matrix.TranslatePrepend(e.HorizontalChange * 0.8, e.VerticalChange * 0.8);
@@ -330,6 +344,9 @@ namespace Cultiverse
         bool leavingPlanet;
         private void uniCanvas_TouchDown(object sender, TouchEventArgs e)
         {
+            if (zoomBlockInput)
+                return;
+
             if (viewingPlanet != null)
             {
                 leavingPlanet = true;

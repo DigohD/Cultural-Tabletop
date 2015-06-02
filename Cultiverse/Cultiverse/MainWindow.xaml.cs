@@ -47,7 +47,15 @@ namespace Cultiverse
             createWorldView.saveCheck2Border.Visibility = Visibility.Hidden;
             createWorldView.saveCheck3Border.Visibility = Visibility.Hidden;
             createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
+
+            CompositionTarget.Rendering += update;
         }
+
+        void update(object sender, EventArgs e)
+        {
+            this.IsHitTestVisible = !universeView.zoomBlockInput;
+        }
+
         /// <summary>
         /// Occurs when the window is about to close. 
         /// </summary>
