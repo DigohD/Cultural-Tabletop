@@ -52,6 +52,30 @@ namespace Cultiverse
             this.Reset();
 
             TouchDragDrop.Drop += new EventHandler<TouchEventArgs>(TouchDragDrop_Drop);
+            TouchDragDrop.Drag += new EventHandler<TouchEventArgs>(TouchDragDrop_Drag);
+        }
+
+        void TouchDragDrop_Drag(object sender, TouchEventArgs e)
+        {
+            Point touchPoint = e.GetTouchPoint(inkCanvas).Position;
+
+            if (this.Visibility == Visibility.Visible && touchPoint.X > 0 && touchPoint.Y > 0 && touchPoint.X < inkCanvasBorder.ActualWidth && touchPoint.Y < inkCanvasBorder.ActualHeight)
+            {
+                if (sender is Ball)
+                {
+                    Ball ball = (Ball)sender;
+                    inkCanvasBorder.Background = new SolidColorBrush(Colors.White);
+                }
+            }
+            else
+            {
+                Color color = new Color();
+                color.A = 0xAA;
+                color.R = 0xFF;
+                color.G = 0xFF;
+                color.B = 0xFF;
+                inkCanvasBorder.Background = new SolidColorBrush(color);
+            }
         }
 
         void TouchDragDrop_Drop(object sender, TouchEventArgs e)

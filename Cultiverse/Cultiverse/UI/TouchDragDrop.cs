@@ -17,5 +17,14 @@ namespace Cultiverse.UI
             if (evt != null)
                 evt(sender, touchEventArgs);
         }
+
+        public static event EventHandler<TouchEventArgs> Drag;
+
+        public static void FireDrag(Object sender, TouchEventArgs touchEventArgs)
+        {
+            var evt = Drag;
+            if (evt != null)
+                evt(sender, touchEventArgs);
+        }
     }
 }

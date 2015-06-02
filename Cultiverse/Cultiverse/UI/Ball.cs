@@ -137,6 +137,8 @@ namespace Cultiverse.UI
 
                 DataObject data = new DataObject();
                 data.SetData("Object", this);
+
+                TouchDragDrop.FireDrag(this, e);
             }
         }
 
