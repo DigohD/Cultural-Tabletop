@@ -135,6 +135,49 @@ namespace Cultiverse
             addToUpdate(stars3);
         }
 
+        public void reInitBackground()
+        {
+            uniCanvas.Children.Remove(background);
+            uniCanvas.Children.Remove(stars1);
+            uniCanvas.Children.Remove(stars2);
+            uniCanvas.Children.Remove(stars3);
+
+            removeFromUpdate(background);
+            removeFromUpdate(stars1);
+            removeFromUpdate(stars2);
+            removeFromUpdate(stars3);
+
+            background = new Stars("bg.png", 0.03f);
+            stars1 = new Stars("stars.png", 0.1f);
+            stars2 = new Stars("stars2.png", 0.1f);
+            stars3 = new Stars("stars3.png", 0.1f);
+
+            uniCanvas.Children.Add(background);
+            uniCanvas.Children.Add(stars1);
+            uniCanvas.Children.Add(stars2);
+            uniCanvas.Children.Add(stars3);
+
+            //Put background in the center of the view.
+            Canvas.SetLeft(background, scrollViewer.Width / 2 - background.Width / 3);
+            Canvas.SetTop(background, scrollViewer.Height / 2 - background.Height / 3);
+
+            addToUpdate(background);
+            addToUpdate(stars1);
+            addToUpdate(stars2);
+            addToUpdate(stars3);
+
+            ArrayList tmpStore = new ArrayList();
+            foreach(Planet p in uniCanvas.Children.OfType<Planet>())
+            {
+                tmpStore.Add(p);
+            }
+            foreach (Planet p in tmpStore)
+            {
+                uniCanvas.Children.Remove(p);
+                uniCanvas.Children.Add(p);
+            }
+        }
+
         public void p(int index)
         {
             //planets[index].setToScale(0.2f);
