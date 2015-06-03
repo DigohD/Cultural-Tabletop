@@ -50,7 +50,7 @@ namespace Cultiverse
             Random rng = new Random();
 
             foreach(World world in worlds){
-                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 600), 600 + rng.Next(0, 4000 - 800), 0.2f, world, worldCounter++);
+                Planet newPlanet = new Planet(400 + rng.Next(0, 4000 - 800), 400 + rng.Next(0, 4000 - 800), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
                 newPlanet.TouchDown += planet_TouchDown;
                 newPlanet.DisableBallDragging();
@@ -111,12 +111,23 @@ namespace Cultiverse
             //scrollViewer.ScrollToVerticalOffset(planet.posY - scrollViewer.Height / 2 + 400);
         }
 
+        public void scrollToInstant(Planet planet)
+        {
+            double dX = (planet.posX - scrollViewer.Width / 2 + 400) - scrollViewer.HorizontalOffset;
+            double dY = (planet.posY - scrollViewer.Height / 2 + 400) - scrollViewer.VerticalOffset;
+            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + dX);
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + dY);
+
+            //scrollViewer.ScrollToHorizontalOffset(planet.posX - scrollViewer.Width / 2 + 400);
+            //scrollViewer.ScrollToVerticalOffset(planet.posY - scrollViewer.Height / 2 + 400);
+        }
+
         public Planet addWorld(World world)
         {
             worlds.Add(world);
             Random rng = new Random();
-            float posX = 100 + rng.Next(0, 4000 - 200);
-            float posY = 100 + rng.Next(0, 4000 - 200);
+            float posX = 1000 + rng.Next(0, 1000);
+            float posY = 600 + rng.Next(0, 2000);
             Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
             
             newPlanet.DisableBallDragging();

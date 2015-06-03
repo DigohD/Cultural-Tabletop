@@ -49,6 +49,8 @@ namespace Cultiverse
             createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
 
             CompositionTarget.Rendering += update;
+
+            createWorldView.Hide();
         }
 
         void update(object sender, EventArgs e)
@@ -149,7 +151,7 @@ namespace Cultiverse
 
             worldCreated = false;
 
-            universeView.planet_TouchDown(planet, null);
+            universeView.scrollToInstant(planet);
         }
 
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)

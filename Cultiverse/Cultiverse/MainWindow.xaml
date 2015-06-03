@@ -10,7 +10,7 @@
     </Window.CommandBindings>
     <Grid Name="mainGrid" Width="1920" Height="1080">
         <cv:UniverseView x:Name="universeView" Visibility="Visible"></cv:UniverseView>
-        <cv:CreateWorldView x:Name="createWorldView" Visibility="Hidden" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
+        <cv:CreateWorldView x:Name="createWorldView" Visibility="Visible" CreateWorldDone="createWorldView_CreateWorldDone"></cv:CreateWorldView>
 
 
         <cv:TokenSensor VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" x:Name="tokenSensor1" TokenDown="tokenSensor1_TokenDown" TokenUp="tokenSensor1_TokenUp">
@@ -42,6 +42,5 @@
             </cv:TokenSensor.LayoutTransform>
         </cv:TokenSensor>
         
-        <s:SurfaceButton Content="Button" Height="23"  Name="surfaceButton1" Width="75" Click="surfaceButton1_Click" />
     </Grid>
 </s:SurfaceWindow>
