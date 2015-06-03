@@ -35,7 +35,7 @@ namespace Cultiverse
         public World currentWorld;
         public Planet planet;
 
-        Dispatcher mainDespatch;
+        Dispatcher mainDispatcher;
 
         ArrayList updateList = new ArrayList();
         float deltaTime;
@@ -47,7 +47,7 @@ namespace Cultiverse
         {
             InitializeComponent();
 
-            mainDespatch = Dispatcher.CurrentDispatcher;
+            mainDispatcher = Dispatcher.CurrentDispatcher;
 
             CompositionTarget.Rendering += update;
 
@@ -140,18 +140,6 @@ namespace Cultiverse
 
         private void saveWorldButton_Click(object sender, RoutedEventArgs e)
         {
-            //Save bitmap
-            FileStream fileStream = new FileStream("C:\\Users\\Simon\\Desktop\\img.png", FileMode.Create, FileAccess.Write);
-            int marg = int.Parse(myCanvas.Margin.Left.ToString());
-            RenderTargetBitmap rtb =
-                    new RenderTargetBitmap((int)myCanvas.ActualWidth - marg,
-                            (int)myCanvas.ActualHeight - marg, 0, 0,
-                        PixelFormats.Pbgra32);
-            rtb.Render(myCanvas);
-            PngBitmapEncoder png = new PngBitmapEncoder();
-            png.Frames.Add(BitmapFrame.Create(rtb));
-            png.Save(fileStream);
-            fileStream.Close();
 
         }
 
@@ -374,6 +362,20 @@ namespace Cultiverse
                 return;
 
             Console.WriteLine("Save!");
+
+            //Save screenshot
+
+            FileStream fileStream = new FileStream(currentWorld.ScreenshotPath, FileMode.Create, FileAccess.Write);
+            RenderTargetBitmap rtb =
+                    new RenderTargetBitmap(1920,
+                            1080, 0, 0,
+                        PixelFormats.Pbgra32);
+            rtb.Render(planetCanvas);
+            PngBitmapEncoder png = new PngBitmapEncoder();
+            png.Frames.Add(BitmapFrame.Create(rtb));
+            png.Save(fileStream);
+            fileStream.Close();
+
             if (CreateWorldDone != null)
             {
                 MainWindow.worldCreated = false;

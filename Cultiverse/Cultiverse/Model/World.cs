@@ -11,12 +11,14 @@ namespace Cultiverse.Model
     public class World
     {
         public string FolderPath;
+        public string ScreenshotPath;
         private List<WorldDrawing> drawings;
 
         public World(string folderPath)
         {
             drawings = new List<WorldDrawing>();
             FolderPath = folderPath;
+            ScreenshotPath = folderPath + "\\screenshot.png";
 
             IEnumerable<string> drawingsFolder = Directory.EnumerateFiles(folderPath + "\\drawings");
             foreach (string file in drawingsFolder)
