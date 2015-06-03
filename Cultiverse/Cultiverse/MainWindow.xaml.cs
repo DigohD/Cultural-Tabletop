@@ -148,7 +148,6 @@ namespace Cultiverse
 
             worldCreated = false;
 
-            universeView.reInitBackground();
             universeView.scrollTo(planet);
         }
 
