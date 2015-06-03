@@ -195,6 +195,12 @@ namespace Cultiverse
                 createWorldView.drawingSpace1.Hide();
                 createWorldView.saveCheck1Border.Visibility = Visibility.Hidden;
             }
+
+            if (allTokensAreUp())
+            {
+                createWorldView.Visibility = Visibility.Hidden;
+                universeView.Visibility = Visibility.Visible;
+            }
         }
 
         private void tokenSensor2_TokenDown(object sender, RoutedEventArgs e)
@@ -223,6 +229,12 @@ namespace Cultiverse
                 createWorldView.drawingSpace2.Hide();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Hidden;
             }
+
+            if (allTokensAreUp())
+            {
+                createWorldView.Visibility = Visibility.Hidden;
+                universeView.Visibility = Visibility.Visible;
+            }
         }
 
         private void tokenSensor3_TokenDown(object sender, RoutedEventArgs e)
@@ -249,6 +261,12 @@ namespace Cultiverse
             {
                 createWorldView.drawingSpace3.Hide();
                 createWorldView.saveCheck3Border.Visibility = Visibility.Hidden;
+            }
+
+            if (allTokensAreUp())
+            {
+                createWorldView.Visibility = Visibility.Hidden;
+                universeView.Visibility = Visibility.Visible;
             }
         }
 
@@ -278,6 +296,20 @@ namespace Cultiverse
                 createWorldView.drawingSpace4.Hide();
                 createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
             }
+
+            if (allTokensAreUp())
+            {
+                createWorldView.Visibility = Visibility.Hidden;
+                universeView.Visibility = Visibility.Visible;
+            }
+        }
+
+        private bool allTokensAreUp()
+        {
+            return !tokenSensor1.IsTokenDown
+                && !tokenSensor2.IsTokenDown
+                && !tokenSensor3.IsTokenDown
+                && !tokenSensor4.IsTokenDown;
         }
     }
 }

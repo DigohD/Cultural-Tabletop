@@ -97,22 +97,6 @@ namespace Cultiverse.UI
             }
         }
 
-        public void EnableBallDragging()
-        {
-            foreach (Ball b in ballList)
-            {
-                b.Movable = true;
-            }
-        }
-
-        public void DisableBallDragging()
-        {
-            foreach (Ball b in ballList)
-            {
-                b.Movable = false;
-            }
-        }
-
         void ball_OnDrop(object sender, TouchEventArgs e)
         {
             if (sender is Ball)

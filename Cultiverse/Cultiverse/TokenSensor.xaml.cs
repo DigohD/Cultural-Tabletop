@@ -23,7 +23,14 @@ namespace Cultiverse
         public event RoutedEventHandler TokenDown;
         public event RoutedEventHandler TokenUp;
 
-        private bool tokenDown = false;
+        private bool _tokenDown = false;
+        public bool IsTokenDown
+        {
+            get
+            {
+                return _tokenDown;
+            }
+        }
 
         public TokenSensor()
         {
@@ -37,7 +44,7 @@ namespace Cultiverse
             IInputElement element = sender as IInputElement;
             if (element != null && e.Device.Capture(element))
             {
-                tokenDown = true;
+                _tokenDown = true;
                 label1.Visibility = System.Windows.Visibility.Hidden;
                 label2.Visibility = System.Windows.Visibility.Hidden;
                 ellipse.Fill = new SolidColorBrush(Colors.White);
@@ -48,7 +55,7 @@ namespace Cultiverse
 
         private void ellipse_LostTouchCapture(object sender, TouchEventArgs e)
         {
-            tokenDown = true;
+            _tokenDown = false;
             label1.Visibility = System.Windows.Visibility.Visible;
             label2.Visibility = System.Windows.Visibility.Visible;
             Color stdColor = new Color();
@@ -64,7 +71,7 @@ namespace Cultiverse
         float sizeMul, ticker;
         public void update(object sender, EventArgs e)
         {
-            if (tokenDown)
+            if (_tokenDown)
             {
                 sizeMul = 1.0f;
             }
