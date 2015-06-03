@@ -31,7 +31,7 @@
     <Grid Width="500" Height="500">
 
         <Grid.RenderTransform>
-            <ScaleTransform x:Name="everythingScale" ScaleX="1.0" ScaleY="1.0" CenterX="20" CenterY="480"></ScaleTransform>
+            <ScaleTransform x:Name="everythingScale" ScaleX="1.0" ScaleY="1.0" CenterX="10" CenterY="490"></ScaleTransform>
         </Grid.RenderTransform>
         
         <Image Name="ColorWheel" Source="/Cultiverse;component/Resources/colorring.png" LostMouseCapture="OnColorWheelLostMouseCapture" LostTouchCapture="OnColorWheelLostTouchCapture" Width="370" Height="370" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,45" TouchDown="ColorWheel_TouchDown" MouseDown="ColorWheel_MouseDown"  />
