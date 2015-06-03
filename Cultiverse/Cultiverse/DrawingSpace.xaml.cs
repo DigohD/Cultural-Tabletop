@@ -186,13 +186,16 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
-            if (++currentDrawingI < drawingNames.Count)
+            if (inkCanvas.Strokes.Count() > 0)
             {
-                drawLabel.Content = drawingNames[currentDrawingI];
-            }
-            if (DrawingDone != null)
-            {
-                DrawingDone(inkCanvas, e);
+                if (++currentDrawingI < drawingNames.Count)
+                {
+                    drawLabel.Content = drawingNames[currentDrawingI];
+                }
+                if (DrawingDone != null)
+                {
+                    DrawingDone(inkCanvas, e);
+                }
             }
         }
 
