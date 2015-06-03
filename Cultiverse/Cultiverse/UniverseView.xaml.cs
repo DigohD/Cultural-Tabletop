@@ -50,7 +50,7 @@ namespace Cultiverse
             Random rng = new Random();
 
             foreach(World world in worlds){
-                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, worldCounter++);
+                Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 600), 600 + rng.Next(0, 4000 - 800), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
                 newPlanet.TouchDown += planet_TouchDown;
                 planets.Add(newPlanet);
@@ -83,22 +83,25 @@ namespace Cultiverse
         public void planet_TouchDown(object sender, TouchEventArgs e)
         {
             Planet planet = (Planet)sender;
-            planetZoom = 1;
 
-            planet.setToScale(1);
-
+            scrollTo(planet);
             scrollViewer.CanContentScroll = false;
 
             viewingPlanet = planet;
-            this.scrollTo(planet);
 
             e.Handled = true;
         }
 
         public void scrollTo(Planet planet)
         {
-            scrollViewer.ScrollToHorizontalOffset((planet.posX - (planet.ActualWidth / 2)) - scrollViewer.Width);
-            scrollViewer.ScrollToVerticalOffset((planet.posY - (planet.ActualHeight / 2)) - scrollViewer.Height);
+            double dX = (planet.posX - scrollViewer.Width / 2 + 400) - scrollViewer.HorizontalOffset;
+            double dY = (planet.posY - scrollViewer.Height / 2 + 400) - scrollViewer.VerticalOffset;
+
+            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + dX / 50);
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + dY / 50);
+        
+            //scrollViewer.ScrollToHorizontalOffset(planet.posX - scrollViewer.Width / 2 + 400);
+            //scrollViewer.ScrollToVerticalOffset(planet.posY - scrollViewer.Height / 2 + 400);
         }
 
         public Planet addWorld(World world)
@@ -138,7 +141,7 @@ namespace Cultiverse
             addToUpdate(stars3);
         }
 
-        public void reInitBackground()
+        /*public void reInitBackground()
         {
             uniCanvas.Children.Remove(background);
             uniCanvas.Children.Remove(stars1);
@@ -179,7 +182,7 @@ namespace Cultiverse
                 uniCanvas.Children.Remove(p);
                 uniCanvas.Children.Add(p);
             }
-        }
+        }*/
 
         public void p(int index)
         {
@@ -205,7 +208,8 @@ namespace Cultiverse
                     zoomBlockInput = false;
                 }else
                     zoomBlockInput = true;
-
+                
+                scrollTo(viewingPlanet);
                 planetZoom = zoomAmount;
                 viewingPlanet.setToScale(planetZoom);
             }
@@ -222,6 +226,7 @@ namespace Cultiverse
                     zoomAmount = 0.2f;
                     planetZoom = zoomAmount;
                     scrollViewer.CanContentScroll = true;
+                    
                     viewingPlanet.setToScale(planetZoom);
                     viewingPlanet = null;
                     leavingPlanet = false;
@@ -322,24 +327,27 @@ namespace Cultiverse
 
         void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (zoomBlockInput)
-                return;
-
             //Background parallax
-            Matrix matrix = ((MatrixTransform)background.RenderTransform).Matrix;
-            matrix.TranslatePrepend(e.HorizontalChange * 0.8, e.VerticalChange * 0.8);
+            Matrix matrix = Matrix.Identity;
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.8 - 800, scrollViewer.VerticalOffset * 0.8 - 800);
             background.RenderTransform = new MatrixTransform(matrix);
             //Stars 3 parallax
-            matrix = ((MatrixTransform)stars3.RenderTransform).Matrix;
-            matrix.TranslatePrepend(e.HorizontalChange * 0.3, e.VerticalChange * 0.3);
+            matrix = Matrix.Identity;
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.3, scrollViewer.VerticalOffset * 0.3);
             stars3.RenderTransform = new MatrixTransform(matrix);
+            matrix = Matrix.Identity;
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.32, scrollViewer.VerticalOffset * 0.3);
+            stars2.RenderTransform = new MatrixTransform(matrix);
+            matrix = Matrix.Identity;
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.34, scrollViewer.VerticalOffset * 0.3);
+            stars1.RenderTransform = new MatrixTransform(matrix);
+
             
-            /*
             foreach (Planet p in planets)
             {
                 p.pushInertedBalls((float) -e.HorizontalChange * 4, (float) -e.VerticalChange * 4);
             }
-            */
+            
         }
 
         bool leavingPlanet;
