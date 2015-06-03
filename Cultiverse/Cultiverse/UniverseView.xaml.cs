@@ -115,7 +115,9 @@ namespace Cultiverse
             float posX = 100 + rng.Next(0, 4000 - 200);
             float posY = 100 + rng.Next(0, 4000 - 200);
             Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
+            
             newPlanet.DisableBallDragging();
+            
             this.uniCanvas.Children.Add(newPlanet);
             newPlanet.TouchDown += planet_TouchDown;
             planets.Add(newPlanet);
@@ -129,7 +131,6 @@ namespace Cultiverse
             stars1 = new Stars("stars.png", 0.1f);
             stars2 = new Stars("stars2.png", 0.1f);
             stars3 = new Stars("stars3.png", 0.1f);
-
 
             uniCanvas.Children.Add(background);
             uniCanvas.Children.Add(stars1);

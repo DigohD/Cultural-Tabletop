@@ -32,7 +32,7 @@ namespace Cultiverse
         public event RoutedEventHandler CreateWorldDone;
 
         public World currentWorld;
-        Planet planet;
+        public Planet planet;
 
         Dispatcher mainDespatch;
 
@@ -142,6 +142,13 @@ namespace Cultiverse
             restart();
         }
 
+        public void clearCreateWorldCanvas()
+        {
+            removeFromUpdate(planet);
+            planetCanvas.Children.Remove(planet);
+            planet = null;
+        }
+
         void restart()
         {
             
@@ -154,7 +161,6 @@ namespace Cultiverse
 
             inkCanvas.Clip = new EllipseGeometry(new Point(inkCanvas.ActualWidth / 2, inkCanvas.ActualHeight / 2), inkCanvas.ActualWidth, inkCanvas.ActualHeight);
             
-
             //Save strokes
             FileStream fileStream = new FileStream(drawing.StrokesFilePath, FileMode.Create, FileAccess.Write);
             inkCanvas.Strokes.Save(fileStream);
