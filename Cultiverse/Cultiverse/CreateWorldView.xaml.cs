@@ -147,6 +147,11 @@ namespace Cultiverse
             removeFromUpdate(planet);
             planetCanvas.Children.Remove(planet);
             planet = null;
+
+            saveCheck1Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck2Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck3Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck4Border.Background = new SolidColorBrush(Colors.Transparent);
         }
 
         void restart()
@@ -329,6 +334,10 @@ namespace Cultiverse
             {
                 return;
             }
+           
+            //2, because planet base image counts as one
+            if (planet.Children.Count < 2)
+                return;
 
             Console.WriteLine("Save!");
             if (CreateWorldDone != null)

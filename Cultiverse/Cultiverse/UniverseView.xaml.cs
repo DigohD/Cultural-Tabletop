@@ -83,6 +83,9 @@ namespace Cultiverse
         float planetZoom = 0.2f;
         public void planet_TouchDown(object sender, TouchEventArgs e)
         {
+            if (viewingPlanet != null)
+                return;
+
             Planet planet = (Planet)sender;
 
             scrollTo(planet);
