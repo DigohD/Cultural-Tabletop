@@ -126,8 +126,8 @@ namespace Cultiverse
         {
             worlds.Add(world);
             Random rng = new Random();
-            float posX = 1000 + rng.Next(0, 1000);
-            float posY = 600 + rng.Next(0, 2000);
+            float posX = 1000 + rng.Next(0, 2000);
+            float posY = 1000 + rng.Next(0, 2000);
             Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
             
             newPlanet.DisableBallDragging();
