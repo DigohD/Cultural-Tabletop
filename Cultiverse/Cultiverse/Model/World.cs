@@ -19,16 +19,28 @@ namespace Cultiverse.Model
             FolderPath = folderPath;
 
             IEnumerable<string> drawingsFolder = Directory.EnumerateFiles(folderPath + "\\drawings");
-            int drawingsCount = drawingsFolder.Count() / 2; //Each drawing is 2 files.
-            for (int i = 0; i < drawingsCount; i++) 
+            foreach (string file in drawingsFolder)
             {
-                drawings.Add(new WorldDrawing(FolderPath + "\\drawings", drawings.Count));
+                string strId = Path.GetFileNameWithoutExtension(file);
+                int id = int.Parse(strId);
+                string extension = Path.GetExtension(file);
+
+                if (extension.Equals(".png"))
+                {
+                    drawings.Add(new WorldDrawing(FolderPath + "\\drawings", id));
+                }
+
             }
         }
 
         public WorldDrawing createNewDrawing()
         {
-            WorldDrawing newDrawing = new WorldDrawing(FolderPath + "\\drawings", drawings.Count);
+            int newId = 0;
+            if (drawings.Count > 0)
+            {
+                newId = drawings.Last().Id + 1;
+            }
+            WorldDrawing newDrawing = new WorldDrawing(FolderPath + "\\drawings", newId);
             drawings.Add(newDrawing);
             return newDrawing;
         }
