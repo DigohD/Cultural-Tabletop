@@ -50,7 +50,7 @@ namespace Cultiverse
             Random rng = new Random();
 
             foreach(World world in worlds){
-                Planet newPlanet = new Planet(400 + rng.Next(0, 4000 - 800), 400 + rng.Next(0, 4000 - 800), 0.2f, world, worldCounter++);
+                Planet newPlanet = new Planet(rng.Next(0, 4000 - 800), rng.Next(0, 4000 - 800), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
                 newPlanet.TouchDown += planet_TouchDown;
                 newPlanet.DisableBallDragging();
@@ -126,8 +126,8 @@ namespace Cultiverse
         {
             worlds.Add(world);
             Random rng = new Random();
-            float posX = 1000 + rng.Next(0, 2000);
-            float posY = 1000 + rng.Next(0, 2000);
+            float posX = 1000 + rng.Next(0, 1000);
+            float posY = 1000 + rng.Next(0, 1000);
             Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
             
             newPlanet.DisableBallDragging();
