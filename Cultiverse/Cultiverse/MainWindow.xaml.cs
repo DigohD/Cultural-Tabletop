@@ -144,6 +144,8 @@ namespace Cultiverse
             Planet planet = universeView.addWorld(createWorldView.currentWorld);
             worldDatabase.saveWorld(createWorldView.currentWorld);
 
+            createWorldView.clearCreateWorldCanvas();
+
             createWorldView.Hide();
             //universeView.Visibility = Visibility.Visible;
 
