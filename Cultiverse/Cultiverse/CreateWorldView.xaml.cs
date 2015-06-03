@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Surface.Presentation.Controls;
 using Cultiverse.UI;
+using System.Windows.Media.Animation;
 
 namespace Cultiverse
 {
@@ -53,6 +54,29 @@ namespace Cultiverse
             initBackground();
         }
 
+        public void Show()
+        {
+            Storyboard sb = (Storyboard)FindResource("scaleUp");
+            sb.Completed += delegate
+            {
+                this.IsHitTestVisible = true;
+                this.Visibility = Visibility.Visible;
+            };
+            sb.Begin();
+            this.Visibility = Visibility.Visible;
+        }
+
+        public void Hide()
+        {
+            this.Visibility = Visibility.Visible;
+            this.IsHitTestVisible = false;
+            Storyboard sb = (Storyboard)FindResource("scaleDown");
+            sb.Completed += delegate
+            {
+                this.Visibility = Visibility.Hidden;
+            };
+            sb.Begin();
+        }
         private void initBackground()
         {
             Stars background = new Stars("bg.png", 0.03f);
