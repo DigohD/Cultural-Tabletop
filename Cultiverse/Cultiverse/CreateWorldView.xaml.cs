@@ -144,7 +144,10 @@ namespace Cultiverse
 
         void restart()
         {
-            
+            drawingSpace1.Reset();
+            drawingSpace2.Reset();
+            drawingSpace3.Reset();
+            drawingSpace4.Reset();
         }
 
 
