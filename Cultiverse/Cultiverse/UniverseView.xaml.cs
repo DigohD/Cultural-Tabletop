@@ -143,8 +143,8 @@ namespace Cultiverse
         {
             background = new Stars("bg.png", 0f);
             stars1 = new Stars("stars.png", 0.1f);
-            stars2 = new Stars("stars2.png", 0.1f);
-            stars3 = new Stars("stars3.png", 0.1f);
+            stars2 = new Stars("stars2.png", 0f);
+            stars3 = new Stars("stars3.png", 0f);
 
             uniCanvas.Children.Add(background);
             uniCanvas.Children.Add(stars1);
@@ -160,49 +160,6 @@ namespace Cultiverse
             addToUpdate(stars2);
             addToUpdate(stars3);
         }
-
-        /*public void reInitBackground()
-        {
-            uniCanvas.Children.Remove(background);
-            uniCanvas.Children.Remove(stars1);
-            uniCanvas.Children.Remove(stars2);
-            uniCanvas.Children.Remove(stars3);
-
-            removeFromUpdate(background);
-            removeFromUpdate(stars1);
-            removeFromUpdate(stars2);
-            removeFromUpdate(stars3);
-
-            background = new Stars("bg.png", 0f);
-            stars1 = new Stars("stars.png", 0.1f);
-            stars2 = new Stars("stars2.png", 0.1f);
-            stars3 = new Stars("stars3.png", 0.1f);
-
-            uniCanvas.Children.Add(background);
-            uniCanvas.Children.Add(stars1);
-            uniCanvas.Children.Add(stars2);
-            uniCanvas.Children.Add(stars3);
-
-            //Put background in the center of the view.
-            Canvas.SetLeft(background, scrollViewer.Width / 2 - background.Width / 3);
-            Canvas.SetTop(background, scrollViewer.Height / 2 - background.Height / 3);
-
-            addToUpdate(background);
-            addToUpdate(stars1);
-            addToUpdate(stars2);
-            addToUpdate(stars3);
-
-            ArrayList tmpStore = new ArrayList();
-            foreach(Planet p in uniCanvas.Children.OfType<Planet>())
-            {
-                tmpStore.Add(p);
-            }
-            foreach (Planet p in tmpStore)
-            {
-                uniCanvas.Children.Remove(p);
-                uniCanvas.Children.Add(p);
-            }
-        }*/
 
         public void p(int index)
         {
@@ -354,20 +311,12 @@ namespace Cultiverse
             
             //Stars 3 parallax
             matrix = Matrix.Identity;
-            matrix.RotateAt(stars3.rotation, 1500, 1500);
             matrix.Translate(scrollViewer.HorizontalOffset * 0.3, scrollViewer.VerticalOffset * 0.3);
             stars3.RenderTransform = new MatrixTransform(matrix);
             
             matrix = Matrix.Identity;
-            matrix.RotateAt(stars2.rotation, 1500, 1500);
-            matrix.Translate(scrollViewer.HorizontalOffset * 0.32, scrollViewer.VerticalOffset * 0.3);
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.4, scrollViewer.VerticalOffset * 0.4);
             stars2.RenderTransform = new MatrixTransform(matrix);
-           
-            matrix = Matrix.Identity;
-            matrix.RotateAt(stars1.rotation, 1500, 1500);
-            matrix.Translate(scrollViewer.HorizontalOffset * 0.34, scrollViewer.VerticalOffset * 0.3);
-            stars1.RenderTransform = new MatrixTransform(matrix);
-
             
             foreach (Planet p in planets)
             {
