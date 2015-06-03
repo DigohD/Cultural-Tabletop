@@ -334,17 +334,20 @@ namespace Cultiverse
         {
             //Background parallax
             Matrix matrix = Matrix.Identity;
-            matrix.Translate(scrollViewer.HorizontalOffset * 0.8 - 800, scrollViewer.VerticalOffset * 0.8 - 800);
+            matrix.Translate(scrollViewer.HorizontalOffset * 0.8 - 100, scrollViewer.VerticalOffset * 0.8 - 100);
             background.RenderTransform = new MatrixTransform(matrix);
             //Stars 3 parallax
             matrix = Matrix.Identity;
             matrix.Translate(scrollViewer.HorizontalOffset * 0.3, scrollViewer.VerticalOffset * 0.3);
+            matrix.RotateAt(stars3.rotation, 1500, 1500);
             stars3.RenderTransform = new MatrixTransform(matrix);
             matrix = Matrix.Identity;
             matrix.Translate(scrollViewer.HorizontalOffset * 0.32, scrollViewer.VerticalOffset * 0.3);
+            matrix.RotateAt(stars3.rotation, 1500, 1500);
             stars2.RenderTransform = new MatrixTransform(matrix);
             matrix = Matrix.Identity;
             matrix.Translate(scrollViewer.HorizontalOffset * 0.34, scrollViewer.VerticalOffset * 0.3);
+            matrix.RotateAt(stars3.rotation, 1500, 1500);
             stars1.RenderTransform = new MatrixTransform(matrix);
 
             
