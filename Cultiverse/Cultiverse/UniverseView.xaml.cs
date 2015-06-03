@@ -93,13 +93,10 @@ namespace Cultiverse
 
             viewingPlanet = planet;
 
-
             planet.EnableBallDragging();
 
-
-            planet.EnableBallDragging();
-
-            e.Handled = true;
+            if(e != null)
+                e.Handled = true;
         }
 
         public void scrollTo(Planet planet)

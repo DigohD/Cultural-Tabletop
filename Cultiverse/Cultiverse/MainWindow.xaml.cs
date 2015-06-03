@@ -149,7 +149,7 @@ namespace Cultiverse
 
             worldCreated = false;
 
-            universeView.scrollTo(planet);
+            universeView.planet_TouchDown(planet, null);
         }
 
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)
