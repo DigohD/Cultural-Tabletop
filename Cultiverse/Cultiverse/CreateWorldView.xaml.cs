@@ -33,7 +33,7 @@ namespace Cultiverse
         public event RoutedEventHandler CreateWorldDone;
 
         public World currentWorld;
-        Planet planet;
+        public Planet planet;
 
         Dispatcher mainDespatch;
 
@@ -173,6 +173,18 @@ namespace Cultiverse
             restart();
         }
 
+        public void clearCreateWorldCanvas()
+        {
+            removeFromUpdate(planet);
+            planetCanvas.Children.Remove(planet);
+            planet = null;
+
+            saveCheck1Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck2Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck3Border.Background = new SolidColorBrush(Colors.Transparent);
+            saveCheck4Border.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
         void restart()
         {
             drawingSpace1.Reset();
@@ -188,7 +200,6 @@ namespace Cultiverse
 
             inkCanvas.Clip = new EllipseGeometry(new Point(inkCanvas.ActualWidth / 2, inkCanvas.ActualHeight / 2), inkCanvas.ActualWidth, inkCanvas.ActualHeight);
             
-
             //Save strokes
             FileStream fileStream = new FileStream(drawing.StrokesFilePath, FileMode.Create, FileAccess.Write);
             inkCanvas.Strokes.Save(fileStream);
@@ -357,6 +368,10 @@ namespace Cultiverse
             {
                 return;
             }
+           
+            //2, because planet base image counts as one
+            if (planet.Children.Count < 2)
+                return;
 
             Console.WriteLine("Save!");
             if (CreateWorldDone != null)

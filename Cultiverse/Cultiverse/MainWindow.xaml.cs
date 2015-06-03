@@ -142,9 +142,11 @@ namespace Cultiverse
         {
             Planet planet = universeView.addWorld(createWorldView.currentWorld);
             worldDatabase.saveWorld(createWorldView.currentWorld);
-            
+
             createWorldView.Hide();
             //universeView.Visibility = Visibility.Visible;
+
+            createWorldView.clearCreateWorldCanvas();
 
             worldCreated = false;
 
