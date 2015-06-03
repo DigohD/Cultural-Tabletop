@@ -129,10 +129,12 @@ namespace Cultiverse
 
         }
 
-        internal void setWorld(World world)
+        public void setWorld(World world)
         {
             currentWorld = world;
             removeFromUpdate(planet);
+            myCanvas.Children.Remove(planet);
+
             planet = new Planet(0, 0, 1.0f, currentWorld, 0);
             planetCanvas.Children.Add(planet);
             addToUpdate(planet);
@@ -325,6 +327,7 @@ namespace Cultiverse
             Console.WriteLine("Save!");
             if (CreateWorldDone != null)
             {
+                MainWindow.worldCreated = false;
                 CreateWorldDone(this, new RoutedEventArgs());
             }
         }

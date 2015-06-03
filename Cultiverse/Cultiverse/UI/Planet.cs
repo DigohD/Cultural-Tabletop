@@ -54,14 +54,11 @@ namespace Cultiverse.UI
             this.Width = 800;
             this.Height = 800;
 
-            Matrix matrix = Matrix.Identity;
-
-            matrix.Scale(scaleFactor, scaleFactor);
-            matrix.Translate(newX, newY);
-
-            this.RenderTransform = new MatrixTransform(matrix);
+            this.RenderTransformOrigin = new Point(0.5, 0.5);
 
             initPlanet();
+
+            setToScale(scaleFactor);
 
             foreach (WorldDrawing d in world.getDrawings())
             {
@@ -72,7 +69,32 @@ namespace Cultiverse.UI
 
                 this.Children.Add(ball);
             }
+        }
 
+        public void setToScale(float scaleFactor)
+        {
+            Matrix matrix = Matrix.Identity;
+
+            matrix.Scale(scaleFactor, scaleFactor);
+            matrix.Translate(posX, posY);
+
+            this.RenderTransform = new MatrixTransform(matrix);
+        }
+
+        public void EnableBallDragging()
+        {
+            foreach (Ball b in ballList)
+            {
+                b.Movable = true;
+            }
+        }
+
+        public void DisableBallDragging()
+        {
+            foreach (Ball b in ballList)
+            {
+                b.Movable = false;
+            }
         }
 
         public void EnableBallDragging()
@@ -154,7 +176,7 @@ namespace Cultiverse.UI
             }
         }
 
-        public void updateViewOffset(float newX, float newY)
+        /*public void updateViewOffset(float newX, float newY)
         {
             foreach (Ball b in ballList)
             {
@@ -166,7 +188,7 @@ namespace Cultiverse.UI
 
             Canvas.SetLeft(planet, posX + newX);
             Canvas.SetTop(planet, posY + newY);
-        }
+        }*/
 
         public void addToUpdate(object updateable)
         {
