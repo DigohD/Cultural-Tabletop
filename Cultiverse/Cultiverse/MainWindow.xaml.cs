@@ -165,7 +165,7 @@ namespace Cultiverse
                 createWorldView.Visibility = Visibility.Visible;
                 universeView.Visibility = Visibility.Hidden;
 
-                createWorldView.drawingSpace2.Visibility = Visibility.Visible;
+                createWorldView.drawingSpace2.Show();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
             }
         }
@@ -183,7 +183,7 @@ namespace Cultiverse
                 createWorldView.Visibility = Visibility.Visible;
                 universeView.Visibility = Visibility.Hidden;
 
-                createWorldView.drawingSpace1.Visibility = Visibility.Visible;
+                createWorldView.drawingSpace1.Show();
                 createWorldView.saveCheck1Border.Visibility = Visibility.Visible;
             }
         }
@@ -192,7 +192,7 @@ namespace Cultiverse
         {
             if (createWorldView.drawingSpace1.Visibility == Visibility.Visible)
             {
-                createWorldView.drawingSpace1.Visibility = Visibility.Hidden;
+                createWorldView.drawingSpace1.Hide();
                 createWorldView.saveCheck1Border.Visibility = Visibility.Hidden;
             }
         }
@@ -210,7 +210,7 @@ namespace Cultiverse
                 createWorldView.Visibility = Visibility.Visible;
                 universeView.Visibility = Visibility.Hidden;
 
-                createWorldView.drawingSpace2.Visibility = Visibility.Visible;
+                createWorldView.drawingSpace2.Show();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
             }
         }
@@ -220,7 +220,7 @@ namespace Cultiverse
 
             if (createWorldView.drawingSpace2.Visibility == Visibility.Visible)
             {
-                createWorldView.drawingSpace2.Visibility = Visibility.Hidden;
+                createWorldView.drawingSpace2.Hide();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Hidden;
             }
         }
@@ -238,7 +238,7 @@ namespace Cultiverse
                 createWorldView.Visibility = Visibility.Visible;
                 universeView.Visibility = Visibility.Hidden;
 
-                createWorldView.drawingSpace3.Visibility = Visibility.Visible;
+                createWorldView.drawingSpace3.Show();
                 createWorldView.saveCheck3Border.Visibility = Visibility.Visible;
             }
         }
@@ -247,7 +247,7 @@ namespace Cultiverse
         {
             if (createWorldView.drawingSpace3.Visibility == Visibility.Visible)
             {
-                createWorldView.drawingSpace3.Visibility = Visibility.Hidden;
+                createWorldView.drawingSpace3.Hide();
                 createWorldView.saveCheck3Border.Visibility = Visibility.Hidden;
             }
         }
@@ -265,7 +265,7 @@ namespace Cultiverse
                 createWorldView.Visibility = Visibility.Visible;
                 universeView.Visibility = Visibility.Hidden;
 
-                createWorldView.drawingSpace4.Visibility = Visibility.Visible;
+                createWorldView.drawingSpace4.Show();
                 createWorldView.saveCheck4Border.Visibility = Visibility.Visible;
             }
         }
@@ -275,7 +275,7 @@ namespace Cultiverse
 
             if (createWorldView.drawingSpace4.Visibility == Visibility.Visible)
             {
-                createWorldView.drawingSpace4.Visibility = Visibility.Hidden;
+                createWorldView.drawingSpace4.Hide();
                 createWorldView.saveCheck4Border.Visibility = Visibility.Hidden;
             }
         }
