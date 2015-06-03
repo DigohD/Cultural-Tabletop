@@ -124,6 +124,7 @@ namespace Cultiverse
 
         private void NewWorld(object sender, ExecutedRoutedEventArgs e)
         {
+            createWorldView.clearCreateWorldCanvas();
             createWorldView.setWorld(worldDatabase.createNewWorld());
             createWorldView.Show();
             //universeView.Visibility = Visibility.Hidden;
@@ -145,8 +146,6 @@ namespace Cultiverse
 
             createWorldView.Hide();
             //universeView.Visibility = Visibility.Visible;
-
-            createWorldView.clearCreateWorldCanvas();
 
             worldCreated = false;
 

@@ -28,17 +28,17 @@
             </DoubleAnimation>
         </Storyboard>
         <Storyboard x:Key="scaleDown">
-            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1.0" To="0.2" Duration="0:0:1" >
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1.0" To="0.2" Duration="0:0:.5" >
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1.0" To="0.2" Duration="0:0:1" >
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1.0" To="0.2" Duration="0:0:.5" >
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Opacity)" From="1.0" To="0.0" Duration="0:0:1" >
+            <DoubleAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Opacity)" From="1.0" To="0.0" Duration="0:0:.5" >
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
