@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Surface.Presentation.Input;
+using System.Timers;
 
 namespace Cultiverse
 {
@@ -32,10 +33,39 @@ namespace Cultiverse
             }
         }
 
+        private Timer holdTimer;
+        private Timer releaseTimer;
+
         public TokenSensor()
         {
             InitializeComponent();
             CompositionTarget.Rendering += update;
+
+            holdTimer = new Timer(1000);
+            holdTimer.AutoReset = false;
+            holdTimer.Elapsed += new ElapsedEventHandler(holdTimer_Elapsed);
+
+            releaseTimer = new Timer(1000);
+            releaseTimer.AutoReset = false;
+            releaseTimer.Elapsed += new ElapsedEventHandler(releaseTimer_Elapsed);
+        }
+
+        void holdTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                TokenDown(this, new RoutedEventArgs());
+            })
+            );
+        }
+
+        void releaseTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                TokenUp(this, new RoutedEventArgs());
+            })
+            );
         }
 
         private void ellipse_TouchDown(object sender, TouchEventArgs e)
@@ -44,17 +74,24 @@ namespace Cultiverse
             IInputElement element = sender as IInputElement;
             if (element != null && e.Device.Capture(element))
             {
+                releaseTimer.Stop();
+                holdTimer.Stop();
+                holdTimer.Start();
+
                 _tokenDown = true;
                 label1.Visibility = System.Windows.Visibility.Hidden;
                 label2.Visibility = System.Windows.Visibility.Hidden;
                 ellipse.Fill = new SolidColorBrush(Colors.White);
-                TokenDown(sender, e);
                 e.Handled = true;
             }
         }
 
         private void ellipse_LostTouchCapture(object sender, TouchEventArgs e)
         {
+            holdTimer.Stop();
+            releaseTimer.Stop();
+            releaseTimer.Start();
+
             _tokenDown = false;
             label1.Visibility = System.Windows.Visibility.Visible;
             label2.Visibility = System.Windows.Visibility.Visible;
@@ -64,7 +101,6 @@ namespace Cultiverse
             stdColor.G = 0x12;
             stdColor.B = 0x22;
             ellipse.Fill = new SolidColorBrush(stdColor);
-            TokenUp(sender, e);
         }
 
 
