@@ -46,7 +46,7 @@ namespace Cultiverse.UI
             this.IsHitTestVisible = false;
         }
 
-        float rotation;
+        public float rotation;
 
         public void update(float deltatime)
         {
