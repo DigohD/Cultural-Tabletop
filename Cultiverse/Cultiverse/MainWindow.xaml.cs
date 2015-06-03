@@ -139,7 +139,6 @@ namespace Cultiverse
             createWorldView.clearCreateWorldCanvas();
             createWorldView.setWorld(worldDatabase.createNewWorld());
             createWorldView.Show();
-            //universeView.Visibility = Visibility.Hidden;
         }
 
         private void NewWorld_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -163,10 +162,7 @@ namespace Cultiverse
             Planet planet = universeView.addWorld(createWorldView.currentWorld);
             worldDatabase.saveWorld(createWorldView.currentWorld);
 
-            createWorldView.clearCreateWorldCanvas();
-
             createWorldView.Hide();
-            //universeView.Visibility = Visibility.Visible;
 
             worldCreated = false;
 
@@ -185,7 +181,6 @@ namespace Cultiverse
             if (createWorldView.drawingSpace2.Visibility == Visibility.Hidden)
             {
                 createWorldView.Show();
-                //universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace2.Show();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
@@ -203,7 +198,6 @@ namespace Cultiverse
             if (createWorldView.drawingSpace1.Visibility == Visibility.Hidden)
             {
                 createWorldView.Show();
-                //universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace1.Show();
                 createWorldView.saveCheck1Border.Visibility = Visibility.Visible;
@@ -221,7 +215,6 @@ namespace Cultiverse
             if (allTokensAreUp())
             {
                 createWorldView.Hide();
-                //universeView.Visibility = Visibility.Visible;
             }
         }
 
@@ -236,7 +229,6 @@ namespace Cultiverse
             if (createWorldView.drawingSpace2.Visibility == Visibility.Hidden)
             {
                 createWorldView.Show();
-                //universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace2.Show();
                 createWorldView.saveCheck2Border.Visibility = Visibility.Visible;
@@ -255,7 +247,6 @@ namespace Cultiverse
             if (allTokensAreUp())
             {
                 createWorldView.Hide();
-                //universeView.Visibility = Visibility.Visible;
             }
         }
 
@@ -270,7 +261,6 @@ namespace Cultiverse
             if (createWorldView.drawingSpace3.Visibility == Visibility.Hidden)
             {
                 createWorldView.Show();
-                //universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace3.Show();
                 createWorldView.saveCheck3Border.Visibility = Visibility.Visible;
@@ -303,7 +293,6 @@ namespace Cultiverse
             if (createWorldView.drawingSpace4.Visibility == Visibility.Hidden)
             {
                 createWorldView.Show();
-                //universeView.Visibility = Visibility.Hidden;
 
                 createWorldView.drawingSpace4.Show();
                 createWorldView.saveCheck4Border.Visibility = Visibility.Visible;
@@ -322,7 +311,6 @@ namespace Cultiverse
             if (allTokensAreUp())
             {
                 createWorldView.Hide();
-                //universeView.Visibility = Visibility.Visible;
             }
         }
 
