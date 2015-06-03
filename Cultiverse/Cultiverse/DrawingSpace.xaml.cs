@@ -135,6 +135,7 @@ namespace Cultiverse
 
         public void Reset()
         {
+            inkCanvas.Strokes.Clear();
             currentDrawingI = 0;
             drawLabel.Content = drawingNames[currentDrawingI];
         }

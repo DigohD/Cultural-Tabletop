@@ -152,7 +152,7 @@ namespace Cultiverse
         {
             currentWorld = world;
             removeFromUpdate(planet);
-            myCanvas.Children.Remove(planet);
+            planetCanvas.Children.Remove(planet);
 
             planet = new Planet(0, 0, 1.0f, currentWorld, 0);
             planetCanvas.Children.Add(planet);
@@ -161,24 +161,17 @@ namespace Cultiverse
             restart();
         }
 
-        public void clearCreateWorldCanvas()
-        {
-            removeFromUpdate(planet);
-            planetCanvas.Children.Remove(planet);
-            planet = null;
-
-            saveCheck1Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck2Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck3Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck4Border.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
         void restart()
         {
             drawingSpace1.Reset();
             drawingSpace2.Reset();
             drawingSpace3.Reset();
             drawingSpace4.Reset();
+
+            saveCheck1Checked = false;
+            saveCheck2Checked = false;
+            saveCheck3Checked = false;
+            saveCheck4Checked = false;
         }
 
 

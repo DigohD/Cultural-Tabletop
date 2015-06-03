@@ -136,7 +136,6 @@ namespace Cultiverse
 
         private void NewWorld(object sender, ExecutedRoutedEventArgs e)
         {
-            createWorldView.clearCreateWorldCanvas();
             createWorldView.setWorld(worldDatabase.createNewWorld());
             createWorldView.Show();
         }
