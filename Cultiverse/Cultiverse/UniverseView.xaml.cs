@@ -79,11 +79,13 @@ namespace Cultiverse
         }
 
         Planet viewingPlanet = null;
-
+        float planetZoom = 0.2f;
         public void planet_TouchDown(object sender, TouchEventArgs e)
         {
             Planet planet = (Planet)sender;
-            UniverseZoom = 4.0;
+            planetZoom = 1;
+
+            planet.setToScale(1);
 
             scrollViewer.CanContentScroll = false;
 
@@ -95,8 +97,8 @@ namespace Cultiverse
 
         public void scrollTo(Planet planet)
         {
-            scrollViewer.ScrollToHorizontalOffset(planet.posX * UniverseZoom - scrollViewer.Width / 2 + 100 * UniverseZoom);
-            scrollViewer.ScrollToVerticalOffset(planet.posY * UniverseZoom - scrollViewer.Height / 2 + 100 * UniverseZoom);
+            scrollViewer.ScrollToHorizontalOffset((planet.posX - (planet.ActualWidth / 2)) - scrollViewer.Width);
+            scrollViewer.ScrollToVerticalOffset((planet.posY - (planet.ActualHeight / 2)) - scrollViewer.Height);
         }
 
         public Planet addWorld(World world)
@@ -187,7 +189,7 @@ namespace Cultiverse
         SolidColorBrush solidC = new SolidColorBrush();
         byte r;
         float deltaTime;
-        float targetzoom = 4f, zoomInc = 0.03f, zoomAmount = 1;
+        float targetzoom = 1f, zoomInc = 0.01f, zoomAmount = 0.2f;
         public bool zoomBlockInput = false;
         public void update(object sender, EventArgs e)
         {
@@ -204,8 +206,8 @@ namespace Cultiverse
                 }else
                     zoomBlockInput = true;
 
-                UniverseZoom = zoomAmount;
-                scrollTo(viewingPlanet);
+                planetZoom = zoomAmount;
+                viewingPlanet.setToScale(planetZoom);
             }
             else if (viewingPlanet != null && leavingPlanet)
             {
@@ -213,19 +215,18 @@ namespace Cultiverse
 
                 zoomBlockInput = true;
 
-                UniverseZoom = zoomAmount;
-                this.scrollTo(viewingPlanet);
+                planetZoom = zoomAmount;
+                viewingPlanet.setToScale(planetZoom);
 
-                if (zoomAmount < 1){
-                    zoomAmount = 1;
-                    UniverseZoom = zoomAmount;
-                    this.scrollTo(viewingPlanet);
+                if (zoomAmount < 0.2f){
+                    zoomAmount = 0.2f;
+                    planetZoom = zoomAmount;
                     scrollViewer.CanContentScroll = true;
+                    viewingPlanet.setToScale(planetZoom);
                     viewingPlanet = null;
                     leavingPlanet = false;
                     zoomBlockInput = false;
-                }
-                
+                }   
             }
 
             foreach (Updateable u in updateList)

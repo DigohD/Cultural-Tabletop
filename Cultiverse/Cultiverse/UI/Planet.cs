@@ -57,7 +57,8 @@ namespace Cultiverse.UI
             Matrix matrix = Matrix.Identity;
 
             matrix.Scale(scaleFactor, scaleFactor);
-            matrix.Translate(newX, newY);
+            //matrix.Translate(newX, newY);
+            matrix.Translate(((posX - this.ActualWidth) / 2), posY - (this.ActualHeight / 2));
 
             this.RenderTransform = new MatrixTransform(matrix);
 
@@ -72,7 +73,16 @@ namespace Cultiverse.UI
 
                 this.Children.Add(ball);
             }
+        }
 
+        public void setToScale(float scaleFactor)
+        {
+            Matrix matrix = Matrix.Identity;
+
+            matrix.Scale(scaleFactor, scaleFactor);
+            matrix.Translate(((posX - this.ActualWidth) / 2), posY - (this.ActualHeight / 2));
+
+            this.RenderTransform = new MatrixTransform(matrix);
         }
 
         void ball_OnDrop(object sender, TouchEventArgs e)
