@@ -136,8 +136,15 @@ namespace Cultiverse
             myCanvas.Children.Remove(planet);
 
             planet = new Planet(0, 0, 1.0f, currentWorld, 0);
-            myCanvas.Children.Add(planet);
+            planetCanvas.Children.Add(planet);
             addToUpdate(planet);
+
+            restart();
+        }
+
+        void restart()
+        {
+            
         }
 
 

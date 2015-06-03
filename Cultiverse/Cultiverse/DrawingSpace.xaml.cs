@@ -13,21 +13,99 @@ using System.Windows.Shapes;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
+using System.ComponentModel;
+using Cultiverse.UI;
+using System.IO;
+using System.Windows.Ink;
 
 namespace Cultiverse
 {
     /// <summary>
     /// Interaction logic for DrawingSpace.xaml
     /// </summary>
+    /// 
+
     public partial class DrawingSpace : UserControl
     {
         public event RoutedEventHandler DrawingDone;
+
+        private int currentDrawingI = 0;
+
+        private List<string> drawingNames = new List<string>();
 
         public DrawingSpace()
         {
             InitializeComponent();
 
             inkCanvas.DefaultDrawingAttributes.Color = Colors.Black;
+
+            Storyboard sb = (Storyboard)FindResource("pulseAnimation");
+            sb.Begin();
+
+            drawingNames.Add("FAVOURITE ANIMAL");
+            drawingNames.Add("A VITAL ITEM");
+            drawingNames.Add("THE BEST QUALITY");
+            drawingNames.Add("LIFE");
+            drawingNames.Add("NEAT THINGS");
+
+            this.Reset();
+
+            TouchDragDrop.Drop += new EventHandler<TouchEventArgs>(TouchDragDrop_Drop);
+            TouchDragDrop.Drag += new EventHandler<TouchEventArgs>(TouchDragDrop_Drag);
+        }
+
+        void TouchDragDrop_Drag(object sender, TouchEventArgs e)
+        {
+            Point touchPoint = e.GetTouchPoint(inkCanvas).Position;
+
+            if (this.Visibility == Visibility.Visible && touchPoint.X > 0 && touchPoint.Y > 0 && touchPoint.X < inkCanvasBorder.ActualWidth && touchPoint.Y < inkCanvasBorder.ActualHeight)
+            {
+                if (sender is Ball)
+                {
+                    Ball ball = (Ball)sender;
+                    inkCanvasBorder.Background = new SolidColorBrush(Colors.White);
+                }
+            }
+            else
+            {
+                Color color = new Color();
+                color.A = 0xAA;
+                color.R = 0xFF;
+                color.G = 0xFF;
+                color.B = 0xFF;
+                inkCanvasBorder.Background = new SolidColorBrush(color);
+            }
+        }
+
+        void TouchDragDrop_Drop(object sender, TouchEventArgs e)
+        {
+            Point touchPoint = e.GetTouchPoint(inkCanvas).Position;
+
+            if (this.Visibility == Visibility.Visible && touchPoint.X > 0 && touchPoint.Y > 0 && touchPoint.X < inkCanvasBorder.ActualWidth && touchPoint.Y < inkCanvasBorder.ActualHeight)
+            {
+                if (sender is Ball)
+                {
+                    Ball ball = (Ball)sender;
+                    var fs = new FileStream(ball.Drawing.StrokesFilePath, FileMode.Open, FileAccess.Read);
+                    StrokeCollection strokes = new StrokeCollection(fs);
+                    inkCanvas.Strokes = strokes;
+                    ball.Dropped = true;
+                }
+            }
+
+            Color color = new Color();
+            color.A = 0xAA;
+            color.R = 0xFF;
+            color.G = 0xFF;
+            color.B = 0xFF;
+            inkCanvasBorder.Background = new SolidColorBrush(color);
+        }
+
+        public void Reset()
+        {
+            currentDrawingI = 0;
+            drawLabel.Content = drawingNames[currentDrawingI];
         }
 
         /// <summary>
@@ -84,6 +162,10 @@ namespace Cultiverse
 
         private void addDrawingButton_Click(object sender, RoutedEventArgs e)
         {
+            if (++currentDrawingI < drawingNames.Count)
+            {
+                drawLabel.Content = drawingNames[currentDrawingI];
+            }
             if (DrawingDone != null)
             {
                 DrawingDone(inkCanvas, e);
@@ -215,5 +297,6 @@ namespace Cultiverse
                 e.Handled = true;
             }
         }
+
     }
 }

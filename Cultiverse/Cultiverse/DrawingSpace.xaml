@@ -6,7 +6,7 @@
              xmlns:cv="clr-namespace:Cultiverse"
              xmlns:cvui="clr-namespace:Cultiverse.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" xmlns:my="http://schemas.microsoft.com/surface/2008">
+             d:DesignHeight="500" d:DesignWidth="500" xmlns:my="http://schemas.microsoft.com/surface/2008" >
 
     <UserControl.Resources>
         <cvui:BorderClipConverter x:Key="BorderClipConverter" />
@@ -14,13 +14,31 @@
         <Grid x:Key="RubberIconBlack" Margin="16">
             <Image Source="/Cultiverse;component/Resources/Icons/eraser11black.png" />
         </Grid>
+
+        <Storyboard x:Key="pulseAnimation">
+            <DoubleAnimation Storyboard.TargetName="textBlockScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="1.2" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
+            <DoubleAnimation Storyboard.TargetName="textBlockScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="1.2" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
+        </Storyboard>
     </UserControl.Resources>
     <Grid Width="500" Height="500">
 
 
         <Image Name="ColorWheel" Source="/Cultiverse;component/Resources/colorring.png" LostMouseCapture="OnColorWheelLostMouseCapture" LostTouchCapture="OnColorWheelLostTouchCapture" Width="370" Height="370" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,45" TouchDown="ColorWheel_TouchDown" MouseDown="ColorWheel_MouseDown"  />
 
-        <Border CornerRadius="340" Width="340" Height="340" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF" Margin="60,0,0,60" LostMouseCapture="Border_LostMouseCapture" LostTouchCapture="Border_LostTouchCapture">
+        <Grid IsHitTestVisible="False" Width="370" Height="370" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,45">
+            <Label Content="DRAW" Margin="0,-40,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="26" FontFamily="Segoe360" FontWeight="Bold" Foreground="#33FFFFFF" />
+            <Label Content="AN ANIMAL" Margin="0,30,0,0" Name="drawLabel" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="32" FontFamily="Segoe360" FontWeight="Bold" Foreground="#33FFFFFF" />
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="45"></RotateTransform>
+                    <ScaleTransform x:Name="textBlockScale" ScaleX="1.0" ScaleY="1.0"></ScaleTransform>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RenderTransformOrigin>
+                <Point X=".5" Y=".5"></Point>
+            </Grid.RenderTransformOrigin>
+        </Grid>
+        <Border Name="inkCanvasBorder" CornerRadius="340" Width="340" Height="340" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#AAFFFFFF" Margin="60,0,0,60" LostMouseCapture="Border_LostMouseCapture" LostTouchCapture="Border_LostTouchCapture">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
@@ -31,6 +49,14 @@
                             RelativeSource="{RelativeSource Self}"/>
                 </MultiBinding>
             </Border.Clip>
+
+
+            <Border.RenderTransform>
+                <RotateTransform Angle="45"></RotateTransform>
+            </Border.RenderTransform>
+            <Border.RenderTransformOrigin>
+                <Point X=".5" Y=".5"></Point>
+            </Border.RenderTransformOrigin>
 
             <my:SurfaceInkCanvas Name="inkCanvas" LostMouseCapture="inkCanvas_LostMouseCapture" LostTouchCapture="inkCanvas_LostTouchCapture" />
         </Border>
@@ -100,6 +126,5 @@
                 </Grid>
             </my:SurfaceButton>
         </Border>
-
     </Grid>
 </UserControl>

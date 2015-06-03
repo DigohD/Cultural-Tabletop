@@ -35,6 +35,12 @@ namespace Cultiverse.UI
 
         private float containerSize = 800; //Size of planet (containing circle)
 
+        public WorldDrawing Drawing;
+
+        public bool Dropped;
+
+        public event EventHandler<TouchEventArgs> OnDrop;
+
         public Ball(int count, int newX, int newY, int newWidth, int newHeight, WorldDrawing drawing, bool isPushEnabled, int containerSize)
         {
             this.width = newWidth;
@@ -44,6 +50,7 @@ namespace Cultiverse.UI
 
             BitmapImage bi3 = new BitmapImage();
             bi3.BeginInit();
+            this.Drawing = drawing;
             if (drawing != null)
             {
                 bi3.UriSource = new Uri(drawing.BitmapFilePath, UriKind.Absolute);
@@ -52,6 +59,7 @@ namespace Cultiverse.UI
             {
                 bi3.UriSource = new Uri(@"Resources\particle1.png", UriKind.Relative);
             }
+            bi3.CacheOption = BitmapCacheOption.OnLoad;
             bi3.EndInit();
 
             this.Stretch = Stretch.Fill;
@@ -99,7 +107,17 @@ namespace Cultiverse.UI
                 touchMove = false;
                 this.vX = (this.x - this.lastTouchMoveX) / 40f;
                 this.vY = (this.y - this.lastTouchMoveY) / 40f;
+                EventArgs args = new EventArgs();
+                TouchDragDrop.FireDrop(this, e);
+                if (Dropped)
+                {
+                    if (OnDrop != null)
+                    {
+                        OnDrop(this, e);
+                    }
+                }
             }
+
         }
 
 
@@ -116,6 +134,11 @@ namespace Cultiverse.UI
 
                 Canvas.SetLeft(this, x - width / 2);
                 Canvas.SetTop(this, y - height / 2);
+
+                DataObject data = new DataObject();
+                data.SetData("Object", this);
+
+                TouchDragDrop.FireDrag(this, e);
             }
         }
 
