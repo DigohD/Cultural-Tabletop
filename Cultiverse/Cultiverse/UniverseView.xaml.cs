@@ -53,6 +53,7 @@ namespace Cultiverse
                 Planet newPlanet = new Planet(100 + rng.Next(0, 4000 - 200), 100 + rng.Next(0, 4000 - 200), 0.2f, world, worldCounter++);
                 this.uniCanvas.Children.Add(newPlanet);
                 newPlanet.TouchDown += planet_TouchDown;
+                newPlanet.DisableBallDragging();
                 planets.Add(newPlanet);
             }
             //Scroll to center
@@ -90,6 +91,9 @@ namespace Cultiverse
             viewingPlanet = planet;
             this.scrollTo(planet);
 
+
+            planet.EnableBallDragging();
+
             e.Handled = true;
         }
 
@@ -106,6 +110,7 @@ namespace Cultiverse
             float posX = 100 + rng.Next(0, 4000 - 200);
             float posY = 100 + rng.Next(0, 4000 - 200);
             Planet newPlanet = new Planet(posX, posY, 0.2f, world, worldCounter++);
+            newPlanet.DisableBallDragging();
             this.uniCanvas.Children.Add(newPlanet);
             planets.Add(newPlanet);
 

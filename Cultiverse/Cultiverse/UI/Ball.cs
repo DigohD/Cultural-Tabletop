@@ -31,6 +31,7 @@ namespace Cultiverse.UI
         public float spring = 0f, maxSpring = 0.001f, friction = 0.995f, gravity = 0.0005f, inertia = 0.0005f, wallDampening = 0.65f, colWidthMod = 0.7f;
 
         bool isPushEnabled;
+        public bool Movable = true;
         bool touchMove;
 
         private float containerSize = 800; //Size of planet (containing circle)
@@ -105,8 +106,12 @@ namespace Cultiverse.UI
             if (touchMove)
             {
                 touchMove = false;
-                this.vX = (this.x - this.lastTouchMoveX) / 40f;
-                this.vY = (this.y - this.lastTouchMoveY) / 40f;
+                if (touchMoveCount > 2)
+                {
+                    this.vX = (this.x - this.lastTouchMoveX) / 40f;
+                    this.vY = (this.y - this.lastTouchMoveY) / 40f;
+                }
+                touchMoveCount = 0;
                 EventArgs args = new EventArgs();
                 TouchDragDrop.FireDrop(this, e);
                 if (Dropped)
@@ -120,13 +125,14 @@ namespace Cultiverse.UI
 
         }
 
-
+        int touchMoveCount = 0;
         float lastTouchMoveX = 0.0f;
         float lastTouchMoveY = 0.0f;
         void Ball_TouchMove(object sender, TouchEventArgs e)
         {
             if (touchMove)
             {
+                touchMoveCount++;
                 lastTouchMoveX = this.x;
                 lastTouchMoveY = this.y;
                 this.x = (float)e.GetTouchPoint((IInputElement)this.Parent).Position.X;
@@ -144,7 +150,10 @@ namespace Cultiverse.UI
 
         void Ball_TouchDown(object sender, TouchEventArgs e)
         {
-            touchMove = true;
+            if (Movable)
+            {
+                touchMove = true;
+            }
         }
 
         public void update(float deltaTime){
