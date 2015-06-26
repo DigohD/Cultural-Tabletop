@@ -57,26 +57,33 @@ namespace Cultiverse
 
         public void Show()
         {
-            Storyboard sb = (Storyboard)FindResource("scaleUp");
-            sb.Completed += delegate
+            if (this.Visibility != Visibility.Visible)
             {
-                this.IsHitTestVisible = true;
+                Storyboard sb = (Storyboard)FindResource("scaleUp");
+                sb.Completed += delegate
+                {
+                    this.IsHitTestVisible = true;
+                    this.Visibility = Visibility.Visible;
+                };
+                sb.Begin();
                 this.Visibility = Visibility.Visible;
-            };
-            sb.Begin();
-            this.Visibility = Visibility.Visible;
+            }
         }
 
         public void Hide()
         {
-            this.Visibility = Visibility.Visible;
-            this.IsHitTestVisible = false;
-            Storyboard sb = (Storyboard)FindResource("scaleDown");
-            sb.Completed += delegate
+
+            if (this.Visibility != Visibility.Hidden)
             {
-                this.Visibility = Visibility.Hidden;
-            };
-            sb.Begin();
+                this.Visibility = Visibility.Visible;
+                this.IsHitTestVisible = false;
+                Storyboard sb = (Storyboard)FindResource("scaleDown");
+                sb.Completed += delegate
+                {
+                    this.Visibility = Visibility.Hidden;
+                };
+                sb.Begin();
+            }
         }
 
         void TouchDragDrop_Drag(object sender, TouchEventArgs e)
@@ -128,6 +135,7 @@ namespace Cultiverse
 
         public void Reset()
         {
+            inkCanvas.Strokes.Clear();
             currentDrawingI = 0;
             drawLabel.Content = drawingNames[currentDrawingI];
         }

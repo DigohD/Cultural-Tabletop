@@ -10,8 +10,43 @@
 
     <UserControl.Resources>
         <cvui:BorderClipConverter x:Key="BorderClipConverter" />
+        <Storyboard x:Key="scaleUp">
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0.2" To="1.0" Duration="0:0:1" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0.2" To="1.0" Duration="0:0:1" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Opacity)" From="0.0" To="1.0" Duration="0:0:1" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="scaleDown">
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1.0" To="0.2" Duration="0:0:.5" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="planetScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1.0" To="0.2" Duration="0:0:.5" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Opacity)" From="1.0" To="0.0" Duration="0:0:.5" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </UserControl.Resources>
-    <Grid>
+    <Grid Name="mainGrid" Opacity="1.0">
+        
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="myCanvas" Width="3000" Height="3000" Background="White">
         </Grid>
 
@@ -42,6 +77,13 @@
         </cv:DrawingSpace>
 
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="planetCanvas" Background="Transparent">
+
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="planetScale" ScaleX="1.0" ScaleY="1.0"></ScaleTransform>
+            </Grid.RenderTransform>
+            <Grid.RenderTransformOrigin>
+                <Point X=".5" Y=".5"></Point>
+            </Grid.RenderTransformOrigin>
         </Grid>
 
         <Border Name="saveCheck1Border" Padding="0" CornerRadius="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,700,700" BorderThickness="5" BorderBrush="White" TouchDown="saveCheck1_TouchDown" TouchUp="saveCheck1_TouchUp">

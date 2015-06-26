@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Surface.Presentation.Controls;
 using Cultiverse.UI;
+using System.Windows.Media.Animation;
 
 namespace Cultiverse
 {
@@ -34,7 +35,7 @@ namespace Cultiverse
         public World currentWorld;
         public Planet planet;
 
-        Dispatcher mainDespatch;
+        Dispatcher mainDispatcher;
 
         ArrayList updateList = new ArrayList();
         float deltaTime;
@@ -46,13 +47,43 @@ namespace Cultiverse
         {
             InitializeComponent();
 
-            mainDespatch = Dispatcher.CurrentDispatcher;
+            mainDispatcher = Dispatcher.CurrentDispatcher;
 
             CompositionTarget.Rendering += update;
 
             initBackground();
         }
 
+        public void Show()
+        {
+            if (this.Visibility != Visibility.Visible)
+            {
+                Storyboard sb = (Storyboard)FindResource("scaleUp");
+                sb.Completed += delegate
+                {
+                    this.IsHitTestVisible = true;
+                    this.Visibility = Visibility.Visible;
+                };
+                sb.Begin();
+                this.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void Hide()
+        {
+
+            if (this.Visibility != Visibility.Hidden)
+            {
+                this.Visibility = Visibility.Visible;
+                this.IsHitTestVisible = false;
+                Storyboard sb = (Storyboard)FindResource("scaleDown");
+                sb.Completed += delegate
+                {
+                    this.Visibility = Visibility.Hidden;
+                };
+                sb.Begin();
+            }
+        }
         private void initBackground()
         {
             Stars background = new Stars("bg.png", 0.03f);
@@ -109,18 +140,6 @@ namespace Cultiverse
 
         private void saveWorldButton_Click(object sender, RoutedEventArgs e)
         {
-            //Save bitmap
-            FileStream fileStream = new FileStream("C:\\Users\\Simon\\Desktop\\img.png", FileMode.Create, FileAccess.Write);
-            int marg = int.Parse(myCanvas.Margin.Left.ToString());
-            RenderTargetBitmap rtb =
-                    new RenderTargetBitmap((int)myCanvas.ActualWidth - marg,
-                            (int)myCanvas.ActualHeight - marg, 0, 0,
-                        PixelFormats.Pbgra32);
-            rtb.Render(myCanvas);
-            PngBitmapEncoder png = new PngBitmapEncoder();
-            png.Frames.Add(BitmapFrame.Create(rtb));
-            png.Save(fileStream);
-            fileStream.Close();
 
         }
 
@@ -133,7 +152,7 @@ namespace Cultiverse
         {
             currentWorld = world;
             removeFromUpdate(planet);
-            myCanvas.Children.Remove(planet);
+            planetCanvas.Children.Remove(planet);
 
             planet = new Planet(0, 0, 1.0f, currentWorld, 0);
             planetCanvas.Children.Add(planet);
@@ -142,21 +161,17 @@ namespace Cultiverse
             restart();
         }
 
-        public void clearCreateWorldCanvas()
-        {
-            removeFromUpdate(planet);
-            planetCanvas.Children.Remove(planet);
-            planet = null;
-
-            saveCheck1Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck2Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck3Border.Background = new SolidColorBrush(Colors.Transparent);
-            saveCheck4Border.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
         void restart()
         {
-            
+            drawingSpace1.Reset();
+            drawingSpace2.Reset();
+            drawingSpace3.Reset();
+            drawingSpace4.Reset();
+
+            saveCheck1Checked = false;
+            saveCheck2Checked = false;
+            saveCheck3Checked = false;
+            saveCheck4Checked = false;
         }
 
 
@@ -340,6 +355,20 @@ namespace Cultiverse
                 return;
 
             Console.WriteLine("Save!");
+
+            //Save screenshot
+
+            FileStream fileStream = new FileStream(currentWorld.ScreenshotPath, FileMode.Create, FileAccess.Write);
+            RenderTargetBitmap rtb =
+                    new RenderTargetBitmap(1920,
+                            1080, 0, 0,
+                        PixelFormats.Pbgra32);
+            rtb.Render(planetCanvas);
+            PngBitmapEncoder png = new PngBitmapEncoder();
+            png.Frames.Add(BitmapFrame.Create(rtb));
+            png.Save(fileStream);
+            fileStream.Close();
+
             if (CreateWorldDone != null)
             {
                 MainWindow.worldCreated = false;

@@ -9,11 +9,20 @@ namespace Cultiverse.Model
     public class WorldDatabase
     {
         private List<World> universe;
-        string worldsFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds";
-
+        string cultiverseFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Cultiverse";
+        string worldsFolder;
         public WorldDatabase()
         {
+            worldsFolder = cultiverseFolder + "\\worlds";
 
+            if (!Directory.Exists(cultiverseFolder))
+            {
+                Directory.CreateDirectory(cultiverseFolder);
+            }
+            if (!Directory.Exists(worldsFolder))
+            {
+                Directory.CreateDirectory(worldsFolder);
+            }
             universe = new List<World>();
 
             IEnumerable<string> worldFolders = Directory.EnumerateDirectories(worldsFolder);
@@ -25,7 +34,7 @@ namespace Cultiverse.Model
 
         public World createNewWorld()
         {
-            string worldPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Cultiverse\\worlds\\"+universe.Count;
+            string worldPath = worldsFolder + "\\" + universe.Count;
 
             if (!Directory.Exists(worldPath))
             {

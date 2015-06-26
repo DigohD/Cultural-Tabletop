@@ -20,18 +20,34 @@
             <DoubleAnimation Storyboard.TargetName="textBlockScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="1.2" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
         </Storyboard>
         <Storyboard x:Key="scaleUp">
-            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0.2" To="1.0" Duration="0:0:.2" />
-            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0.2" To="1.0" Duration="0:0:.2" />
+            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0.2" To="1.0" Duration="0:0:.2" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0.2" To="1.0" Duration="0:0:.2" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
         </Storyboard>
         <Storyboard x:Key="scaleDown">
-            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1.0" To="0.2" Duration="0:0:.2" />
-            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1.0" To="0.2" Duration="0:0:.2" />
+            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1.0" To="0.2" Duration="0:0:.2" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="everythingScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1.0" To="0.2" Duration="0:0:.2" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
         </Storyboard>
     </UserControl.Resources>
     <Grid Width="500" Height="500">
 
         <Grid.RenderTransform>
-            <ScaleTransform x:Name="everythingScale" ScaleX="1.0" ScaleY="1.0" CenterX="10" CenterY="490"></ScaleTransform>
+            <ScaleTransform x:Name="everythingScale" ScaleX="1.0" ScaleY="1.0" CenterX="440" CenterY="490"></ScaleTransform>
         </Grid.RenderTransform>
         
         <Image Name="ColorWheel" Source="/Cultiverse;component/Resources/colorring.png" LostMouseCapture="OnColorWheelLostMouseCapture" LostTouchCapture="OnColorWheelLostTouchCapture" Width="370" Height="370" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,45" TouchDown="ColorWheel_TouchDown" MouseDown="ColorWheel_MouseDown"  />
@@ -120,7 +136,7 @@
                 <Point X=".5" Y=".5"></Point>
             </Border.RenderTransformOrigin>
         </Border>
-        <Border Padding="0" CornerRadius="75" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,370,0,0" Background="#FFFFFFFF">
+        <Border Padding="0" CornerRadius="75" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="410,320,0,0" Background="#FFFFFFFF">
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
                     <Binding Path="ActualWidth"
